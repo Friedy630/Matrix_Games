@@ -234,10 +234,22 @@ def start_tetris():
     reset_inputs()
 
 
+close_x_shape = np.array([[1, 0, 1], [0, 1, 0], [1, 0, 1]])
+space_shape = np.array([[1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1]])
+
+
 def start_main_menu():
     global running
     print("entered main menu")
-    fill((20, 120, 20))
+    fill((20, 20, 20))
+    set_shape(close_x_shape, Vec(1, 1), (200, 100, 120))
+    set_shape(get_rotated_shape_matrix(space_shape, True), Vec(4, 10), (100, 180, 120))
+    # Create a (12,6) array with a (10,4) block of zeros offset inside
+    arr = np.zeros((14, 6))
+    arr[1:13, 1:5] = 1  # Offset by (1,1)
+    box = np.ones((14, 6)) - arr
+    set_shape(box, Vec(1, 8), (120, 200, 150))
+    display.show()
     while running:
         if inputs["escape"]:
             running = False
