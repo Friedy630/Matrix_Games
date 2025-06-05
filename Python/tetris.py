@@ -28,6 +28,8 @@ inputs = {
     "escape": False,
 }
 
+side_to_side_pass = False;
+
 current_shape_matrix = np.zeros((3, 3))
 current_shape_position = Vec(0, 0)
 current_shape_color = (255, 255, 255)
@@ -37,22 +39,11 @@ running = False
 score = 0
 
 shapes = [
-    np.array(
-        [
-            [1, 0, 0],
-            [1, 1, 1],
-            [0, 0, 0],
-        ]
-    ).T,
+    np.array([[1, 0, 0],[1, 1, 1],[0, 0, 0],]).T,
     np.array([[0, 1, 1], [1, 1, 0], [0, 0, 0]]).T,
     np.array([[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]).T,
     np.array([[0, 1, 0], [1, 1, 1], [0, 0, 0]]).T,
-    np.array(
-        [
-            [1, 1],
-            [1, 1],
-        ]
-    ).T,
+    np.array([[1, 1], [1, 1], ]).T,
     np.array([[1, 1, 0], [0, 1, 1], [0, 0, 0]]).T,
     np.array([[0, 0, 1], [1, 1, 1], [0, 0, 0]]).T,
 ]
@@ -64,6 +55,8 @@ colors = [
     (100, 100, 0),
     (0, 100, 100),
     (100, 0, 100),
+    (100, 0, 100),
+
 ]
 
 background_color = (0, 0, 0)
@@ -71,19 +64,22 @@ pixels = np.full((16, 16, 3), background_color)
 
 
 def setpixel(x: int, y: int, color: tuple):
-    if x >= 0 and y >= 0 and x < 16 and y < 16:
-        display.set_xy(x, y, color)
-        pixels[x, y] = color
+    if (x >= 16 or x < 0) and not side_to_side_pass:
+        return
+    if y >= 0 and y < 16:
+        display.set_xy(x % 16, y, color)
+        pixels[x % 16, y] = color
 
 
 def getpixel(x: int, y: int):
-    if x >= 0 and x < 16 and y < 16:
-        if y >= 0:
-            return tuple(pixels[x, y])
-        else:
-            return background_color
-    else:
+    if (x < 0 or x >= 16) and not side_to_side_pass:
         return (255, 255, 255)
+    if y >= 16:
+        return (255, 255, 255)
+    elif y >= 0:
+        return tuple(pixels[x % 16, y])
+    else:
+        return background_color
 
 
 def fill(color: tuple):
@@ -192,8 +188,9 @@ def rotate(isleft: bool):
 def get_new_shape():
     global fall_step_interval_seconds, current_shape_matrix, current_shape_position, current_shape_color
     current_shape_position = Vec(6, -2)
-    current_shape_matrix = rng.choice(shapes)
-    current_shape_color = rng.choice(colors)
+    new_shape_id = rng.randint(0, 6)
+    current_shape_matrix = shapes[new_shape_id]
+    current_shape_color = colors[new_shape_id]
     paste_current_shape()
     fall_step_interval_seconds *= 0.98
 
