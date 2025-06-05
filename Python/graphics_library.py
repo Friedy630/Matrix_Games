@@ -37,7 +37,7 @@ def setpixel(x: int, y: int, color: tuple):
     if x >= 16 or x < 0:
         return
     if y >= 0 and y < 16:
-        display.set_xy(x % 16, y, color)
+        display.set_xy((x % 16, y), color)
         pixels[x % 16, y] = color
 
 

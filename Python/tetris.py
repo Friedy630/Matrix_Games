@@ -2,9 +2,8 @@ import numpy as np
 import random as rng
 from ulib import display, remote
 import time
-import graphics_library as gl
-from graphics_library import Vec
-import input_library as il
+from ulib import graphics_library as gl
+from ulib import input_library as il
 
 # <SETTINGS>
 side_to_side_pass = True
@@ -33,7 +32,7 @@ enable_shape_weights = True          #spawns each block with a given chance
 currentShapeID = -1
 
 current_shape_matrix = np.zeros((3, 3))
-current_shape_position = Vec(0, 0)
+current_shape_position = gl.Vec(0, 0)
 current_shape_color = (255, 255, 255)
 
 diff1_step_interval_seconds = 1.0
@@ -317,7 +316,7 @@ def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool):
     return gl.get_rotated_shape_matrix(shape_matrix, isleft)
 
 
-def check_fit(shape_matrix: np.ndarray, position: Vec):
+def check_fit(shape_matrix: np.ndarray, position: gl.Vec):
     return gl.check_fit(shape_matrix, position)
 
 
@@ -356,9 +355,9 @@ def move_horizontal(isleft: bool):
     global current_shape_position
     moved_position = current_shape_position
     if isleft:
-        moved_position += Vec(-1, 0)
+        moved_position += gl.Vec(-1, 0)
     else:
-        moved_position += Vec(1, 0)
+        moved_position += gl.Vec(1, 0)
     cut_current_shape()
     if check_fit(current_shape_matrix, moved_position):
         current_shape_position = moved_position
@@ -367,7 +366,7 @@ def move_horizontal(isleft: bool):
 
 def move_down():
     global current_shape_position
-    moved_position = current_shape_position + Vec(0, 1)
+    moved_position = current_shape_position + gl.Vec(0, 1)
     cut_current_shape()
     if not check_fit(current_shape_matrix, moved_position):
         if current_shape_position.y < 0:
@@ -445,7 +444,7 @@ def set_exotic_shape_weighted():
 
 def get_new_shape():
     global fall_step_interval_seconds, current_shape_matrix, current_shape_position, current_shape_color
-    current_shape_position = Vec(6, -2)
+    current_shape_position = gl.Vec(6, -2)
     spawn_exotic = False
     if enable_exotic_shapes:
         spawn_exotic = rng.randint(0, 99) / 100.0 <= exotic_shape_chance
@@ -516,13 +515,13 @@ def start_main_menu():
     print("entered main menu")
     fall_step_interval_seconds = diff1_step_interval_seconds
     gl.fill((20, 20, 20))
-    gl.set_shape(progress_bar_border_shape, Vec(1, 1), (120, 120, 120))
-    gl.set_shape(progress_bar_inner_green_shape, Vec(2, 2), (0, 255, 0))
-    gl.set_shape(s_shape, Vec(1, 7), (120, 120, 120))
-    gl.set_shape(p_shape, Vec(4, 7), (120, 120, 120))
-    gl.set_shape(e_shape, Vec(7, 7), (120, 120, 120))
-    gl.set_shape(e_shape, Vec(10, 7), (120, 120, 120))
-    gl.set_shape(d_shape, Vec(13, 7), (120, 120, 120))
+    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), (120, 120, 120))
+    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), (0, 255, 0))
+    gl.set_shape(s_shape, gl.Vec(1, 7), (120, 120, 120))
+    gl.set_shape(p_shape, gl.Vec(4, 7), (120, 120, 120))
+    gl.set_shape(e_shape, gl.Vec(7, 7), (120, 120, 120))
+    gl.set_shape(e_shape, gl.Vec(10, 7), (120, 120, 120))
+    gl.set_shape(d_shape, gl.Vec(13, 7), (120, 120, 120))
     display.show()
     while running:
         if il.inputs["escape"]:
@@ -531,24 +530,28 @@ def start_main_menu():
             return True
         if fall_step_interval_seconds == diff1_step_interval_seconds:
             if il.inputs["right"]:
-                gl.set_shape(progress_bar_inner_yellow_shape, Vec(5, 2), (255, 255, 0))
+                gl.set_shape(
+                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), (255, 255, 0)
+                )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
         if fall_step_interval_seconds == diff2_step_interval_seconds:
             if il.inputs["right"]:
-                gl.set_shape(progress_bar_inner_red_shape, Vec(9, 2), (255, 0, 0))
+                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (255, 0, 0))
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff3_step_interval_seconds
             if il.inputs["left"]:
-                gl.set_shape(progress_bar_inner_yellow_shape, Vec(5, 2), (20, 20, 20))
+                gl.set_shape(
+                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), (20, 20, 20)
+                )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff1_step_interval_seconds
         if fall_step_interval_seconds == diff3_step_interval_seconds:
             if il.inputs["left"]:
-                gl.set_shape(progress_bar_inner_red_shape, Vec(9, 2), (20, 20, 20))
+                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (20, 20, 20))
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
