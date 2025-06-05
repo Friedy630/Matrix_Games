@@ -28,15 +28,219 @@ inputs = {
     "escape": False,
 }
 
-side_to_side_pass = False;
+# <SETTINGS>
+
+side_to_side_pass = False           #you can faze through the left/right borders
+
+enable_win_screen = True            #if the screen gets completely cleared, you win. TODO: not implemented yet
+
+enable_exotic_shapes = True         #adds 20 more exiting shapes
+
+exotic_shape_chance = 0.3           #chance to spawn an exotic shape instead of a normal one
+
+enable_acceleration = False         #makes the falling speed accelerate over time
+
+fall_step_interval_seconds = 0.700  #how much time it takes for the shape to fall one block
+
+enable_shape_weights = True        #spawns each block with a given chance
+
+# </STETTINGS>
+
+currentShapeID = -1
 
 current_shape_matrix = np.zeros((3, 3))
 current_shape_position = Vec(0, 0)
 current_shape_color = (255, 255, 255)
-fall_step_interval_seconds = 0.700
 running = False
 
 score = 0
+
+exotic_shapes_weights = [
+    5, #01
+    5, #02
+    5, #03
+    5, #04
+    5, #05
+    5, #06
+    5, #07
+    5, #08
+    5, #09
+    5, #10
+    5, #11
+    5, #12
+    5, #13
+    5, #14
+    5, #15
+    5, #16
+    5, #17
+    5, #18
+    5, #19
+    5, #20
+]
+
+exotic_weights_sum = 100
+
+exotic_color = (100, 100, 100)  #color aof any exotic shape
+
+exotic_shapes = [
+    np.array(
+        [
+            [1, 1, 1],
+            [1, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 1, 1],
+            [0, 0, 1],
+            [0, 1, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 1],
+            [0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 1],
+            [0, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 1, 1],
+            [0, 1, 0],
+            [0, 1, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 0, 0],
+            [1, 1, 1],
+            [0, 0, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 1],
+            [1, 0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 1],
+            [0, 1, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 0],
+            [0, 1, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 1, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 1, 1],
+            [1, 1, 1, 0],
+            [0, 0, 0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0, 0],
+            [1, 1, 0, 0],
+            [0, 1, 1, 1],
+            [0, 0, 0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0, 0],
+            [1, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 0, 1],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0],
+            [1, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0],
+            [0, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [0, 0, 0],
+            [1, 1, 0],
+            [1, 1, 1],
+        ]
+    ).T,
+    np.array(
+        [
+            [1, 0, 0],
+            [1, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T
+]
+
+shapes_weights = [
+    15, #1
+    10, #2
+    20, #3
+    15, #4
+    15, #5
+    10, #6
+    15, #7
+]
+
+weights_sum = 100
+
 
 shapes = [
     np.array(
@@ -227,14 +431,78 @@ def rotate(isleft: bool):
     paste_current_shape()
 
 
+def get_loottable_hit(weights_array, weights_sum):
+    randInt = rng.randint(0, weights_sum - 1)
+    w = 0
+    i = -1 #shape_index
+    while w < randInt:
+         i += 1
+         w += weights_array[i]
+    return i
+
+def set_standard_shape():
+    global currentShapeID, current_shape_color, current_shape_matrix
+    while True:
+        new_shape_id = rng.randint(0, len(shapes) - 1)
+        if new_shape_id != currentShapeID:
+            currentShapeID = new_shape_id
+            break
+    current_shape_matrix = shapes[new_shape_id]
+    current_shape_color = colors[new_shape_id % len(colors)]
+
+def set_exotic_shape():
+    global currentShapeID, current_shape_color, current_shape_matrix
+    while True:
+        new_shape_id = rng.randint(0, len(exotic_shapes) - 1)
+        if new_shape_id != currentShapeID:
+            currentShapeID = new_shape_id
+            break
+    current_shape_matrix = exotic_shapes[new_shape_id]
+    current_shape_color = exotic_color
+    
+
+def set_standard_shape_weighted():
+    global currentShapeID, current_shape_color, current_shape_matrix
+    while True:
+        new_shape_id = get_loottable_hit(shapes_weights, weights_sum)
+        if new_shape_id != currentShapeID:
+            currentShapeID = new_shape_id
+            break
+    current_shape_matrix = shapes[new_shape_id]
+    current_shape_color = colors[new_shape_id]
+
+def set_exotic_shape_weighted():
+    global currentShapeID, current_shape_color, current_shape_matrix
+    while True:
+        new_shape_id = get_loottable_hit(exotic_shapes_weights, exotic_weights_sum)
+        if new_shape_id != currentShapeID:
+            currentShapeID = new_shape_id
+            break
+    current_shape_matrix = exotic_shapes[new_shape_id]
+    current_shape_color = exotic_color
+
+
 def get_new_shape():
     global fall_step_interval_seconds, current_shape_matrix, current_shape_position, current_shape_color
     current_shape_position = Vec(6, -2)
-    new_shape_id = rng.randint(0, 6)
-    current_shape_matrix = shapes[new_shape_id]
-    current_shape_color = colors[new_shape_id]
+    spawn_exotic = False
+    if enable_exotic_shapes:
+        spawn_exotic = rng.randint(0, 99) / 100.0 <= exotic_shape_chance
+    else:
+        spawn_exotic = False
+    if spawn_exotic:
+        if enable_shape_weights:
+            set_exotic_shape_weighted()
+        else:
+            set_exotic_shape()
+    else:
+        if enable_shape_weights:
+            set_standard_shape_weighted()
+        else:
+            set_standard_shape()
     paste_current_shape()
-    fall_step_interval_seconds *= 0.98
+    if enable_acceleration:
+        fall_step_interval_seconds *= 0.98
 
 
 def register_input(key: str):
