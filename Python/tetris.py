@@ -29,6 +29,7 @@ inputs = {
 }
 
 # <SETTINGS>
+side_to_side_pass = True;
 
 side_to_side_pass = False           #you can faze through the left/right borders
 
@@ -51,6 +52,13 @@ currentShapeID = -1
 current_shape_matrix = np.zeros((3, 3))
 current_shape_position = Vec(0, 0)
 current_shape_color = (255, 255, 255)
+
+diff1_step_interval_seconds = 1.0
+diff2_step_interval_seconds = 0.75
+diff3_step_interval_seconds = 0.5
+
+fall_step_interval_seconds = diff1_step_interval_seconds
+
 running = False
 
 score = 0
@@ -295,13 +303,13 @@ shapes = [
 ]
 
 colors = [
-    (0, 0, 255),
-    (0, 255, 0),
-    (0, 255, 255),
-    (128, 0, 128),
-    (255, 255, 0),
-    (255, 0, 0),
-    (255, 165, 0),
+    (0, 0, 255), # Blau
+    (0, 255, 0), # Grün
+    (0, 255, 255), # Cyan
+    (128, 0, 128), # Lila
+    (255, 255, 0), # Gelb
+    (255, 0, 0), # Rot
+    (255, 165, 0), # Orange
 ]
 # Tetris Tetromino-Farben laut offizieller Guideline
 
@@ -543,25 +551,121 @@ def start_tetris():
 
 close_x_shape = np.array([[1, 0, 1], [0, 1, 0], [1, 0, 1]])
 space_shape = np.array([[1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1]])
+s_shape = np.array(
+    [
+        [1, 1],
+        [1, 0],
+        [1, 1],
+        [0, 1],
+        [1, 1]
+    ]
+).T
 
+p_shape = np.array(
+    [
+        [1, 1],
+        [1, 1],
+        [1, 1],
+        [1, 0],
+        [1, 0]
+    ]
+).T
+
+e_shape = np.array(
+    [
+        [1, 1],
+        [1, 0],
+        [1, 1],
+        [1, 0],
+        [1, 1]
+    ]
+).T
+
+d_shape = np.array(
+    [
+        [1, 0],
+        [1, 1],
+        [1, 1],
+        [1, 1],
+        [1, 0]
+    ]
+).T
+
+progress_bar_border_shape = np.array(
+    [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ]
+).T
+
+progress_bar_inner_green_shape = np.array(
+    [
+        [1, 1, 1],
+        [1, 1, 1]
+    ]
+).T
+
+progress_bar_inner_yellow_shape = np.array(
+    [
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]
+    ]
+).T
+
+progress_bar_inner_red_shape = np.array(
+    [
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1]
+    ]
+).T
 
 def start_main_menu():
-    global running
+    global running, fall_step_interval_seconds
     print("entered main menu")
+    fall_step_interval_seconds = diff1_step_interval_seconds
     fill((20, 20, 20))
-    set_shape(close_x_shape, Vec(1, 1), (200, 100, 120))
-    set_shape(get_rotated_shape_matrix(space_shape, True), Vec(4, 10), (100, 180, 120))
+    set_shape(progress_bar_border_shape, Vec(1, 1), (120, 120, 120))
+    set_shape(progress_bar_inner_green_shape, Vec(2, 2), (0, 255, 0))
+    set_shape(s_shape, Vec(1, 7), (120, 120, 120))
+    set_shape(p_shape, Vec(4, 7), (120, 120, 120))
+    set_shape(e_shape, Vec(7, 7), (120, 120, 120))
+    set_shape(e_shape, Vec(10, 7), (120, 120, 120))
+    set_shape(d_shape, Vec(13, 7), (120, 120, 120))
     # Create a (12,6) array with a (10,4) block of zeros offset inside
     arr = np.zeros((14, 6))
     arr[1:13, 1:5] = 1  # Offset by (1,1)
-    box = np.ones((14, 6)) - arr
-    set_shape(box, Vec(1, 8), (120, 200, 150))
+
     display.show()
     while running:
         if inputs["escape"]:
             running = False
         if inputs["space"]:
             return True
+        if fall_step_interval_seconds == diff1_step_interval_seconds:
+            if inputs["right"]:
+                set_shape(progress_bar_inner_yellow_shape, Vec(5, 2), (255, 255, 0))
+                display.show()
+                reset_inputs()
+                fall_step_interval_seconds = diff2_step_interval_seconds
+        if fall_step_interval_seconds == diff2_step_interval_seconds:
+            if inputs["right"]:
+                set_shape(progress_bar_inner_red_shape, Vec(9, 2), (255, 0, 0))
+                display.show()
+                reset_inputs()
+                fall_step_interval_seconds = diff3_step_interval_seconds
+            if inputs["left"]:
+                set_shape(progress_bar_inner_yellow_shape, Vec(5, 2), (20, 20, 20))
+                display.show()
+                reset_inputs()
+                fall_step_interval_seconds = diff1_step_interval_seconds
+        if fall_step_interval_seconds == diff3_step_interval_seconds:
+            if inputs["left"]:
+                set_shape(progress_bar_inner_red_shape, Vec(9, 2), (20, 20, 20))
+                display.show()
+                reset_inputs()
+                fall_step_interval_seconds = diff2_step_interval_seconds
         reset_inputs()
         time.sleep(0.1)  # muss hier sein, damit das programm ich schließen lässt
         # start menu code here...
