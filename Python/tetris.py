@@ -43,28 +43,61 @@ shapes = [
             [1, 1, 1],
             [0, 0, 0],
         ]
-    ).T,
-    np.array([[0, 1, 1], [1, 1, 0], [0, 0, 0]]).T,
-    np.array([[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]).T,
-    np.array([[0, 1, 0], [1, 1, 1], [0, 0, 0]]).T,
+    ).T, # J
+    np.array(
+        [
+            [0, 1, 1],
+            [1, 1, 0],
+            [0, 0, 0]
+        ]
+    ).T, # S
+    np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0]
+        ]
+    ).T, # I
+    np.array(
+        [
+            [0, 1, 0],
+            [1, 1, 1],
+            [0, 0, 0]
+        ]
+    ).T, # T
     np.array(
         [
             [1, 1],
             [1, 1],
         ]
-    ).T,
-    np.array([[1, 1, 0], [0, 1, 1], [0, 0, 0]]).T,
-    np.array([[0, 0, 1], [1, 1, 1], [0, 0, 0]]).T,
+    ).T, # O
+    np.array(
+        [
+            [1, 1, 0],
+            [0, 1, 1],
+            [0, 0, 0]
+        ]
+    ).T, # Z
+    np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 1],
+            [0, 0, 0]
+        ]
+    ).T, # L
 ]
 
 colors = [
-    (255, 0, 0),
-    (0, 255, 0),
     (0, 0, 255),
-    (100, 100, 0),
-    (0, 100, 100),
-    (100, 0, 100),
+    (0, 255, 0),
+    (0, 255, 255),
+    (128, 0, 128),
+    (255, 255, 0),
+    (255, 0, 0),
+    (255, 165, 0),
 ]
+# Tetris Tetromino-Farben laut offizieller Guideline
 
 background_color = (0, 0, 0)
 pixels = np.full((16, 16, 3), background_color)
@@ -192,8 +225,9 @@ def rotate(isleft: bool):
 def get_new_shape():
     global fall_step_interval_seconds, current_shape_matrix, current_shape_position, current_shape_color
     current_shape_position = Vec(6, -2)
-    current_shape_matrix = rng.choice(shapes)
-    current_shape_color = rng.choice(colors)
+    new_shape_id = rng.randint(0, 6)
+    current_shape_matrix = shapes[new_shape_id]
+    current_shape_color = colors[new_shape_id]
     paste_current_shape()
     fall_step_interval_seconds *= 0.98
 
