@@ -2,8 +2,8 @@ import numpy as np
 import random as rng
 from ulib import display, remote
 import time
-from ulib import graphics_library as gl
-from ulib import input_library as il
+from lib import graphics_library as gl
+from lib import input_library as il
 
 # <SETTINGS>
 side_to_side_pass = True
@@ -491,14 +491,14 @@ def start_main_menu():
     global running, fall_step_interval_seconds
     print("entered main menu")
     fall_step_interval_seconds = diff1_step_interval_seconds
-    gl.fill((20, 20, 20))
-    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), (120, 120, 120))
-    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), (0, 255, 0))
-    gl.set_shape(s_shape, gl.Vec(1, 7), (120, 120, 120))
-    gl.set_shape(p_shape, gl.Vec(4, 7), (120, 120, 120))
-    gl.set_shape(e_shape, gl.Vec(7, 7), (120, 120, 120))
-    gl.set_shape(e_shape, gl.Vec(10, 7), (120, 120, 120))
-    gl.set_shape(d_shape, gl.Vec(13, 7), (120, 120, 120))
+    gl.fill((2, 2, 2))
+    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), (60, 60, 60))
+    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), (0, 128, 0))
+    gl.set_shape(s_shape, gl.Vec(1, 7), (60, 60, 60))
+    gl.set_shape(p_shape, gl.Vec(4, 7), (60, 60, 60))
+    gl.set_shape(e_shape, gl.Vec(7, 7), (60, 60, 60))
+    gl.set_shape(e_shape, gl.Vec(10, 7), (60, 60, 60))
+    gl.set_shape(d_shape, gl.Vec(13, 7), (60, 60, 60))
     display.show()
     while running:
         if il.inputs["escape"]:
@@ -508,27 +508,25 @@ def start_main_menu():
         if fall_step_interval_seconds == diff1_step_interval_seconds:
             if il.inputs["right"]:
                 gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), (255, 255, 0)
+                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), (128, 128, 0)
                 )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
         if fall_step_interval_seconds == diff2_step_interval_seconds:
             if il.inputs["right"]:
-                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (255, 0, 0))
+                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (128, 0, 0))
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff3_step_interval_seconds
             if il.inputs["left"]:
-                gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), (20, 20, 20)
-                )
+                gl.set_shape(progress_bar_inner_yellow_shape, gl.Vec(5, 2), (2, 2, 2))
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff1_step_interval_seconds
         if fall_step_interval_seconds == diff3_step_interval_seconds:
             if il.inputs["left"]:
-                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (20, 20, 20))
+                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (2, 2, 2))
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
@@ -551,10 +549,10 @@ def main():
 
 # program
 
-remote.start_pygame_thread()
+# remote.start_pygame_thread()
 
 print("startup")
 main()
 print("exited")
 
-remote.close_pygame_thread()
+# remote.close_pygame_thread()
