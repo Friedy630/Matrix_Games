@@ -1,7 +1,6 @@
 import numpy as np
 import random as rng
-from ulib import display
-from ulib import remote
+from ulib import display, remote
 import time
 import graphics_library as gl
 from graphics_library import Vec
