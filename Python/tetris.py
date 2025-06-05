@@ -7,7 +7,6 @@ from lib import input_library as il
 
 # <SETTINGS>
 side_to_side_pass = True
-side_to_side_pass = True
 
 enable_win_screen = (
     True  # if the screen gets completely cleared, you win. TODO: not implemented yet
@@ -27,6 +26,10 @@ fall_step_interval_seconds = 0.700  #how much time it takes for the shape to fal
 
 enable_shape_weights = True          #spawns each block with a given chance
 
+diff1_step_interval_seconds = 1.0
+diff2_step_interval_seconds = 0.75
+diff3_step_interval_seconds = 0.5
+
 # </STETTINGS>
 
 currentShapeID = -1
@@ -34,10 +37,6 @@ currentShapeID = -1
 current_shape_matrix = np.zeros((3, 3))
 current_shape_position = gl.Vec(0, 0)
 current_shape_color = (255, 255, 255)
-
-diff1_step_interval_seconds = 1.0
-diff2_step_interval_seconds = 0.75
-diff3_step_interval_seconds = 0.5
 
 fall_step_interval_seconds = diff1_step_interval_seconds
 
