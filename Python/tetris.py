@@ -503,6 +503,9 @@ def start_tetris():
             move_down()
         if il.inputs["escape"]:
             break
+        if il.inputs["exit"]:
+            running = False
+            break
         il.reset_inputs()
         time.sleep(0.1)
         display.show()
@@ -549,6 +552,9 @@ def start_main_menu():
             running = False
         if il.inputs["space"]:
             return True
+        if il.inputs["exit"]:
+            running = False
+            return False
         if fall_step_interval_seconds == diff1_step_interval_seconds:
             if il.inputs["right"]:
                 gl.set_shape(
