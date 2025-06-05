@@ -282,7 +282,7 @@ def setpixel(x: int, y: int, color: tuple):
     if (x >= 16 or x < 0) and not side_to_side_pass:
         return
     if y >= 0 and y < 16:
-        display.set_xy(x % 16, y, color)
+        display.set_xy((x % 16, y), color)
         pixels[x % 16, y] = color
 
 
@@ -304,7 +304,7 @@ def fill(color: tuple):
             pixels[x, y] = color
 
 
-def set_shape(shape_matrix: np.ndarray, offset: Vec, color: tuple):
+def set_shape(shape_matrix: np.ndarray, offset, color: tuple):
     for x in range(shape_matrix.shape[0]):
         for y in range(shape_matrix.shape[1]):
             if shape_matrix[x, y] == 0:
