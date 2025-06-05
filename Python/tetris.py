@@ -442,6 +442,7 @@ def get_new_shape():
 
 
 def start_tetris():
+    global running
     print("entered tetris game")
     start_time = time.time()
     gl.fill(gl.colors["background"])
@@ -470,6 +471,7 @@ def start_tetris():
 # Shapes for menu
 close_x_shape = np.array([[1, 0, 1], [0, 1, 0], [1, 0, 1]])
 space_shape = np.array([[1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1]])
+space_shape = gl.get_rotated_shape_matrix(space_shape, True)
 s_shape = np.array([[1, 1], [1, 0], [1, 1], [0, 1], [1, 1]]).T
 p_shape = np.array([[1, 1], [1, 1], [1, 1], [1, 0], [1, 0]]).T
 e_shape = np.array([[1, 1], [1, 0], [1, 1], [1, 0], [1, 1]]).T
@@ -496,11 +498,13 @@ def start_main_menu():
     gl.fill(gl.colors["black"])
     gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), gl.colors["grey"])
     gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), gl.colors["green"])
-    gl.set_shape(s_shape, gl.Vec(1, 7), gl.colors["grey"])
-    gl.set_shape(p_shape, gl.Vec(4, 7), gl.colors["grey"])
-    gl.set_shape(e_shape, gl.Vec(7, 7), gl.colors["grey"])
-    gl.set_shape(e_shape, gl.Vec(10, 7), gl.colors["grey"])
-    gl.set_shape(d_shape, gl.Vec(13, 7), gl.colors["grey"])
+    text_height = 6
+    text_color = gl.colors["grey"]
+    gl.set_shape(s_shape, gl.Vec(1, text_height), text_color)
+    gl.set_shape(p_shape, gl.Vec(4, text_height), text_color)
+    gl.set_shape(e_shape, gl.Vec(7, text_height), text_color)
+    gl.set_shape(e_shape, gl.Vec(10, text_height), text_color)
+    gl.set_shape(d_shape, gl.Vec(13, text_height), text_color)
     display.show()
     while running:
         if il.inputs["escape"]:
@@ -548,13 +552,12 @@ def start_main_menu():
 
 def main():
     global running
-    remote.listen()
-    remote.bind_all(il.register_input)
+    il.initialise()
     running = True
     while start_main_menu():
         start_tetris()
     running = False
-    remote.unbind_all(il.register_input)
+    il.cleanup()
     gl.fill(gl.colors["background"])
 
 
