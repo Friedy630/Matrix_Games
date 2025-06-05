@@ -45,29 +45,6 @@ running = False
 
 score = 0
 
-exotic_shapes_weights = [
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-]
-
 exotic_weights_sum = 100
 
 exotic_color = (100, 100, 100)  # color of any exotic shape
