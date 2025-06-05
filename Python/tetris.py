@@ -354,6 +354,7 @@ progress_bar_inner_red_shape = np.array(
 def start_main_menu():
     global running, fall_step_interval_seconds
     print("entered main menu")
+    fall_step_interval_seconds = diff1_step_interval_seconds
     fill((20, 20, 20))
     set_shape(progress_bar_border_shape, Vec(1, 1), (120, 120, 120))
     set_shape(progress_bar_inner_green_shape, Vec(2, 2), (0, 255, 0))
