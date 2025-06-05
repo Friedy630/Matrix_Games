@@ -293,51 +293,6 @@ shapes = [
 
 weights_sum = 100
 
-background_color = (0, 0, 0)
-pixels = np.full((16, 16, 3), background_color)
-
-
-def setpixel(x: int, y: int, color: tuple):
-    if (x >= 16 or x < 0) and not side_to_side_pass:
-        return
-    if y >= 0 and y < 16:
-        display.set_xy((x % 16, y), color)
-        pixels[x % 16, y] = color
-
-
-def getpixel(x: int, y: int):
-    if (x < 0 or x >= 16) and not side_to_side_pass:
-        return (255, 255, 255)
-    if y >= 16:
-        return (255, 255, 255)
-    elif y >= 0:
-        return tuple(pixels[x % 16, y])
-    else:
-        return background_color
-
-
-def fill(color: tuple):
-    display.fill(color)
-    for y in range(16):
-        for x in range(16):
-            pixels[x, y] = color
-
-
-def set_shape(shape_matrix: np.ndarray, offset, color: tuple):
-    for x in range(shape_matrix.shape[0]):
-        for y in range(shape_matrix.shape[1]):
-            if shape_matrix[x, y] == 0:
-                continue
-            setpixel(offset.x + x, offset.y + y, color)
-
-
-def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool):
-    return gl.get_rotated_shape_matrix(shape_matrix, isleft)
-
-
-def check_fit(shape_matrix: np.ndarray, position: gl.Vec):
-    return gl.check_fit(shape_matrix, position)
-
 
 def remove_row(row: int):
     for y in range(row, 0, -1):
@@ -352,7 +307,7 @@ def check_for_full_row():
     score_multiplier = 0
     for row in range(16):
         for col in range(16):
-            if tuple(gl.pixels[col, row]) != gl.background_color:
+            if tuple(gl.pixels[col, row]) != gl.colors["background"]:
                 block_counter += 1
         if block_counter == 16:
             remove_row(row)
@@ -367,7 +322,7 @@ def paste_current_shape():
 
 
 def cut_current_shape():
-    gl.set_shape(current_shape_matrix, current_shape_position, gl.background_color)
+    gl.set_shape(current_shape_matrix, current_shape_position, gl.colors["background"])
 
 
 def move_horizontal(isleft: bool):
@@ -378,7 +333,7 @@ def move_horizontal(isleft: bool):
     else:
         moved_position += gl.Vec(1, 0)
     cut_current_shape()
-    if check_fit(current_shape_matrix, moved_position):
+    if gl.check_fit(current_shape_matrix, moved_position):
         current_shape_position = moved_position
     paste_current_shape()
 
@@ -387,7 +342,7 @@ def move_down():
     global current_shape_position
     moved_position = current_shape_position + gl.Vec(0, 1)
     cut_current_shape()
-    if not check_fit(current_shape_matrix, moved_position):
+    if not gl.check_fit(current_shape_matrix, moved_position):
         if current_shape_position.y < 0:
             print("game over")
             il.inputs["escape"] = True
@@ -402,9 +357,9 @@ def move_down():
 
 def rotate(isleft: bool):
     global current_shape_matrix
-    rotated_matrix = get_rotated_shape_matrix(current_shape_matrix, isleft)
+    rotated_matrix = gl.get_rotated_shape_matrix(current_shape_matrix, isleft)
     cut_current_shape()
-    if check_fit(rotated_matrix, current_shape_position):
+    if gl.check_fit(rotated_matrix, current_shape_position):
         current_shape_matrix = rotated_matrix
     paste_current_shape()
 
@@ -489,7 +444,7 @@ def get_new_shape():
 def start_tetris():
     print("entered tetris game")
     start_time = time.time()
-    gl.fill(gl.background_color)
+    gl.fill(gl.colors["background"])
     get_new_shape()
     while running:
         if time.time() - start_time >= fall_step_interval_seconds:
@@ -538,14 +493,14 @@ def start_main_menu():
     global running, fall_step_interval_seconds
     print("entered main menu")
     fall_step_interval_seconds = diff1_step_interval_seconds
-    gl.fill((2, 2, 2))
-    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), (60, 60, 60))
-    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), (0, 128, 0))
-    gl.set_shape(s_shape, gl.Vec(1, 7), (60, 60, 60))
-    gl.set_shape(p_shape, gl.Vec(4, 7), (60, 60, 60))
-    gl.set_shape(e_shape, gl.Vec(7, 7), (60, 60, 60))
-    gl.set_shape(e_shape, gl.Vec(10, 7), (60, 60, 60))
-    gl.set_shape(d_shape, gl.Vec(13, 7), (60, 60, 60))
+    gl.fill(gl.colors["black"])
+    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), gl.colors["grey"])
+    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), gl.colors["green"])
+    gl.set_shape(s_shape, gl.Vec(1, 7), gl.colors["grey"])
+    gl.set_shape(p_shape, gl.Vec(4, 7), gl.colors["grey"])
+    gl.set_shape(e_shape, gl.Vec(7, 7), gl.colors["grey"])
+    gl.set_shape(e_shape, gl.Vec(10, 7), gl.colors["grey"])
+    gl.set_shape(d_shape, gl.Vec(13, 7), gl.colors["grey"])
     display.show()
     while running:
         if il.inputs["escape"]:
@@ -558,25 +513,31 @@ def start_main_menu():
         if fall_step_interval_seconds == diff1_step_interval_seconds:
             if il.inputs["right"]:
                 gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), (128, 128, 0)
+                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["yellow"]
                 )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
         if fall_step_interval_seconds == diff2_step_interval_seconds:
             if il.inputs["right"]:
-                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (128, 0, 0))
+                gl.set_shape(
+                    progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["red"]
+                )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff3_step_interval_seconds
             if il.inputs["left"]:
-                gl.set_shape(progress_bar_inner_yellow_shape, gl.Vec(5, 2), (2, 2, 2))
+                gl.set_shape(
+                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["black"]
+                )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff1_step_interval_seconds
         if fall_step_interval_seconds == diff3_step_interval_seconds:
             if il.inputs["left"]:
-                gl.set_shape(progress_bar_inner_red_shape, gl.Vec(9, 2), (2, 2, 2))
+                gl.set_shape(
+                    progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["black"]
+                )
                 display.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
@@ -594,7 +555,7 @@ def main():
         start_tetris()
     running = False
     remote.unbind_all(il.register_input)
-    gl.fill(gl.background_color)
+    gl.fill(gl.colors["background"])
 
 
 # program

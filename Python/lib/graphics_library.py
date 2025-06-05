@@ -18,26 +18,33 @@ class Vec:
         return Vec(self.x - other.x, self.y - other.y)
 
 
-colors = [
-    (0, 0, 255),  # Blau
-    (0, 255, 0),  # Grün
-    (0, 255, 255),  # Cyan
-    (128, 0, 128),  # Lila
-    (255, 255, 0),  # Gelb
-    (255, 0, 0),  # Rot
-    (255, 165, 0),  # Orange
-]
+# Tetromino types as string keys for dict (emulating enum functionality)
+colors = {
+    "cyan": (0, 255, 255),
+    "blue": (0, 0, 255),
+    "orange": (255, 165, 0),
+    "yellow": (255, 255, 0),
+    "green": (0, 255, 0),
+    "purple": (128, 0, 128),
+    "red": (255, 0, 0),
+    "background": (0, 0, 0),
+    "white": (255, 255, 255),
+    "black": (0, 0, 0),
+    "grey": (128, 128, 128),
+}
 # Tetris Tetromino-Farben laut offizieller Guideline
 
-background_color = (0, 0, 0)
-pixels = np.full((16, 16, 3), background_color)
+brightness = 128
+
+pixels = np.full((16, 16, 3), colors["background"])
 
 
 def setpixel(x: int, y: int, color: tuple):
     if x >= 16 or x < 0:
         return
     if y >= 0 and y < 16:
-        display.set_xy((x % 16, y), color)
+        scaled_color = tuple((c * brightness) // 255 for c in color)
+        display.set_xy((x % 16, y), scaled_color)
         pixels[x % 16, y] = color
 
 
@@ -49,7 +56,7 @@ def getpixel(x: int, y: int):
     elif y >= 0:
         return tuple(pixels[x % 16, y])
     else:
-        return background_color
+        return colors["background"]
 
 
 def fill(color: tuple):
@@ -79,7 +86,7 @@ def check_fit(shape_matrix: np.ndarray, position: Vec):
         for y in range(shape_matrix.shape[1]):
             if (
                 shape_matrix[x, y] == 1
-                and getpixel(position.x + x, position.y + y) != background_color
+                and getpixel(position.x + x, position.y + y) != colors["background"]
             ):
                 return False
     return True
