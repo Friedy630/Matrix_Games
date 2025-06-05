@@ -22,9 +22,11 @@ fall_step_interval_seconds = (
     0.700  # how much time it takes for the shape to fall one block
 )
 
-fall_step_interval_seconds = 0.700  #how much time it takes for the shape to fall one block
+fall_step_interval_seconds = (
+    0.700  # how much time it takes for the shape to fall one block
+)
 
-enable_shape_weights = True          #spawns each block with a given chance
+enable_shape_weights = True  # spawns each block with a given chance
 
 diff1_step_interval_seconds = 1.0
 diff2_step_interval_seconds = 0.75
@@ -49,203 +51,244 @@ exotic_weights_sum = 100
 exotic_color = (100, 100, 100)  # color of any exotic shape
 
 exotic_shapes = [
-    (np.array(
-        [
-            [1, 1, 1],
-            [1, 1, 1],
-            [1, 1, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 1, 1],
-            [1, 0, 1],
-            [1, 1, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 1, 1],
-            [0, 0, 1],
-            [0, 1, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 1],
-            [0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 1],
-            [0, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 1, 1],
-            [0, 1, 0],
-            [0, 1, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 0, 0],
-            [1, 1, 1],
-            [0, 0, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 1],
-            [1, 1, 1],
-            [1, 0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 1],
-            [1, 1, 1],
-            [0, 1, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 1],
-            [1, 1, 0],
-            [0, 1, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 1, 1],
-            [0, 0, 1],
-            [0, 0, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [1, 1, 1, 1, 1],
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0, 0],
-            [0, 0, 1, 1],
-            [1, 1, 1, 0],
-            [0, 0, 0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0, 0],
-            [1, 1, 0, 0],
-            [0, 1, 1, 1],
-            [0, 0, 0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0, 0],
-            [1, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0, 0],
-            [0, 0, 0, 1],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0],
-            [1, 1, 1],
-            [1, 1, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0],
-            [0, 1, 1],
-            [1, 1, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [0, 0, 0],
-            [1, 1, 0],
-            [1, 1, 1],
-        ]
-    ).T, 5),
-    (np.array(
-        [
-            [1, 0, 0],
-            [1, 1, 1],
-            [1, 1, 1],
-        ]
-    ).T, 5),
+    (
+        np.array(
+            [
+                [1, 1, 1],
+                [1, 1, 1],
+                [1, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 1, 1],
+                [1, 0, 1],
+                [1, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 1, 1],
+                [0, 0, 1],
+                [0, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 1],
+                [0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 1],
+                [0, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 1, 1],
+                [0, 1, 0],
+                [0, 1, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 0, 0],
+                [1, 1, 1],
+                [0, 0, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 1],
+                [1, 1, 1],
+                [1, 0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 1],
+                [1, 1, 1],
+                [0, 1, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 1],
+                [1, 1, 0],
+                [0, 1, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 1, 1],
+                [0, 0, 1],
+                [0, 0, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [1, 1, 1, 1, 1],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0, 0],
+                [0, 0, 1, 1],
+                [1, 1, 1, 0],
+                [0, 0, 0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0, 0],
+                [1, 1, 0, 0],
+                [0, 1, 1, 1],
+                [0, 0, 0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0, 0],
+                [1, 0, 0, 0],
+                [1, 1, 1, 1],
+                [0, 0, 0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0, 0],
+                [0, 0, 0, 1],
+                [1, 1, 1, 1],
+                [0, 0, 0, 0],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0],
+                [1, 1, 1],
+                [1, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0],
+                [0, 1, 1],
+                [1, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [0, 0, 0],
+                [1, 1, 0],
+                [1, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
+    (
+        np.array(
+            [
+                [1, 0, 0],
+                [1, 1, 1],
+                [1, 1, 1],
+            ]
+        ).T,
+        5,
+    ),
 ]
 
 # Tetris Tetromino-Farben laut offizieller Guideline
 shapes = [
-    (np.array(
-        [
-            [1, 0, 0],
-            [1, 1, 1],
-            [0, 0, 0],
-        ]
-    ).T, 15, (0, 0, 255)), # J
-    (np.array(
-        [
-            [0, 1, 1],
-            [1, 1, 0],
-            [0, 0, 0]
-        ]
-    ).T, 10, (0, 255, 0)), # S
-    (np.array(
-        [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0]
-        ]
-    ).T, 20, (0, 255, 255)), # I
-    (np.array(
-        [
-            [0, 1, 0],
-            [1, 1, 1],
-            [0, 0, 0]
-        ]
-    ).T, 15, (128, 0, 128)), # T
-    (np.array(
-        [
-            [1, 1],
-            [1, 1],
-        ]
-    ).T, 15, (255, 255, 0)), # O
-    (np.array(
-        [
-            [1, 1, 0],
-            [0, 1, 1],
-            [0, 0, 0]
-        ]
-    ).T, 10, (255, 0, 0)), # Z
-    (np.array(
-        [
-            [0, 0, 1],
-            [1, 1, 1],
-            [0, 0, 0]
-        ]
-    ).T, 15, (255, 165, 0)), # L
+    (
+        np.array(
+            [
+                [1, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0],
+            ]
+        ).T,
+        15,
+        (0, 0, 255),
+    ),  # J
+    (np.array([[0, 1, 1], [1, 1, 0], [0, 0, 0]]).T, 10, (0, 255, 0)),  # S
+    (
+        np.array([[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]).T,
+        20,
+        (0, 255, 255),
+    ),  # I
+    (np.array([[0, 1, 0], [1, 1, 1], [0, 0, 0]]).T, 15, (128, 0, 128)),  # T
+    (
+        np.array(
+            [
+                [1, 1],
+                [1, 1],
+            ]
+        ).T,
+        15,
+        (255, 255, 0),
+    ),  # O
+    (np.array([[1, 1, 0], [0, 1, 1], [0, 0, 0]]).T, 10, (255, 0, 0)),  # Z
+    (np.array([[0, 0, 1], [1, 1, 1], [0, 0, 0]]).T, 15, (255, 165, 0)),  # L
 ]
 
 weights_sum = 100
@@ -386,6 +429,7 @@ def set_standard_shape():
     current_shape_matrix = shapes[new_shape_id][0]
     current_shape_color = shapes[new_shape_id % len(shapes)][2]
 
+
 def set_exotic_shape():
     global currentShapeID, current_shape_color, current_shape_matrix
     while True:
@@ -406,6 +450,7 @@ def set_standard_shape_weighted():
             break
     current_shape_matrix = shapes[new_shape_id][0]
     current_shape_color = shapes[new_shape_id][2]
+
 
 def set_exotic_shape_weighted():
     global currentShapeID, current_shape_color, current_shape_matrix
@@ -548,10 +593,10 @@ def main():
 
 # program
 
-# remote.start_pygame_thread()
+remote.start_pygame_thread()
 
 print("startup")
 main()
 print("exited")
 
-# remote.close_pygame_thread()
+remote.close_pygame_thread()
