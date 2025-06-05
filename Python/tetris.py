@@ -7,12 +7,13 @@ from lib import input_library as il
 
 # <SETTINGS>
 side_to_side_pass = True
+side_to_side_pass = True
 
 enable_win_screen = (
     True  # if the screen gets completely cleared, you win. TODO: not implemented yet
 )
 
-enable_exotic_shapes = True  # adds 20 more exiting shapes
+enable_exotic_shapes = False  # adds 20 more exiting shapes
 
 exotic_shape_chance = 0.3  # chance to spawn an exotic shape instead of a normal one
 
@@ -22,7 +23,9 @@ fall_step_interval_seconds = (
     0.700  # how much time it takes for the shape to fall one block
 )
 
-enable_shape_weights = True  # spawns each block with a given chance
+fall_step_interval_seconds = 0.700  #how much time it takes for the shape to fall one block
+
+enable_shape_weights = True          #spawns each block with a given chance
 
 # </STETTINGS>
 
@@ -70,18 +73,82 @@ exotic_weights_sum = 100
 exotic_color = (100, 100, 100)  # color of any exotic shape
 
 exotic_shapes = [
-    np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]]).T,
-    np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]]).T,
-    np.array([[0, 1, 1], [0, 0, 1], [0, 1, 1]]).T,
-    np.array([[1, 1], [0, 0]]).T,
-    np.array([[1, 1], [0, 1]]).T,
-    np.array([[1, 1, 1], [0, 1, 0], [0, 1, 0]]).T,
-    np.array([[1, 0, 0], [1, 1, 1], [0, 0, 1]]).T,
-    np.array([[0, 0, 1], [1, 1, 1], [1, 0, 0]]).T,
-    np.array([[0, 0, 1], [1, 1, 1], [0, 1, 0]]).T,
-    np.array([[0, 0, 1], [1, 1, 0], [0, 1, 0]]).T,
-    np.array([[1, 1, 1], [0, 0, 1], [0, 0, 1]]).T,
-    np.array(
+    (np.array(
+        [
+            [1, 1, 1],
+            [1, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 1, 1],
+            [0, 0, 1],
+            [0, 1, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 1],
+            [0, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 1],
+            [0, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 1, 1],
+            [0, 1, 0],
+            [0, 1, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 0, 0],
+            [1, 1, 1],
+            [0, 0, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 1],
+            [1, 0, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 1],
+            [0, 1, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 0],
+            [0, 1, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 1, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+        ]
+    ).T, 5),
+    (np.array(
         [
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0],
@@ -89,29 +156,160 @@ exotic_shapes = [
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0],
         ]
-    ).T,
-    np.array([[0, 0, 0, 0], [0, 0, 1, 1], [1, 1, 1, 0], [0, 0, 0, 0]]).T,
-    np.array([[0, 0, 0, 0], [1, 1, 0, 0], [0, 1, 1, 1], [0, 0, 0, 0]]).T,
-    np.array([[0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]).T,
-    np.array([[0, 0, 0, 0], [0, 0, 0, 1], [1, 1, 1, 1], [0, 0, 0, 0]]).T,
-    np.array([[0, 0, 0], [1, 1, 1], [1, 1, 1]]).T,
-    np.array([[0, 0, 0], [0, 1, 1], [1, 1, 1]]).T,
-    np.array([[0, 0, 0], [1, 1, 0], [1, 1, 1]]).T,
-    np.array([[1, 0, 0], [1, 1, 1], [1, 1, 1]]).T,
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 1, 1],
+            [1, 1, 1, 0],
+            [0, 0, 0, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0, 0],
+            [1, 1, 0, 0],
+            [0, 1, 1, 1],
+            [0, 0, 0, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0, 0],
+            [1, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 0, 1],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0],
+            [1, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0],
+            [0, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [0, 0, 0],
+            [1, 1, 0],
+            [1, 1, 1],
+        ]
+    ).T, 5),
+    (np.array(
+        [
+            [1, 0, 0],
+            [1, 1, 1],
+            [1, 1, 1],
+        ]
+    ).T, 5),
 ]
 
-shapes_weights = [15, 10, 20, 15, 15, 10, 15]
+# Tetris Tetromino-Farben laut offizieller Guideline
+shapes = [
+    (np.array(
+        [
+            [1, 0, 0],
+            [1, 1, 1],
+            [0, 0, 0],
+        ]
+    ).T, 15, (0, 0, 255)), # J
+    (np.array(
+        [
+            [0, 1, 1],
+            [1, 1, 0],
+            [0, 0, 0]
+        ]
+    ).T, 10, (0, 255, 0)), # S
+    (np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0]
+        ]
+    ).T, 20, (0, 255, 255)), # I
+    (np.array(
+        [
+            [0, 1, 0],
+            [1, 1, 1],
+            [0, 0, 0]
+        ]
+    ).T, 15, (128, 0, 128)), # T
+    (np.array(
+        [
+            [1, 1],
+            [1, 1],
+        ]
+    ).T, 15, (255, 255, 0)), # O
+    (np.array(
+        [
+            [1, 1, 0],
+            [0, 1, 1],
+            [0, 0, 0]
+        ]
+    ).T, 10, (255, 0, 0)), # Z
+    (np.array(
+        [
+            [0, 0, 1],
+            [1, 1, 1],
+            [0, 0, 0]
+        ]
+    ).T, 15, (255, 165, 0)), # L
+]
+
 weights_sum = 100
 
-shapes = [
-    np.array([[1, 0, 0], [1, 1, 1], [0, 0, 0]]).T,  # J
-    np.array([[0, 1, 1], [1, 1, 0], [0, 0, 0]]).T,  # S
-    np.array([[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]).T,  # I
-    np.array([[0, 1, 0], [1, 1, 1], [0, 0, 0]]).T,  # T
-    np.array([[1, 1], [1, 1]]).T,  # O
-    np.array([[1, 1, 0], [0, 1, 1], [0, 0, 0]]).T,  # Z
-    np.array([[0, 0, 1], [1, 1, 1], [0, 0, 0]]).T,  # L
-]
+background_color = (0, 0, 0)
+pixels = np.full((16, 16, 3), background_color)
+
+
+def setpixel(x: int, y: int, color: tuple):
+    if (x >= 16 or x < 0) and not side_to_side_pass:
+        return
+    if y >= 0 and y < 16:
+        display.set_xy((x % 16, y), color)
+        pixels[x % 16, y] = color
+
+
+def getpixel(x: int, y: int):
+    if (x < 0 or x >= 16) and not side_to_side_pass:
+        return (255, 255, 255)
+    if y >= 16:
+        return (255, 255, 255)
+    elif y >= 0:
+        return tuple(pixels[x % 16, y])
+    else:
+        return background_color
+
+
+def fill(color: tuple):
+    display.fill(color)
+    for y in range(16):
+        for x in range(16):
+            pixels[x, y] = color
+
+
+def set_shape(shape_matrix: np.ndarray, offset, color: tuple):
+    for x in range(shape_matrix.shape[0]):
+        for y in range(shape_matrix.shape[1]):
+            if shape_matrix[x, y] == 0:
+                continue
+            setpixel(offset.x + x, offset.y + y, color)
 
 
 def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool):
@@ -198,7 +396,7 @@ def get_loottable_hit(weights_array, weights_sum):
     i = -1  # shape_index
     while w < randInt:
         i += 1
-        w += weights_array[i]
+        w += weights_array[i][1]
     return i
 
 
@@ -209,9 +407,8 @@ def set_standard_shape():
         if new_shape_id != currentShapeID:
             currentShapeID = new_shape_id
             break
-    current_shape_matrix = shapes[new_shape_id]
-    current_shape_color = gl.colors[new_shape_id % len(gl.colors)]
-
+    current_shape_matrix = shapes[new_shape_id][0]
+    current_shape_color = shapes[new_shape_id % len(shapes)][2]
 
 def set_exotic_shape():
     global currentShapeID, current_shape_color, current_shape_matrix
@@ -220,29 +417,28 @@ def set_exotic_shape():
         if new_shape_id != currentShapeID:
             currentShapeID = new_shape_id
             break
-    current_shape_matrix = exotic_shapes[new_shape_id]
+    current_shape_matrix = exotic_shapes[new_shape_id][0]
     current_shape_color = exotic_color
 
 
 def set_standard_shape_weighted():
     global currentShapeID, current_shape_color, current_shape_matrix
     while True:
-        new_shape_id = get_loottable_hit(shapes_weights, weights_sum)
+        new_shape_id = get_loottable_hit(shapes, weights_sum)
         if new_shape_id != currentShapeID:
             currentShapeID = new_shape_id
             break
-    current_shape_matrix = shapes[new_shape_id]
-    current_shape_color = gl.colors[new_shape_id]
-
+    current_shape_matrix = shapes[new_shape_id][0]
+    current_shape_color = shapes[new_shape_id][2]
 
 def set_exotic_shape_weighted():
     global currentShapeID, current_shape_color, current_shape_matrix
     while True:
-        new_shape_id = get_loottable_hit(exotic_shapes_weights, exotic_weights_sum)
+        new_shape_id = get_loottable_hit(exotic_shapes, exotic_weights_sum)
         if new_shape_id != currentShapeID:
             currentShapeID = new_shape_id
             break
-    current_shape_matrix = exotic_shapes[new_shape_id]
+    current_shape_matrix = exotic_shapes[new_shape_id][0]
     current_shape_color = exotic_color
 
 
