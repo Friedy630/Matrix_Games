@@ -8,10 +8,6 @@ from lib import input_library as il
 # <SETTINGS>
 side_to_side_pass = True
 
-enable_win_screen = (
-    True  # if the screen gets completely cleared, you win. TODO: not implemented yet
-)
-
 enable_exotic_shapes = False  # adds 20 more exiting shapes
 
 exotic_shape_chance = 0.3  # chance to spawn an exotic shape instead of a normal one
@@ -33,7 +29,6 @@ diff3_step_interval_seconds = 0.5
 # </STETTINGS>
 
 currentShapeID = -1
-
 current_shape_matrix = np.zeros((3, 3))
 current_shape_position = gl.Vec(0, 0)
 current_shape_color = (255, 255, 255)
