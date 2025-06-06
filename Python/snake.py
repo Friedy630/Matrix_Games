@@ -15,15 +15,15 @@ growth_factor = 1.0
 
 growth_factor_groth_factor = 1.1
 
-snake_color = (100, 100, 100)
+snake_color = gl.colors["grey"]
 
-snake_head_color = (255, 0, 0)
+snake_head_color = gl.colors["red"]
 
-background_color = (0, 0, 0)
+background_color = gl.colors["black"]
 
-fruit_color = (0, 255, 0)
+fruit_color = gl.colors["green"]
 
-no_walls = True
+no_walls = False
 
 ####
 
