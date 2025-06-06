@@ -1,3 +1,5 @@
+from ulib import remote
+
 inputs = {
     "left": False,
     "right": False,
@@ -19,3 +21,12 @@ def register_input(key: str):
 def reset_inputs():
     for key in inputs:
         inputs[key] = False
+
+
+def initialise():
+    remote.bind_all(register_input)
+    remote.listen()
+
+
+def cleanup():
+    remote.unbind_all(register_input)
