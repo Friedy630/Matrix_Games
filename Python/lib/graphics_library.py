@@ -28,6 +28,7 @@ colors = {
     "white": (255, 255, 255),
     "black": (0, 0, 0),
     "grey": (128, 128, 128),
+    "light_green": (64, 192, 64),
 }
 # Tetris Tetromino-Farben laut offizieller Guideline
 

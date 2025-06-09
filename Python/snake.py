@@ -15,13 +15,13 @@ growth_factor = 1.0
 
 growth_factor_groth_factor = 1.1
 
-snake_color = gl.colors["grey"]
+snake_color = gl.colors["light_green"]
 
-snake_head_color = gl.colors["red"]
+snake_head_color = gl.colors["green"]
 
 background_color = gl.colors["black"]
 
-fruit_color = gl.colors["green"]
+fruit_color = gl.colors["red"]
 
 no_walls = False
 
@@ -43,6 +43,7 @@ score = 0
 
 is_game_over = False
 
+
 def spawn_new_fruit():
     global fruit_pos
     while fruit_pos in snake_positions:
@@ -51,16 +52,23 @@ def spawn_new_fruit():
         fruit_pos = gl.Vec(x, y)
     gl.setpixel(fruit_pos.x, fruit_pos.y, fruit_color)
 
+
 def game_over():
     global is_game_over
     print("game over")
     is_game_over = True
 
+
 def step_snake():
     global snake_positions, length_to_extend, score, growth_factor, last_head_dir
     current_head_pos = snake_positions[len(snake_positions) - 1]
     new_head_pos = current_head_pos + snake_head_dir
-    if new_head_pos.x < 0 or new_head_pos.x >= 16 or new_head_pos.y < 0 or new_head_pos.y >= 16:
+    if (
+        new_head_pos.x < 0
+        or new_head_pos.x >= 16
+        or new_head_pos.y < 0
+        or new_head_pos.y >= 16
+    ):
         if no_walls:
             new_head_pos = gl.Vec(new_head_pos.x % 16, new_head_pos.y % 16)
         else:
@@ -76,10 +84,12 @@ def step_snake():
     if length_to_extend <= 0:
         gl.setpixel(snake_positions[0].x, snake_positions[0].y, background_color)
         snake_positions.remove(snake_positions[0])
-    else :length_to_extend -= 1
+    else:
+        length_to_extend -= 1
     gl.setpixel(new_head_pos.x, new_head_pos.y, snake_head_color)
     gl.setpixel(current_head_pos.x, current_head_pos.y, snake_color)
     last_head_dir = snake_head_dir
+
 
 def restart():
     print("start")
@@ -104,9 +114,17 @@ def start_snake():
             if il.inputs["space"]:
                 restart()
                 is_game_over = False
+            if il.inputs["escape"]:
+                running = False
+            if il.inputs["exit"]:
+                running = False
+                return False
         else:
             if il.inputs["escape"]:
                 running = False
+            if il.inputs["exit"]:
+                running = False
+                return False
             if il.inputs["left"] and not 1 == last_head_dir.x:
                 snake_head_dir = gl.Vec(-1, 0)
             if il.inputs["right"] and not -1 == last_head_dir.x:
@@ -123,6 +141,7 @@ def start_snake():
         display.show()
         time.sleep(0.1)
     remote.unbind_all(il.register_input)
+
 
 # program
 
