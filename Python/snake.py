@@ -113,21 +113,16 @@ def start_snake():
     remote.bind_all(il.register_input)
     start_time = time.time()
     while running:
+        if il.inputs["exit"]:
+            running = False
+            return False
+        if il.inputs["escape"]:
+            running = False
         if is_game_over:
             if il.inputs["space"]:
                 restart()
                 is_game_over = False
-            if il.inputs["escape"]:
-                running = False
-            if il.inputs["exit"]:
-                running = False
-                return False
         else:
-            if il.inputs["escape"]:
-                running = False
-            if il.inputs["exit"]:
-                running = False
-                return False
             if il.inputs["left"] and not 1 == last_head_dir.x:
                 snake_head_dir = gl.Vec(-1, 0)
             if il.inputs["right"] and not -1 == last_head_dir.x:
