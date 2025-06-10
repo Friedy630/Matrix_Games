@@ -11,7 +11,7 @@ snake_start_length = 5
 
 walk_step_interval = 0.3
 
-growth_factor = 1.0
+start_growth_factor = 1.0
 
 growth_factor_groth_factor = 1.1
 
@@ -28,6 +28,8 @@ no_walls = False
 ####
 
 fruit_pos = gl.Vec(6, 6)
+
+growth_factor = 1.0
 
 snake_positions = [gl.Vec(7, 7)]
 
@@ -93,9 +95,10 @@ def step_snake():
 
 def restart():
     print("start")
-    global snake_head_dir, length_to_extend, is_game_over, snake_positions
+    global snake_head_dir, length_to_extend, is_game_over, snake_positions, growth_factor
     gl.fill(background_color)
     snake_positions = [gl.Vec(7, 7)]
+    growth_factor = start_growth_factor
     gl.setpixel(snake_positions[0].x, snake_positions[0].y, snake_head_color)
     length_to_extend = snake_start_length
     spawn_new_fruit()
