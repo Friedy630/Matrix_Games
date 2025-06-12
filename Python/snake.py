@@ -142,10 +142,11 @@ def start_snake():
 
 # program
 
-remote.start_pygame_thread()
+if __name__ == "__main__":
+    remote.start_pygame_thread()
 
-print("startup")
-start_snake()
-print("exited")
+    print("startup")
+    start_snake()
+    print("exited")
 
-remote.close_pygame_thread()
+    remote.close_pygame_thread()

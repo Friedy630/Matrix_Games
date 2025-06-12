@@ -92,7 +92,7 @@
 						body: JSON.stringify({ key: control })
 					}).then(response => response.json())
 						.then(data => {
-							document.getElementById("demo").textContent = data.status === "ok" ? "✔️" : "❌";
+							document.getElementById("demo").textContent = data.status === "ok" ? "✓" : "⨉";
 							canPress = false;
 							startTimeoutBar(timeoutDuration);
 							setTimeout(() => {

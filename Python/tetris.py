@@ -558,10 +558,12 @@ def main():
 
 # program
 
-remote.start_pygame_thread()
 
-print("startup")
-main()
-print("exited")
+if __name__ == "__main__":
+    remote.start_pygame_thread()
 
-remote.close_pygame_thread()
+    print("startup")
+    main()
+    print("exited")
+
+    remote.close_pygame_thread()

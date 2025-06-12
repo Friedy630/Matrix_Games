@@ -9,7 +9,7 @@ CONTROLS = [
     "arrowdown",
     "arrowleft",
     "arrowright",
-    "space",
+    " ",
     "enter",
     "escape",
     "w",
@@ -21,11 +21,7 @@ CONTROL_ICONS = ["↑", "↓", "←", "→", "␣", "↵", "⎋ Esc", "W", "A", 
 
 
 def send_udp_message(message):
-    udp_rec = "led-box.bbrouter"
-    try:
-        udp_ip = socket.gethostbyname(udp_rec)
-    except socket.gaierror:
-        udp_ip = "localhost"
+    udp_ip = "localhost"
     udp_port = 5000
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(message.encode(), (udp_ip, udp_port))
@@ -48,10 +44,12 @@ def key_pressed():
     data = request.get_json()
     key = data.get("key", "")
     if key in CONTROLS:
+        if key == " ":
+            key = "space"
         send_udp_message(key)
         return jsonify({"status": "ok"})
     return jsonify({"status": "error"})
 
 
 if __name__ == "__main__":
-    app.run(port=8060)
+    app.run(port=8060, host="0.0.0.0")
