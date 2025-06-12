@@ -1,6 +1,5 @@
 import numpy as np
 import random as rng
-from ulib import remote
 import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
@@ -107,7 +106,7 @@ def restart():
     is_game_over = False
 
 
-def start_snake():
+def play():
     global snake_head_dir, running, length_to_extend, is_game_over
     running = True
     restart()
@@ -139,16 +138,18 @@ def start_snake():
         il.reset_inputs()
         gl.show()
         time.sleep(0.1)
-    remote.unbind_all(il.register_input)
+    il.cleanup()
 
 
 # program
 
 if __name__ == "__main__":
+    from ulib import remote
+
     remote.start_pygame_thread()
 
     print("startup")
-    start_snake()
+    play()
     print("exited")
 
     remote.close_pygame_thread()

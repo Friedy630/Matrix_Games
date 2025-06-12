@@ -14,6 +14,10 @@ class Vec:
     def __sub__(self, other):
         return Vec(self.x - other.x, self.y - other.y)
 
+    @classmethod
+    def zero(cls):
+        return cls(0, 0)
+
 
 # Tetromino types as string keys for dict (emulating enum functionality)
 colors = {
@@ -28,6 +32,8 @@ colors = {
     "white": (255, 255, 255),
     "black": (0, 0, 0),
     "grey": (128, 128, 128),
+    "light_grey": (192, 192, 192),
+    "dark_grey": (64, 64, 64),
     "light_green": (64, 192, 64),
 }
 # Tetris Tetromino-Farben laut offizieller Guideline

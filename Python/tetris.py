@@ -1,6 +1,5 @@
 import numpy as np
 import random as rng
-from ulib import remote
 import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
@@ -436,7 +435,7 @@ def get_new_shape():
         fall_step_interval_seconds *= 0.98
 
 
-def start_tetris():
+def play():
     global running
     print("entered tetris game")
     start_time = time.time()
@@ -460,7 +459,6 @@ def start_tetris():
         il.reset_inputs()
         time.sleep(0.1)
         gl.show()
-    il.reset_inputs()
 
 
 # Shapes for menu
@@ -550,7 +548,7 @@ def main():
     il.initialise()
     running = True
     while start_main_menu():
-        start_tetris()
+        play()
     running = False
     il.cleanup()
     gl.fill(gl.colors["background"])
@@ -560,6 +558,8 @@ def main():
 
 
 if __name__ == "__main__":
+    from ulib import remote
+
     remote.start_pygame_thread()
 
     print("startup")

@@ -14,6 +14,7 @@ cursor_visible = True
 blink_speed = 0.3
 virtual_screen = np.zeros((16, 16), dtype=int)
 
+
 def clear_temp_pixels():
     global virtual_screen
     for x in range(16):
@@ -21,6 +22,7 @@ def clear_temp_pixels():
             if virtual_screen[x, y] == -1:
                 gl.setpixel(x, y, gl.colors["background"])
                 virtual_screen[x, y] = 0
+
 
 def screen_setlastingpixel(x: int, y: int, value: int):
     global virtual_screen
@@ -31,11 +33,13 @@ def screen_setlastingpixel(x: int, y: int, value: int):
         else:
             gl.setpixel(x, y, gl.colors["white"])
 
+
 def blink_cursor():
     global cursor_visible, running, blink_speed
     while running:
         cursor_visible = not cursor_visible
         time.sleep(blink_speed)
+
 
 def real_game_of_life_algorithm():
     global virtual_screen, running
@@ -57,7 +61,9 @@ def real_game_of_life_algorithm():
                                 live_neighbors += 1
 
                 # Apply Game of Life rules
-                if virtual_screen[x, y] == 1 and (live_neighbors < 2 or live_neighbors > 3):
+                if virtual_screen[x, y] == 1 and (
+                    live_neighbors < 2 or live_neighbors > 3
+                ):
                     new_screen[x, y] = 0
                 elif virtual_screen[x, y] == 0 and live_neighbors == 3:
                     new_screen[x, y] = 1
@@ -90,6 +96,7 @@ def real_game_of_life_algorithm():
         virtual_screen = new_screen
 
         time.sleep(0.5)
+
 
 def game_of_life_selection():
     global cursor_position
@@ -141,13 +148,17 @@ def game_of_life_selection():
             if cursor_visible:
                 gl.setpixel(cursor_position.x, cursor_position.y, gl.colors["white"])
             else:
-                gl.setpixel(cursor_position.x, cursor_position.y, gl.colors["background"])
+                gl.setpixel(
+                    cursor_position.x, cursor_position.y, gl.colors["background"]
+                )
         else:
             if cursor_visible:
                 gl.setpixel(cursor_position.x, cursor_position.y, gl.colors["white"])
                 virtual_screen[cursor_position.x, cursor_position.y] = -1
             else:
-                gl.setpixel(cursor_position.x, cursor_position.y, gl.colors["background"])
+                gl.setpixel(
+                    cursor_position.x, cursor_position.y, gl.colors["background"]
+                )
                 virtual_screen[cursor_position.x, cursor_position.y] = 0
 
         clock_cycle += 1
@@ -155,6 +166,7 @@ def game_of_life_selection():
         time.sleep(0.1)
 
     print("Game of Life preparation finished")
+
 
 def main():
     global cursor_position
@@ -175,6 +187,7 @@ def main():
     running = False
     il.cleanup()
     gl.fill(gl.colors["background"])
+
 
 remote.start_pygame_thread()
 
