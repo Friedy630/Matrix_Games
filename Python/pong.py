@@ -7,4 +7,5 @@ def start_pong():
     pass
 
 
-# Muss erstmal auf den PC rüber
+if __name__ == "__main__":
+    start_pong()
