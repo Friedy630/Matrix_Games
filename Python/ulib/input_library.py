@@ -13,7 +13,7 @@ inputs = {
 
 
 def register_input(key: str):
-    global running
+    key = key.lower()
     if key in inputs:
         inputs[key] = True
 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			margin: 0;
+			background-color: rgba(64, 96, 128, 1);
+			height: 100%;
+		}
+		#demo {
+			font-family: monospace;
+			font-size: 60px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			width: 100vw;
+			position: relative;
+			z-index: 10;
+		}
+
+		#demo-container {
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#timeout-bar {
+			position: absolute;
+			left: 0; bottom: 0;
+			width: 100%;
+			height: 0%;
+			background: rgba(96, 128, 192, 0.5);
+			z-index: 1;
+			transition: height linear;
+			pointer-events: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="demo-container">
+		<div id="timeout-bar"></div>
+		<div id="demo"></div>
+	</div>
+	<script>
+
+		let timeoutDuration = 200; // ms
+
+		function startTimeoutBar(duration) {
+			const bar = document.getElementById("timeout-bar");
+			bar.style.transition = "none";
+			bar.style.height = "0%";
+			// Force reflow to restart animation
+			void bar.offsetHeight;
+			bar.style.transition = `height ${duration}ms linear`;
+			bar.style.height = "100%";
+			setTimeout(() => {
+				bar.style.transition = "none";
+			}, duration);
+		}
+
+		window.onload = function () {
+			document.getElementById("demo").textContent = "Loading...";
+			let control = "";
+			let icon = "";
+			let canPress = true;
+			
+			function fetchControl() {
+				fetch("/random-control")
+					.then(response => response.json())
+					.then(data => {
+						control = data.control;
+						icon = data.icon;
+						document.getElementById("demo").textContent = icon;
+					});
+			}
+			fetchControl();
+
+			window.onkeydown = function (event) {
+				if (event.key.toLowerCase() === control && canPress) {
+					console.log("Key pressed:", event.key);
+					fetch("/key-pressed", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ key: control })
+					}).then(response => response.json())
+						.then(data => {
+							document.getElementById("demo").textContent = data.status === "ok" ? "✔️" : "❌";
+							canPress = false;
+							startTimeoutBar(timeoutDuration);
+							setTimeout(() => {
+								document.getElementById("demo").textContent = icon;
+								canPress = true;
+							}, timeoutDuration);
+						});
+				}
+				else{
+					console.log("Can press:", canPress);
+				}
+			};
+		};
+
+	</script>
+</body>
+
+</html>
