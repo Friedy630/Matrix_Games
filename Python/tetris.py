@@ -1,6 +1,6 @@
 import numpy as np
 import random as rng
-from ulib import display, remote
+from ulib import remote
 import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
@@ -459,7 +459,7 @@ def start_tetris():
             break
         il.reset_inputs()
         time.sleep(0.1)
-        display.show()
+        gl.show()
     il.reset_inputs()
 
 
@@ -500,7 +500,7 @@ def start_main_menu():
     gl.set_shape(e_shape, gl.Vec(7, text_height), text_color)
     gl.set_shape(e_shape, gl.Vec(10, text_height), text_color)
     gl.set_shape(d_shape, gl.Vec(13, text_height), text_color)
-    display.show()
+    gl.show()
     while running:
         if il.inputs["escape"]:
             running = False
@@ -514,7 +514,7 @@ def start_main_menu():
                 gl.set_shape(
                     progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["yellow"]
                 )
-                display.show()
+                gl.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
         if fall_step_interval_seconds == diff2_step_interval_seconds:
@@ -522,14 +522,14 @@ def start_main_menu():
                 gl.set_shape(
                     progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["red"]
                 )
-                display.show()
+                gl.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff3_step_interval_seconds
             if il.inputs["left"]:
                 gl.set_shape(
                     progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["black"]
                 )
-                display.show()
+                gl.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff1_step_interval_seconds
         if fall_step_interval_seconds == diff3_step_interval_seconds:
@@ -537,7 +537,7 @@ def start_main_menu():
                 gl.set_shape(
                     progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["black"]
                 )
-                display.show()
+                gl.show()
                 il.reset_inputs()
                 fall_step_interval_seconds = diff2_step_interval_seconds
         il.reset_inputs()

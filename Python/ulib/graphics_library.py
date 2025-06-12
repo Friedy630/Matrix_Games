@@ -32,7 +32,7 @@ colors = {
 }
 # Tetris Tetromino-Farben laut offizieller Guideline
 
-brightness = 128
+brightness = 96
 
 pixels = np.full((16, 16, 3), colors["background"])
 
@@ -94,3 +94,7 @@ def rotate(shape, isleft: bool):
     global current_shape_matrix
     rotated_matrix = get_rotated_shape_matrix(shape, isleft)
     return rotated_matrix
+
+
+def show():
+    display.show()

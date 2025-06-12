@@ -1,6 +1,6 @@
 import numpy as np
 import random as rng
-from ulib import display, remote
+from ulib import remote
 import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
@@ -75,8 +75,10 @@ def step_snake():
             new_head_pos = gl.Vec(new_head_pos.x % 16, new_head_pos.y % 16)
         else:
             game_over()
+            return
     if new_head_pos in snake_positions:
         game_over()
+        return
     snake_positions.append(new_head_pos)
     if new_head_pos == fruit_pos:
         length_to_extend += int(growth_factor)
@@ -135,7 +137,7 @@ def start_snake():
                 start_time = time_
                 step_snake()
         il.reset_inputs()
-        display.show()
+        gl.show()
         time.sleep(0.1)
     remote.unbind_all(il.register_input)
 
