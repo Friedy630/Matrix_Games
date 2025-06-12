@@ -2,8 +2,8 @@ import numpy as np
 import random as rng
 from ulib import display, remote
 import time
-from lib import graphics_library as gl
-from lib import input_library as il
+from ulib import graphics_library as gl
+from ulib import input_library as il
 
 #### settings
 
@@ -109,8 +109,7 @@ def start_snake():
     global snake_head_dir, running, length_to_extend, is_game_over
     running = True
     restart()
-    remote.listen()
-    remote.bind_all(il.register_input)
+    il.initialise()
     start_time = time.time()
     while running:
         if il.inputs["exit"]:

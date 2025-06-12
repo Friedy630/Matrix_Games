@@ -2,8 +2,8 @@ import numpy as np
 import random as rng
 from ulib import display, remote
 import time
-from lib import graphics_library as gl
-from lib import input_library as il
+from ulib import graphics_library as gl
+from ulib import input_library as il
 
 # <SETTINGS>
 side_to_side_pass = True
