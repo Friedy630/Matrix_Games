@@ -7,8 +7,14 @@ inputs = {
     "up": False,
     "space": False,
     "enter": False,
+    "return": False,
     "escape": False,
     "exit": False,
+    "esc": False,
+    "w": False,
+    "a": False,
+    "s": False,
+    "d": False,
 }
 
 
@@ -16,6 +22,10 @@ def register_input(key: str):
     key = key.lower()
     if key in inputs:
         inputs[key] = True
+        if key == "esc":
+            inputs["escape"] = True
+        if key == "return":
+            inputs["enter"] = True
 
 
 def reset_inputs():
