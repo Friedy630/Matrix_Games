@@ -1,51 +1,31 @@
 import numpy as np
 import random as rng
-import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
+from ulib import game_library as game
 
-# <SETTINGS>
-side_to_side_pass = True
 
-enable_exotic_shapes = False  # adds 20 more exiting shapes
+class TetrisShape:
+    def __init__(
+        self, shape_matrix: np.ndarray, weight: int, color: tuple = gl.colors["white"]
+    ):
+        self.shape_matrix = shape_matrix
+        self.weight = weight  # chance to spawn this shape
+        self.position = gl.Vec(0, 0)  # position on the game field
+        self.color = color  # color of the shape
 
-exotic_shape_chance = 0.3  # chance to spawn an exotic shape instead of a normal one
 
-enable_acceleration = False  # makes the falling speed accelerate over time
+def calculate_weights_sum(shape_set):
+    """
+    Calculates the sum of all weights in a shape set.
+    """
+    return sum(shape.weight for shape in shape_set)
 
-fall_step_interval_seconds = (
-    0.700  # how much time it takes for the shape to fall one block
-)
 
-fall_step_interval_seconds = (
-    0.700  # how much time it takes for the shape to fall one block
-)
-
-enable_shape_weights = True  # spawns each block with a given chance
-
-diff1_step_interval_seconds = 1.0
-diff2_step_interval_seconds = 0.75
-diff3_step_interval_seconds = 0.5
-
-# </STETTINGS>
-
-currentShapeID = -1
-current_shape_matrix = np.zeros((3, 3))
-current_shape_position = gl.Vec(0, 0)
-current_shape_color = (255, 255, 255)
-
-fall_step_interval_seconds = diff1_step_interval_seconds
-
-running = False
-
-score = 0
-
-exotic_weights_sum = 100
-
-exotic_color = (100, 100, 100)  # color of any exotic shape
+exotic_color = gl.colors["grey"]  # color of any exotic shape
 
 exotic_shapes = [
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 1, 1],
@@ -54,8 +34,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 1, 1],
@@ -64,8 +45,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 1, 1],
@@ -74,8 +56,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 1],
@@ -83,8 +66,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 1],
@@ -92,8 +76,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 1, 1],
@@ -102,8 +87,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 0, 0],
@@ -112,8 +98,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 1],
@@ -122,8 +109,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 1],
@@ -132,8 +120,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 1],
@@ -142,8 +131,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 1, 1],
@@ -152,8 +142,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0, 0, 0],
@@ -164,8 +155,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0, 0],
@@ -175,8 +167,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0, 0],
@@ -186,8 +179,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0, 0],
@@ -197,8 +191,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0, 0],
@@ -208,8 +203,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0],
@@ -218,8 +214,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0],
@@ -228,8 +225,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [0, 0, 0],
@@ -238,8 +236,9 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 0, 0],
@@ -248,12 +247,17 @@ exotic_shapes = [
             ]
         ).T,
         5,
+        exotic_color,
     ),
 ]
 
+
+exotic_weights_sum = calculate_weights_sum(exotic_shapes)
+
+
 # Tetris Tetromino-Farben laut offizieller Guideline
 shapes = [
-    (
+    TetrisShape(
         np.array(
             [
                 [1, 0, 0],
@@ -264,14 +268,14 @@ shapes = [
         15,
         (0, 0, 255),
     ),  # J
-    (np.array([[0, 1, 1], [1, 1, 0], [0, 0, 0]]).T, 10, (0, 255, 0)),  # S
-    (
+    TetrisShape(np.array([[0, 1, 1], [1, 1, 0], [0, 0, 0]]).T, 10, (0, 255, 0)),  # S
+    TetrisShape(
         np.array([[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]).T,
         20,
         (0, 255, 255),
     ),  # I
-    (np.array([[0, 1, 0], [1, 1, 1], [0, 0, 0]]).T, 15, (128, 0, 128)),  # T
-    (
+    TetrisShape(np.array([[0, 1, 0], [1, 1, 1], [0, 0, 0]]).T, 15, (128, 0, 128)),
+    TetrisShape(
         np.array(
             [
                 [1, 1],
@@ -281,277 +285,174 @@ shapes = [
         15,
         (255, 255, 0),
     ),  # O
-    (np.array([[1, 1, 0], [0, 1, 1], [0, 0, 0]]).T, 10, (255, 0, 0)),  # Z
-    (np.array([[0, 0, 1], [1, 1, 1], [0, 0, 0]]).T, 15, (255, 165, 0)),  # L
+    TetrisShape(np.array([[1, 1, 0], [0, 1, 1], [0, 0, 0]]).T, 10, (255, 0, 0)),  # Z
+    TetrisShape(np.array([[0, 0, 1], [1, 1, 1], [0, 0, 0]]).T, 15, (255, 165, 0)),  # L
 ]
 
-weights_sum = 100
+weights_sum = calculate_weights_sum(shapes)
 
 
-def remove_row(row: int):
-    for y in range(row, 0, -1):
-        for x in range(16):
-            gl.setpixel(x, y, gl.getpixel(x, y - 1))
+class TetrisGameShape:
+    def __init__(self, shape_matrix: np.ndarray, weight: int, color: tuple):
+        self.shape = TetrisShape(shape_matrix, weight, color)
+        self.position = gl.Vec(0, 0)
+        self.id = -1  # index in shape set
 
+    def paste(self):
+        gl.set_shape(self.shape.shape_matrix, self.position, self.shape.color)
 
-def check_for_full_row():
-    global score
-    block_counter = 0
-    local_score = 0
-    score_multiplier = 0
-    for row in range(16):
-        for col in range(16):
-            if tuple(gl.pixels[col, row]) != gl.colors["background"]:
-                block_counter += 1
-        if block_counter == 16:
-            remove_row(row)
-            local_score += 100
-            score_multiplier += 1
-        block_counter = 0
-    score += local_score * score_multiplier
+    def cut(self):
+        gl.set_shape(self.shape.shape_matrix, self.position, gl.colors["background"])
 
+    def rotate(self, isleft: bool):
+        rotated_matrix = gl.get_rotated_shape_matrix(self.shape.shape_matrix, isleft)
+        self.cut()
+        if gl.check_fit(rotated_matrix, self.position):
+            self.shape.shape_matrix = rotated_matrix
+        self.paste()
 
-def paste_current_shape():
-    gl.set_shape(current_shape_matrix, current_shape_position, current_shape_color)
+    def move_down(self):
+        moved_position = self.position + gl.Vec(0, 1)
+        self.cut()
+        if not gl.check_fit(self.shape.shape_matrix, moved_position):
+            return False
+        self.position = moved_position
+        self.paste()
+        return True
 
-
-def cut_current_shape():
-    gl.set_shape(current_shape_matrix, current_shape_position, gl.colors["background"])
-
-
-def move_horizontal(isleft: bool):
-    global current_shape_position
-    moved_position = current_shape_position
-    if isleft:
-        moved_position += gl.Vec(-1, 0)
-    else:
-        moved_position += gl.Vec(1, 0)
-    cut_current_shape()
-    if gl.check_fit(current_shape_matrix, moved_position):
-        current_shape_position = moved_position
-    paste_current_shape()
-
-
-def move_down():
-    global current_shape_position
-    moved_position = current_shape_position + gl.Vec(0, 1)
-    cut_current_shape()
-    if not gl.check_fit(current_shape_matrix, moved_position):
-        if current_shape_position.y < 0:
-            print("game over")
-            il.inputs["escape"] = True
+    def move_horizontal(self, isleft: bool):
+        moved_position = self.position
+        if isleft:
+            moved_position += gl.Vec(-1, 0)
         else:
-            paste_current_shape()
-            check_for_full_row()
-            get_new_shape()
-        return
-    current_shape_position = moved_position
-    paste_current_shape()
+            moved_position += gl.Vec(1, 0)
+        self.cut()
+        if gl.check_fit(self.shape.shape_matrix, moved_position):
+            self.position = moved_position
+        self.paste()
 
 
-def rotate(isleft: bool):
-    global current_shape_matrix
-    rotated_matrix = gl.get_rotated_shape_matrix(current_shape_matrix, isleft)
-    cut_current_shape()
-    if gl.check_fit(rotated_matrix, current_shape_position):
-        current_shape_matrix = rotated_matrix
-    paste_current_shape()
+class TetrisGame(game.Game):
 
+    def __init__(
+        self,
+        spt=0.05,
+        shapes=shapes,
+        exotic_shapes=exotic_shapes,
+        enable_acceleration=False,
+        enable_exotic_shapes=False,
+        exotic_shape_chance=0.3,
+        enable_shape_weights=False,
+        weights_sum=weights_sum,
+        exotic_weights_sum=exotic_weights_sum,
+    ):
+        super().__init__()
+        self.spt = spt
+        self.fall_steps = 10  # ticks per fall step
+        self.current_shape = TetrisGameShape(np.zeros((3, 3)), 0, (255, 255, 255))
+        self.side_to_side_pass = True
 
-def get_loottable_hit(weights_array, weights_sum):
-    randInt = rng.randint(0, weights_sum - 1)
-    w = 0
-    i = -1  # shape_index
-    while w < randInt:
-        i += 1
-        w += weights_array[i][1]
-    return i
+        # Exotic shapes
+        self.enable_exotic_shapes = enable_exotic_shapes  # adds 20 more exiting shapes
+        self.exotic_shape_chance = exotic_shape_chance  # chance to spawn an exotic shape instead of a normal one
 
+        # Exotic Mechanics
+        self.enable_acceleration = (
+            enable_acceleration  # makes the falling speed accelerate over time
+        )
+        self.enable_shape_weights = (
+            enable_shape_weights  # spawns each block with a given chance
+        )
 
-def set_standard_shape():
-    global currentShapeID, current_shape_color, current_shape_matrix
-    while True:
-        new_shape_id = rng.randint(0, len(shapes) - 1)
-        if new_shape_id != currentShapeID:
-            currentShapeID = new_shape_id
-            break
-    current_shape_matrix = shapes[new_shape_id][0]
-    current_shape_color = shapes[new_shape_id % len(shapes)][2]
+        self.shapes = shapes  # normal shapes
+        self.exotic_shapes = exotic_shapes  # exotic shapes
 
+        self.weights_sum = weights_sum  # sum of all normal shape weights
+        self.exotic_weights_sum = exotic_weights_sum  # sum of all exotic shape weights
 
-def set_exotic_shape():
-    global currentShapeID, current_shape_color, current_shape_matrix
-    while True:
-        new_shape_id = rng.randint(0, len(exotic_shapes) - 1)
-        if new_shape_id != currentShapeID:
-            currentShapeID = new_shape_id
-            break
-    current_shape_matrix = exotic_shapes[new_shape_id][0]
-    current_shape_color = exotic_color
+    def initialise(self):
+        super().initialise()
+        self.get_new_shape()
 
+    def update(self):
+        if not self.is_game_over:
+            if self.tick % self.fall_steps == 0:
+                il.inputs["down"] = True
+            if il.inputs["left"] != il.inputs["right"]:
+                self.current_shape.move_horizontal(il.inputs["left"])
+            if il.inputs["up"] != il.inputs["space"]:
+                self.current_shape.rotate(il.inputs["up"])
+            if il.inputs["down"] or il.inputs["enter"]:
+                if not self.current_shape.move_down():
+                    if self.current_shape.position.y < 0:
+                        self.game_over()
+                    else:
+                        self.current_shape.paste()
+                        self.check_for_full_row()
+                        self.get_new_shape()
 
-def set_standard_shape_weighted():
-    global currentShapeID, current_shape_color, current_shape_matrix
-    while True:
-        new_shape_id = get_loottable_hit(shapes, weights_sum)
-        if new_shape_id != currentShapeID:
-            currentShapeID = new_shape_id
-            break
-    current_shape_matrix = shapes[new_shape_id][0]
-    current_shape_color = shapes[new_shape_id][2]
-
-
-def set_exotic_shape_weighted():
-    global currentShapeID, current_shape_color, current_shape_matrix
-    while True:
-        new_shape_id = get_loottable_hit(exotic_shapes, exotic_weights_sum)
-        if new_shape_id != currentShapeID:
-            currentShapeID = new_shape_id
-            break
-    current_shape_matrix = exotic_shapes[new_shape_id][0]
-    current_shape_color = exotic_color
-
-
-def get_new_shape():
-    global fall_step_interval_seconds, current_shape_matrix, current_shape_position, current_shape_color
-    current_shape_position = gl.Vec(6, -2)
-    spawn_exotic = False
-    if enable_exotic_shapes:
-        spawn_exotic = rng.randint(0, 99) / 100.0 <= exotic_shape_chance
-    else:
-        spawn_exotic = False
-    if spawn_exotic:
-        if enable_shape_weights:
-            set_exotic_shape_weighted()
-        else:
-            set_exotic_shape()
-    else:
-        if enable_shape_weights:
-            set_standard_shape_weighted()
-        else:
-            set_standard_shape()
-    paste_current_shape()
-    if enable_acceleration:
-        fall_step_interval_seconds *= 0.98
-
-
-def play():
-    global running
-    print("entered tetris game")
-    start_time = time.time()
-    gl.fill(gl.colors["background"])
-    get_new_shape()
-    while running:
-        if time.time() - start_time >= fall_step_interval_seconds:
-            start_time = time.time()
-            il.inputs["down"] = True
-        if il.inputs["left"] != il.inputs["right"]:
-            move_horizontal(il.inputs["left"])
-        if il.inputs["up"] != il.inputs["space"]:
-            rotate(il.inputs["up"])
-        if il.inputs["down"] or il.inputs["enter"]:
-            move_down()
-        if il.inputs["escape"]:
-            break
-        if il.inputs["exit"]:
-            running = False
-            break
-        il.reset_inputs()
-        time.sleep(0.1)
+    def render(self):
         gl.show()
 
+    def get_new_shape(self):
+        self.current_shape.position = gl.Vec(6, -2)
+        if self.enable_exotic_shapes and rng.random() <= self.exotic_shape_chance:
+            if self.enable_shape_weights:
+                self.set_shape(self.exotic_shapes, self.exotic_weights_sum)
+            else:
+                self.set_shape(self.exotic_shapes)
+        else:
+            if self.enable_shape_weights:
+                self.set_shape(self.shapes, self.weights_sum)
+            else:
+                self.set_shape(self.shapes)
+        self.current_shape.paste()
+        if self.enable_acceleration:
+            self.spt *= 0.98
 
-# Shapes for menu
-close_x_shape = np.array([[1, 0, 1], [0, 1, 0], [1, 0, 1]])
-space_shape = np.array([[1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1]])
-space_shape = gl.get_rotated_shape_matrix(space_shape, True)
-s_shape = np.array([[1, 1], [1, 0], [1, 1], [0, 1], [1, 1]]).T
-p_shape = np.array([[1, 1], [1, 1], [1, 1], [1, 0], [1, 0]]).T
-e_shape = np.array([[1, 1], [1, 0], [1, 1], [1, 0], [1, 1]]).T
-d_shape = np.array([[1, 0], [1, 1], [1, 1], [1, 1], [1, 0]]).T
+    def set_shape(self, shape_set, weights_sum=None):
+        while True:
+            new_shape_id = (
+                rng.randint(0, len(shape_set) - 1)
+                if not weights_sum
+                else self.get_loottable_hit(shape_set, weights_sum)
+            )
+            if new_shape_id != self.current_shape.id:
+                self.current_shape.id = new_shape_id
+                self.current_shape.shape = shape_set[new_shape_id]
+                return
 
-progress_bar_border_shape = np.array(
-    [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    ]
-).T
+    def get_loottable_hit(self, weights_array, weights_sum):
+        randInt = rng.randint(0, weights_sum - 1)
+        w = 0
+        i = -1  # shape_index
+        while w < randInt:
+            i += 1
+            w += weights_array[i].weight
+        return i
 
-progress_bar_inner_green_shape = np.array([[1, 1, 1], [1, 1, 1]]).T
-progress_bar_inner_yellow_shape = np.array([[1, 1, 1, 1], [1, 1, 1, 1]]).T
-progress_bar_inner_red_shape = np.array([[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]).T
+    def check_for_full_row(self):
+        block_counter = 0
+        local_score = 0
+        score_multiplier = 0
+        for row in range(16):
+            for col in range(16):
+                if tuple(gl.pixels[col, row]) != gl.colors["background"]:
+                    block_counter += 1
+            if block_counter == 16:
+                self.remove_row(row)
+                local_score += 100
+                score_multiplier += 1
+            block_counter = 0
+        self.score += local_score * score_multiplier
 
-
-def start_main_menu():
-    global running, fall_step_interval_seconds
-    print("entered main menu")
-    fall_step_interval_seconds = diff1_step_interval_seconds
-    gl.fill(gl.colors["black"])
-    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), gl.colors["grey"])
-    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), gl.colors["green"])
-    text_height = 6
-    text_color = gl.colors["grey"]
-    gl.set_shape(s_shape, gl.Vec(1, text_height), text_color)
-    gl.set_shape(p_shape, gl.Vec(4, text_height), text_color)
-    gl.set_shape(e_shape, gl.Vec(7, text_height), text_color)
-    gl.set_shape(e_shape, gl.Vec(10, text_height), text_color)
-    gl.set_shape(d_shape, gl.Vec(13, text_height), text_color)
-    gl.show()
-    while running:
-        if il.inputs["escape"]:
-            running = False
-        if il.inputs["space"]:
-            return True
-        if il.inputs["exit"]:
-            running = False
-            return False
-        if fall_step_interval_seconds == diff1_step_interval_seconds:
-            if il.inputs["right"]:
-                gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["yellow"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff2_step_interval_seconds
-        if fall_step_interval_seconds == diff2_step_interval_seconds:
-            if il.inputs["right"]:
-                gl.set_shape(
-                    progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["red"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff3_step_interval_seconds
-            if il.inputs["left"]:
-                gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["black"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff1_step_interval_seconds
-        if fall_step_interval_seconds == diff3_step_interval_seconds:
-            if il.inputs["left"]:
-                gl.set_shape(
-                    progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["black"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff2_step_interval_seconds
-        il.reset_inputs()
-        time.sleep(0.1)
-    return False
+    def remove_row(self, row: int):
+        for y in range(row, 0, -1):
+            for x in range(16):
+                gl.setpixel(x, y, gl.getpixel(x, y - 1))
 
 
-def main():
-    global running
-    il.initialise()
-    running = True
-    while start_main_menu():
-        play()
-    running = False
-    il.cleanup()
-    gl.fill(gl.colors["background"])
+# main menu moved to main.py (future implementation for all games)
 
 
 # program
@@ -563,7 +464,10 @@ if __name__ == "__main__":
     remote.start_pygame_thread()
 
     print("startup")
-    main()
+    tetris = TetrisGame()
+    tetris.initialise()
+    tetris.play()
+    tetris.stop()
     print("exited")
 
     remote.close_pygame_thread()

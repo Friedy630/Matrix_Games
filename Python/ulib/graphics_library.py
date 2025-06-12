@@ -65,9 +65,7 @@ def getpixel(x: int, y: int):
 
 def fill(color: tuple):
     display.fill(color)
-    for y in range(16):
-        for x in range(16):
-            pixels[x, y] = color
+    pixels = np.full((16, 16, 3), color)
 
 
 def set_shape(shape_matrix: np.ndarray, offset: Vec, color: tuple):
@@ -104,3 +102,17 @@ def rotate(shape, isleft: bool):
 
 def show():
     display.show()
+
+
+def clear():
+    fill(colors["background"])
+
+
+def clear_row(row: int):
+    for x in range(16):
+        setpixel(x, row, colors["background"])
+
+
+def clear_column(column: int):
+    for y in range(16):
+        setpixel(column, y, colors["background"])
