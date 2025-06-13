@@ -342,11 +342,12 @@ def main_menu():
         if il.inputs["space"] or il.inputs["enter"]:
             il.reset_inputs()
             draw_menu(selected_game, selected_speed, False)
-            selected_speed = speed_selection_menu(selected_speed)
-            if selected_speed is not None:
+            selected_speed, selected = speed_selection_menu(selected_speed)
+            if selected:
                 return selected_game, selected_speed
+            draw_menu(selected_game, selected_speed)
         il.reset_inputs()
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 
 def speed_selection_menu(selected_speed):
@@ -354,7 +355,7 @@ def speed_selection_menu(selected_speed):
     draw_speed(selected_speed)
     while running:
         if il.inputs["exit"] or il.inputs["escape"]:
-            return None
+            return selected_speed, False
         if il.inputs["left"]:
             selected_speed = max(selected_speed - 1, 0)
             draw_speed(selected_speed)
@@ -362,9 +363,9 @@ def speed_selection_menu(selected_speed):
             selected_speed = min(selected_speed + 1, len(speeds) - 1)
             draw_speed(selected_speed)
         if il.inputs["space"] or il.inputs["enter"]:
-            return selected_speed
+            return selected_speed, True
         il.reset_inputs()
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 
 def main():
