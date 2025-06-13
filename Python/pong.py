@@ -3,6 +3,7 @@ import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
 from ulib import game_library as game
+import random as rng
 
 # IDEAS:
 # - boost for ball (rainbow animation)
@@ -28,6 +29,7 @@ class Ball:
     def __init__(self, x, y):
         self.position = gl.Vec(x, y)
         self.direction = gl.Vec(1, 1)  # Initial direction
+        self.reset()
 
     def move(self):
         if self.position.x == 0:
@@ -73,6 +75,8 @@ class Ball:
     def reset(self):
         self.position = gl.Vec(7, 7)
         self.direction = gl.Vec(1, 1)
+        self.direction.x *= rng.choice([-1, 1])
+        self.direction.y *= rng.choice([-1, 1])
 
     def point_animation(self, paddle, delay_time=0.5, iterations=2):
         color = gl.colors["red"] if paddle == 1 else gl.colors["blue"]
@@ -93,7 +97,7 @@ class PongGame(game.Game):
         self.paddle_right = Paddle(14, 6)
         self.ball = Ball(7, 7)
         self.spt = 0.05
-        self.ball_prescale = 4
+        self.ball_prescale = 6
         self.animated_ball = animated_ball
 
     def initialise(self):
@@ -143,6 +147,12 @@ class PongGame(game.Game):
         self.ball.draw()
 
         gl.show()
+
+    def stop(self):
+        print(
+            f"Game Over! Left Player: {self.paddle_left.score}, Right Player: {self.paddle_right.score}"
+        )
+        super().stop()
 
 
 if __name__ == "__main__":
