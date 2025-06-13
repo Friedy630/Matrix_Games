@@ -450,7 +450,7 @@ class TetrisGame(game.Game):
     def remove_row(self, row: int):
         for y in range(row, 0, -1):
             for x in range(16):
-                gl.setpixel(x, y, gl.getpixel(x, y - 1))
+                gl.set_pixel(x, y, gl.get_pixel(x, y - 1))
 
 
 # main menu moved to main.py (future implementation for all games)

@@ -1,7 +1,12 @@
 import numpy as np
+import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
-import time
+from ulib import game_library as game
+
+# IDEAS:
+# - boost for ball (rainbow animation)
+# - ball speed increase over time
 
 
 class Paddle:
@@ -13,14 +18,10 @@ class Paddle:
 
     def move(self, direction):
         self.y += direction
+        self.y = max(0, min(self.y, 16 - self.size))
 
     def draw(self):
         gl.set_shape(np.ones((1, self.size)), gl.Vec(self.x, self.y), gl.colors["grey"])
-
-    def clear(self):
-        gl.set_shape(
-            np.ones((1, self.size)), gl.Vec(self.x, self.y), gl.colors["background"]
-        )
 
 
 class Ball:
@@ -42,10 +43,7 @@ class Ball:
         return 0
 
     def draw(self):
-        gl.setpixel(self.position.x, self.position.y, gl.colors["white"])
-
-    def clear(self):
-        gl.setpixel(self.position.x, self.position.y, gl.colors["background"])
+        gl.set_pixel(self.position.x, self.position.y, gl.colors["white"])
 
     def collide_with_paddle(self, paddle):
         # normal
@@ -66,7 +64,9 @@ class Ball:
         # oof
         if (
             self.position.x == paddle.x
-            and paddle.y - 1 <= self.position.y < paddle.y + paddle.size + 1
+            and paddle.y - self.direction.y
+            <= self.position.y
+            < paddle.y + paddle.size - self.direction.y
         ):
             self.direction.y *= -1
 
@@ -74,85 +74,75 @@ class Ball:
         self.position = gl.Vec(7, 7)
         self.direction = gl.Vec(1, 1)
 
-    def point_animation(self, paddle, delay_time):
+    def point_animation(self, paddle, delay_time=0.5, iterations=2):
         color = gl.colors["red"] if paddle == 1 else gl.colors["blue"]
-        iterations = 2
         delay = delay_time / (iterations * 2.0)
         for i in range(iterations):
-            gl.setpixel(self.position.x, self.position.y, color)
+            gl.set_pixel(self.position.x, self.position.y, color)
             gl.show()
             time.sleep(delay)
-            gl.setpixel(self.position.x, self.position.y, gl.colors["white"])
+            gl.set_pixel(self.position.x, self.position.y, gl.colors["white"])
             gl.show()
             time.sleep(delay)
 
 
-running = False
-paddle_left = Paddle(1, 6)
-paddle_right = Paddle(14, 6)
-ball = Ball(7, 7)
+class PongGame(game.Game):
+    def __init__(self, animated_ball=False):
+        super().__init__()
+        self.paddle_left = Paddle(1, 6)
+        self.paddle_right = Paddle(14, 6)
+        self.ball = Ball(7, 7)
+        self.spt = 0.05
+        self.ball_prescale = 4
+        self.animated_ball = animated_ball
 
+    def initialise(self):
+        super().initialise()
+        self.paddle_left = Paddle(1, 6)
+        self.paddle_right = Paddle(14, 6)
+        self.ball = Ball(7, 7)
+        self.ball_timer = 0
 
-def restart():
-    print("Starting Pong...")
-    global paddle_left, paddle_right, ball
-    paddle_left = Paddle(1, 6)
-    paddle_right = Paddle(14, 6)
-    ball = Ball(7, 7)
-
-
-def play():
-    global running
-    running = True
-    restart()
-    il.initialise()
-    ball_timer = 0
-    while running:
-        paddle_left.clear()
-        paddle_right.clear()
-
+    def update(self):
+        # Steuerung
         if il.inputs["up"]:
-            paddle_right.move(-1)
+            self.paddle_right.move(-1)
         if il.inputs["down"]:
-            paddle_right.move(1)
+            self.paddle_right.move(1)
         if il.inputs["w"]:
-            paddle_left.move(-1)
+            self.paddle_left.move(-1)
         if il.inputs["s"]:
-            paddle_left.move(1)
-        if il.inputs["exit"]:
-            running = False
-            return False
-        if il.inputs["escape"]:
-            running = False
+            self.paddle_left.move(1)
 
-        paddle_left.draw()
-        paddle_right.draw()
-
-        ball.clear()
-        if ball_timer % 4 == 0:
-            ball.collide_with_paddle(paddle_left)
-            ball.collide_with_paddle(paddle_right)
-            point = ball.move()
-
-        ball.draw()
+        point = 0
+        if self.tick % self.ball_prescale == 0:
+            self.ball.collide_with_paddle(self.paddle_left)
+            self.ball.collide_with_paddle(self.paddle_right)
+            point = self.ball.move()
 
         if point != 0:
             if point == -1:
                 print("Right player scores!")
-                paddle_right.score += 1
+                self.paddle_right.score += 1
             elif point == 1:
                 print("Left player scores!")
-                paddle_left.score += 1
-            ball.point_animation(point, 0.5)
-            ball.clear()
-            ball.reset()
-            ball_timer = -1
+                self.paddle_left.score += 1
+            self.ball.point_animation(point)
+            self.ball.reset()
 
-        il.reset_inputs()
+    def render(self):
+        if self.animated_ball:
+            gl.clear_column(1)
+            gl.clear_column(14)
+            gl.fade(0.7)
+        else:
+            gl.clear()
+
+        self.paddle_left.draw()
+        self.paddle_right.draw()
+        self.ball.draw()
+
         gl.show()
-        time.sleep(0.05)
-        ball_timer += 1
-    il.cleanup()
 
 
 if __name__ == "__main__":
@@ -161,7 +151,9 @@ if __name__ == "__main__":
     remote.start_pygame_thread()
 
     print("startup")
-    play()
+    pong = PongGame()
+    pong.initialise()
+    pong.play()
     print("exited")
 
     remote.close_pygame_thread()

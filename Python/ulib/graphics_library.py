@@ -43,7 +43,7 @@ brightness = 96
 pixels = np.full((16, 16, 3), colors["background"])
 
 
-def setpixel(x: int, y: int, color: tuple):
+def set_pixel(x: int, y: int, color: tuple):
     if x >= 16 or x < 0:
         return
     if y >= 0 and y < 16:
@@ -52,7 +52,7 @@ def setpixel(x: int, y: int, color: tuple):
         pixels[x % 16, y] = color
 
 
-def getpixel(x: int, y: int):
+def get_pixel(x: int, y: int):
     if x < 0 or x >= 16:
         return (255, 255, 255)
     if y >= 16:
@@ -64,6 +64,7 @@ def getpixel(x: int, y: int):
 
 
 def fill(color: tuple):
+    global pixels
     display.fill(color)
     pixels = np.full((16, 16, 3), color)
 
@@ -73,7 +74,7 @@ def set_shape(shape_matrix: np.ndarray, offset: Vec, color: tuple):
         for y in range(shape_matrix.shape[1]):
             if shape_matrix[x, y] == 0:
                 continue
-            setpixel(offset.x + x, offset.y + y, color)
+            set_pixel(offset.x + x, offset.y + y, color)
 
 
 def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool):
@@ -88,14 +89,13 @@ def check_fit(shape_matrix: np.ndarray, position: Vec):
         for y in range(shape_matrix.shape[1]):
             if (
                 shape_matrix[x, y] == 1
-                and getpixel(position.x + x, position.y + y) != colors["background"]
+                and get_pixel(position.x + x, position.y + y) != colors["background"]
             ):
                 return False
     return True
 
 
 def rotate(shape, isleft: bool):
-    global current_shape_matrix
     rotated_matrix = get_rotated_shape_matrix(shape, isleft)
     return rotated_matrix
 
@@ -108,11 +108,23 @@ def clear():
     fill(colors["background"])
 
 
-def clear_row(row: int):
+def clear_row(row: int, color=colors["background"]):
     for x in range(16):
-        setpixel(x, row, colors["background"])
+        set_pixel(x, row, color)
 
 
-def clear_column(column: int):
+def clear_column(column: int, color=colors["background"]):
     for y in range(16):
-        setpixel(column, y, colors["background"])
+        set_pixel(column, y, color)
+
+
+def fade(factor: float):
+    global pixels
+    for x in range(16):
+        for y in range(16):
+            r, g, b = pixels[x, y]
+            r = int(r * factor)
+            g = int(g * factor)
+            b = int(b * factor)
+            pixels[x, y] = (r, g, b)
+            display.set_xy((x, y), (r, g, b))

@@ -20,7 +20,7 @@ def clear_temp_pixels():
     for x in range(16):
         for y in range(16):
             if virtual_screen[x, y] == -1:
-                gl.setpixel(x, y, gl.colors["background"])
+                gl.set_pixel(x, y, gl.colors["background"])
                 virtual_screen[x, y] = 0
 
 
@@ -29,9 +29,9 @@ def screen_setlastingpixel(x: int, y: int, value: int):
     if 0 <= x < 16 and 0 <= y < 16:
         virtual_screen[x, y] = value
         if value == 0:
-            gl.setpixel(x, y, gl.colors["background"])
+            gl.set_pixel(x, y, gl.colors["background"])
         else:
-            gl.setpixel(x, y, gl.colors["white"])
+            gl.set_pixel(x, y, gl.colors["white"])
 
 
 def blink_cursor():
@@ -73,9 +73,9 @@ def real_game_of_life_algorithm():
         # Update the display
         for x, y in np.ndindex(virtual_screen.shape):
             if virtual_screen[x, y] == 1:
-                gl.setpixel(x, y, gl.colors["white"])
+                gl.set_pixel(x, y, gl.colors["white"])
             else:
-                gl.setpixel(x, y, gl.colors["background"])
+                gl.set_pixel(x, y, gl.colors["background"])
 
         display.show()
         if il.inputs["space"] or il.inputs["enter"]:
@@ -114,9 +114,9 @@ def game_of_life_selection():
         for x in range(16):
             for y in range(16):
                 if virtual_screen[x, y] == 1:
-                    gl.setpixel(x, y, gl.colors["white"])
+                    gl.set_pixel(x, y, gl.colors["white"])
                 else:
-                    gl.setpixel(x, y, gl.colors["background"])
+                    gl.set_pixel(x, y, gl.colors["background"])
 
         if il.inputs["exit"] or il.inputs["escape"]:
             running = False
@@ -146,17 +146,17 @@ def game_of_life_selection():
 
         if virtual_screen[cursor_position.x, cursor_position.y] == 1:
             if cursor_visible:
-                gl.setpixel(cursor_position.x, cursor_position.y, gl.colors["white"])
+                gl.set_pixel(cursor_position.x, cursor_position.y, gl.colors["white"])
             else:
-                gl.setpixel(
+                gl.set_pixel(
                     cursor_position.x, cursor_position.y, gl.colors["background"]
                 )
         else:
             if cursor_visible:
-                gl.setpixel(cursor_position.x, cursor_position.y, gl.colors["white"])
+                gl.set_pixel(cursor_position.x, cursor_position.y, gl.colors["white"])
                 virtual_screen[cursor_position.x, cursor_position.y] = -1
             else:
-                gl.setpixel(
+                gl.set_pixel(
                     cursor_position.x, cursor_position.y, gl.colors["background"]
                 )
                 virtual_screen[cursor_position.x, cursor_position.y] = 0
