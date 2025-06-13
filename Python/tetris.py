@@ -315,6 +315,7 @@ class TetrisGameShape:
         moved_position = self.position + gl.Vec(0, 1)
         self.cut()
         if not gl.check_fit(self.shape.shape_matrix, moved_position):
+            self.paste()
             return False
         self.position = moved_position
         self.paste()
@@ -348,7 +349,7 @@ class TetrisGame(game.Game):
     ):
         super().__init__()
         self.spt = spt
-        self.fall_steps = 10  # ticks per fall step
+        self.fall_prescale = 10  # ticks per fall step
         self.current_shape = TetrisGameShape(np.zeros((3, 3)), 0, (255, 255, 255))
         self.side_to_side_pass = True
 
@@ -376,7 +377,7 @@ class TetrisGame(game.Game):
 
     def update(self):
         if not self.is_game_over:
-            if self.tick % self.fall_steps == 0:
+            if self.tick % self.fall_prescale == 0:
                 il.inputs["down"] = True
             if il.inputs["left"] != il.inputs["right"]:
                 self.current_shape.move_horizontal(il.inputs["left"])

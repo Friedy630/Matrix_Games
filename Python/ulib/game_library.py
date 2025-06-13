@@ -30,10 +30,10 @@ class Game:
                 if self.is_game_over:
                     self.initialise()
                     self.is_game_over = False
-            self.update()
-            self.render()
+            if not self.is_game_over:
+                self.update()
+                self.render()
             il.reset_inputs()
-            gl.show()
             time.sleep(self.spt)
             self.tick += 1
 
