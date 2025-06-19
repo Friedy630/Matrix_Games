@@ -296,14 +296,14 @@ flappybird_icon = np.array(
             gl.colors["background"],
         ],
         [
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
         ],
         [
             gl.colors["green"],
@@ -326,24 +326,24 @@ flappybird_icon = np.array(
             gl.colors["green"],
         ],
         [
-            (0, 64, 0),
-            (0, 64, 0),
+            (0, 16, 0),
+            (0, 16, 0),
             gl.colors["background"],
             gl.colors["background"],
-            (0, 64, 0),
-            (0, 64, 0),
-            (0, 64, 0),
-            (0, 64, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
         ],
         [
-            (0, 16, 0),
-            (0, 16, 0),
+            (0, 2, 0),
+            (0, 2, 0),
             gl.colors["background"],
             gl.colors["background"],
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
-            (0, 16, 0),
+            (0, 2, 0),
+            (0, 2, 0),
+            (0, 2, 0),
+            (0, 2, 0),
         ],
     ]
 )
@@ -453,7 +453,7 @@ games = [
 speeds = [
     {"name": "SLOW", "value": 1.5, "color": gl.colors["green"]},
     {"name": "MEDIUM", "value": 1.0, "color": gl.colors["yellow"]},
-    {"name": "FAST", "value": 0.75, "color": gl.colors["red"]},
+    {"name": "FAST", "value": 0.5, "color": gl.colors["red"]},
 ]
 
 
@@ -838,8 +838,8 @@ end_screen = np.array(
 def main():
     from ulib import remote
 
-    # remote.start_pygame_thread()
-    gl.brightness = 48
+    remote.start_pygame_thread()
+    gl.brightness = 32
     il.initialise()
     while True:
         result = main_menu()
@@ -859,7 +859,7 @@ def main():
         game_instance.initialise()
         game_instance.play()
     il.cleanup()
-    # remote.close_pygame_thread()
+    remote.close_pygame_thread()
 
 
 if __name__ == "__main__":

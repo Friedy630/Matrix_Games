@@ -34,7 +34,7 @@ colors = {
     "grey": (128, 128, 128),
     "light_grey": (192, 192, 192),
     "dark_grey": (64, 64, 64),
-    "light_green": (64, 192, 64),
+    "light_green": (0, 64, 16),
 }
 # Tetris Tetromino-Farben laut offizieller Guideline
 
@@ -63,10 +63,13 @@ def get_pixel(x: int, y: int):
         return colors["background"]
 
 
-def fill(color: tuple):
+def fill(color: tuple, override=True):
     global pixels
-    display.fill(color)
-    pixels = np.full((16, 16, 3), color)
+    for x in range(16):
+        for y in range(16):
+            set_pixel(x, y, color)
+    if override:
+        show()
 
 
 def set_shape(shape_matrix: np.ndarray, offset: Vec, color: tuple):
@@ -104,8 +107,8 @@ def show():
     display.show()
 
 
-def clear():
-    fill(colors["background"])
+def clear(override=True):
+    fill(colors["background"], override)
 
 
 def clear_row(row: int, color=colors["background"]):

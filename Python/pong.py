@@ -96,7 +96,7 @@ class PongGame(game.Game):
         self.paddle_left = Paddle(1, 6)
         self.paddle_right = Paddle(14, 6)
         self.ball = Ball(7, 7)
-        self.spt = 0.1
+        self.spt = 0.05
         self.ball_prescale = 6
         self.animated_ball = animated_ball
 
@@ -140,7 +140,7 @@ class PongGame(game.Game):
             gl.clear_column(14)
             gl.fade(0.7)
         else:
-            gl.clear()
+            gl.clear(False)
 
         self.paddle_left.draw()
         self.paddle_right.draw()
