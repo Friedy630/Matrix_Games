@@ -38,7 +38,7 @@ colors = {
 }
 # Tetris Tetromino-Farben laut offizieller Guideline
 
-brightness = 96
+brightness = 64
 
 pixels = np.full((16, 16, 3), colors["background"])
 
@@ -116,6 +116,14 @@ def clear_row(row: int, color=colors["background"]):
 def clear_column(column: int, color=colors["background"]):
     for y in range(16):
         set_pixel(column, y, color)
+
+
+def draw_image(image, x_offset, y_offset):
+    for x in range(image.shape[0]):
+        for y in range(image.shape[1]):
+            color = image[x, y]
+            if not np.array_equal(color, colors["background"]):
+                set_pixel(x + x_offset, y + y_offset, tuple(color))
 
 
 def fade(factor: float):

@@ -348,6 +348,91 @@ flappybird_icon = np.array(
     ]
 )
 
+dino_icon = np.array(
+    [
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            (20, 20, 20),
+            (61, 61, 61),
+            (82, 82, 82),
+            (20, 20, 20),
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            (82, 82, 82),
+            (61, 61, 61),
+            (20, 20, 20),
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            (20, 20, 20),
+            (82, 82, 82),
+            (82, 82, 82),
+            (82, 82, 82),
+            (61, 61, 61),
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            (20, 20, 20),
+            (82, 82, 82),
+            (82, 82, 82),
+            (82, 82, 82),
+            (61, 61, 61),
+            gl.colors["background"],
+        ],
+        [
+            (41, 41, 41),
+            (82, 82, 82),
+            (82, 82, 82),
+            (82, 82, 82),
+            (82, 82, 82),
+            (82, 82, 82),
+            (41, 41, 41),
+            (61, 61, 61),
+        ],
+        [
+            (82, 82, 82),
+            (82, 82, 82),
+            (61, 61, 61),
+            (61, 61, 61),
+            (41, 41, 41),
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            (82, 82, 82),
+            (82, 82, 82),
+            (41, 41, 41),
+            (20, 20, 20),
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            (61, 61, 61),
+            (82, 82, 82),
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+    ]
+)
+
 # Arrow Shape
 left_arrow_shape = np.array([[0, 1], [1, 0], [0, 1]]).T
 right_arrow_shape = np.fliplr(left_arrow_shape.T).T
@@ -361,6 +446,7 @@ games = [
         "class": flappybird.FlappyBirdGame,
         "icon": flappybird_icon,
     },
+    {"name": "DINO", "class": pong.PongGame, "icon": dino_icon},
 ]
 
 # speed multipliers for game specific spt
@@ -375,11 +461,7 @@ def draw_menu(selected_game, selected_speed=0, with_arrows=True):
     gl.clear()
     # show game icon
     game_icon = games[selected_game]["icon"]
-    for x in range(game_icon.shape[0]):
-        for y in range(game_icon.shape[1]):
-            color = game_icon[x, y]
-            if not np.array_equal(color, gl.colors["background"]):
-                gl.set_pixel(x + 4, y + 2, tuple(color))
+    gl.draw_image(game_icon, 4, 2)
     if with_arrows:
         gl.set_shape(left_arrow_shape, gl.Vec(1, 5), gl.colors["light_grey"])
         gl.set_shape(right_arrow_shape, gl.Vec(13, 5), gl.colors["light_grey"])
@@ -459,14 +541,311 @@ def speed_selection_menu(selected_speed):
         time.sleep(0.05)
 
 
+end_screen = np.array(
+    [
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            (4, 4, 4),
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["red"],
+            gl.colors["red"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+    ]
+)
+
+
 def main():
     from ulib import remote
 
-    remote.start_pygame_thread()
+    # remote.start_pygame_thread()
     il.initialise()
     while True:
         result = main_menu()
         if result == (None, None):
+            gl.clear()
+            gl.draw_image(end_screen, 0, 0)
+            gl.show()
             break
         if result[1] is None:
             continue
@@ -479,98 +858,8 @@ def main():
         game_instance.initialise()
         game_instance.play()
     il.cleanup()
-    remote.close_pygame_thread()
+    # remote.close_pygame_thread()
 
 
 if __name__ == "__main__":
     main()
-
-
-"""
-
-diff1_step_interval_seconds = 1.0
-diff2_step_interval_seconds = 0.75
-diff3_step_interval_seconds = 0.5
-
-# Shapes for menu
-close_x_shape = np.array([[1, 0, 1], [0, 1, 0], [1, 0, 1]])
-space_shape = np.array([[1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1]])
-space_shape = gl.get_rotated_shape_matrix(space_shape, True)
-s_shape = np.array([[1, 1], [1, 0], [1, 1], [0, 1], [1, 1]]).T
-p_shape = np.array([[1, 1], [1, 1], [1, 1], [1, 0], [1, 0]]).T
-e_shape = np.array([[1, 1], [1, 0], [1, 1], [1, 0], [1, 1]]).T
-d_shape = np.array([[1, 0], [1, 1], [1, 1], [1, 1], [1, 0]]).T
-
-progress_bar_border_shape = np.array(
-    [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    ]
-).T
-
-progress_bar_inner_green_shape = np.array([[1, 1, 1], [1, 1, 1]]).T
-progress_bar_inner_yellow_shape = np.array([[1, 1, 1, 1], [1, 1, 1, 1]]).T
-progress_bar_inner_red_shape = np.array([[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]).T
-
-
-def start_main_menu():
-    global running, fall_step_interval_seconds
-    print("entered main menu")
-    fall_step_interval_seconds = diff1_step_interval_seconds
-    gl.fill(gl.colors["black"])
-    gl.set_shape(progress_bar_border_shape, gl.Vec(1, 1), gl.colors["grey"])
-    gl.set_shape(progress_bar_inner_green_shape, gl.Vec(2, 2), gl.colors["green"])
-    text_height = 6
-    text_color = gl.colors["grey"]
-    gl.set_shape(s_shape, gl.Vec(1, text_height), text_color)
-    gl.set_shape(p_shape, gl.Vec(4, text_height), text_color)
-    gl.set_shape(e_shape, gl.Vec(7, text_height), text_color)
-    gl.set_shape(e_shape, gl.Vec(10, text_height), text_color)
-    gl.set_shape(d_shape, gl.Vec(13, text_height), text_color)
-    gl.show()
-    while running:
-        if il.inputs["escape"]:
-            running = False
-        if il.inputs["space"]:
-            return True
-        if il.inputs["exit"]:
-            running = False
-            return False
-        if fall_step_interval_seconds == diff1_step_interval_seconds:
-            if il.inputs["right"]:
-                gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["yellow"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff2_step_interval_seconds
-        if fall_step_interval_seconds == diff2_step_interval_seconds:
-            if il.inputs["right"]:
-                gl.set_shape(
-                    progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["red"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff3_step_interval_seconds
-            if il.inputs["left"]:
-                gl.set_shape(
-                    progress_bar_inner_yellow_shape, gl.Vec(5, 2), gl.colors["black"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff1_step_interval_seconds
-        if fall_step_interval_seconds == diff3_step_interval_seconds:
-            if il.inputs["left"]:
-                gl.set_shape(
-                    progress_bar_inner_red_shape, gl.Vec(9, 2), gl.colors["black"]
-                )
-                gl.show()
-                il.reset_inputs()
-                fall_step_interval_seconds = diff2_step_interval_seconds
-        il.reset_inputs()
-        time.sleep(0.1)
-    return False
-
-"""
