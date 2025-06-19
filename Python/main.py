@@ -6,6 +6,7 @@ from ulib import input_library as il
 import tetris
 import snake
 import pong
+import flappybird
 
 # icon chaos
 tetris_icon = np.array(
@@ -13,82 +14,82 @@ tetris_icon = np.array(
         [
             gl.colors["background"],
             gl.colors["background"],
-            gl.colors["yellow"],
-            gl.colors["yellow"],
-            gl.colors["orange"],
-            gl.colors["cyan"],
-            gl.colors["white"],
-            gl.colors["background"],
-        ],
-        [
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["yellow"],
             gl.colors["yellow"],
             gl.colors["orange"],
             gl.colors["cyan"],
-            gl.colors["white"],
-            gl.colors["white"],
         ],
         [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["yellow"],
+            gl.colors["yellow"],
+            gl.colors["orange"],
+            gl.colors["cyan"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["orange"],
             gl.colors["orange"],
             gl.colors["cyan"],
-            gl.colors["white"],
-            gl.colors["background"],
         ],
         [
+            gl.colors["background"],
+            gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["green"],
             gl.colors["green"],
             gl.colors["cyan"],
-            gl.colors["background"],
-            gl.colors["background"],
         ],
         [
             gl.colors["background"],
+            gl.colors["background"],
             gl.colors["red"],
             gl.colors["red"],
+            gl.colors["background"],
             gl.colors["background"],
             gl.colors["green"],
             gl.colors["green"],
-            gl.colors["white"],
-            gl.colors["white"],
         ],
         [
+            gl.colors["background"],
             gl.colors["red"],
             gl.colors["red"],
             gl.colors["background"],
-            gl.colors["purple"],
-            gl.colors["purple"],
-            gl.colors["purple"],
             gl.colors["background"],
-            gl.colors["background"],
+            gl.colors["purple"],
+            gl.colors["purple"],
+            gl.colors["purple"],
         ],
         [
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
             gl.colors["purple"],
             gl.colors["blue"],
-            gl.colors["background"],
-            gl.colors["white"],
         ],
         [
             gl.colors["background"],
             gl.colors["background"],
             gl.colors["background"],
-            gl.colors["blue"],
-            gl.colors["blue"],
-            gl.colors["blue"],
-            gl.colors["white"],
             gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["blue"],
+            gl.colors["blue"],
+            gl.colors["blue"],
         ],
     ]
 )
@@ -262,6 +263,91 @@ pong_icon = np.array(
     ]
 )
 
+flappybird_icon = np.array(
+    [
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["yellow"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+        ],
+        [
+            gl.colors["green"],
+            gl.colors["green"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["green"],
+            gl.colors["green"],
+            gl.colors["green"],
+            gl.colors["green"],
+        ],
+        [
+            gl.colors["green"],
+            gl.colors["green"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["green"],
+            gl.colors["green"],
+            gl.colors["green"],
+            gl.colors["green"],
+        ],
+        [
+            (0, 64, 0),
+            (0, 64, 0),
+            gl.colors["background"],
+            gl.colors["background"],
+            (0, 64, 0),
+            (0, 64, 0),
+            (0, 64, 0),
+            (0, 64, 0),
+        ],
+        [
+            (0, 16, 0),
+            (0, 16, 0),
+            gl.colors["background"],
+            gl.colors["background"],
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+            (0, 16, 0),
+        ],
+    ]
+)
+
 # Arrow Shape
 left_arrow_shape = np.array([[0, 1], [1, 0], [0, 1]]).T
 right_arrow_shape = np.fliplr(left_arrow_shape.T).T
@@ -270,6 +356,11 @@ games = [
     {"name": "TETRIS", "class": tetris.TetrisGame, "icon": tetris_icon},
     {"name": "SNAKE", "class": snake.SnakeGame, "icon": snake_icon},
     {"name": "PONG", "class": pong.PongGame, "icon": pong_icon},
+    {
+        "name": "FLAPPY BIRD",
+        "class": flappybird.FlappyBirdGame,
+        "icon": flappybird_icon,
+    },
 ]
 
 # speed multipliers for game specific spt
