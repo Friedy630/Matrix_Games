@@ -337,7 +337,7 @@ class TetrisGame(game.Game):
 
     def __init__(
         self,
-        spt=0.05,
+        spt=0.1,
         shapes=shapes,
         exotic_shapes=exotic_shapes,
         enable_acceleration=False,

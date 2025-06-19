@@ -451,9 +451,9 @@ games = [
 
 # speed multipliers for game specific spt
 speeds = [
-    {"name": "SLOW", "value": 1.0, "color": gl.colors["green"]},
-    {"name": "MEDIUM", "value": 0.75, "color": gl.colors["yellow"]},
-    {"name": "FAST", "value": 0.5, "color": gl.colors["red"]},
+    {"name": "SLOW", "value": 1.5, "color": gl.colors["green"]},
+    {"name": "MEDIUM", "value": 1.0, "color": gl.colors["yellow"]},
+    {"name": "FAST", "value": 0.75, "color": gl.colors["red"]},
 ]
 
 
@@ -839,6 +839,7 @@ def main():
     from ulib import remote
 
     # remote.start_pygame_thread()
+    gl.brightness = 48
     il.initialise()
     while True:
         result = main_menu()

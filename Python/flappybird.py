@@ -40,7 +40,7 @@ class FlappyBirdGame(game.Game):
         self.pipe_gap = 5
         self.pipe_timer = 0
         self.score = 0
-        self.spt = 0.1
+        self.spt = 0.15
         self.is_game_over = False
         self.pipe_prescale = 2
 
