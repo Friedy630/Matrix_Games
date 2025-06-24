@@ -7,6 +7,7 @@ import tetris
 import snake
 import pong
 import flappybird
+import game_of_life
 
 # icon chaos
 tetris_icon = np.array(
@@ -433,6 +434,91 @@ dino_icon = np.array(
     ]
 )
 
+game_of_life_icon = np.array(
+    [
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["white"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+        [
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["white"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+            gl.colors["background"],
+        ],
+    ]
+)
+
 # Arrow Shape
 left_arrow_shape = np.array([[0, 1], [1, 0], [0, 1]]).T
 right_arrow_shape = np.fliplr(left_arrow_shape.T).T
@@ -447,6 +533,11 @@ games = [
         "icon": flappybird_icon,
     },
     {"name": "DINO", "class": pong.PongGame, "icon": dino_icon},
+    {
+        "name": "GAME OF LIFE",
+        "class": game_of_life.GameOfLifeGame,
+        "icon": game_of_life_icon,
+    }
 ]
 
 # speed multipliers for game specific spt
@@ -838,7 +929,7 @@ end_screen = np.array(
 def main():
     from ulib import remote
 
-    # remote.start_pygame_thread()
+    remote.start_pygame_thread()
     il.initialise()
     while True:
         result = main_menu()
@@ -858,7 +949,7 @@ def main():
         game_instance.initialise()
         game_instance.play()
     il.cleanup()
-    # remote.close_pygame_thread()
+    remote.close_pygame_thread()
 
 
 if __name__ == "__main__":

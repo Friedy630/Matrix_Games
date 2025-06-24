@@ -1,198 +1,159 @@
 import numpy as np
-import random as rng
-from ulib import display, remote
 import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
-import threading
+from ulib import display, remote, game_library as game
 
 
-cursor_position = gl.Vec(0, 0)
-clock_cycle = 0
-running = False
-cursor_visible = True
-blink_speed = 0.3
-virtual_screen = np.zeros((16, 16), dtype=int)
+class GameOfLifeGame(game.Game):
+    def __init__(self, blink_speed=0.3, spt=0.2):
+        super().__init__()
+        self.grid_size      = 100
+        self.view_size      = 16
+        self.offset         = (self.grid_size - self.view_size) // 2
+        self.virtual_screen = np.zeros((self.grid_size, self.grid_size), dtype=int)
+        self.cursor_pos     = gl.Vec(7, 7)
+        self.cursor_visible = True
+        self.blink_speed    = blink_speed
+        self.spt            = spt
+        self.in_setup_phase = True
+        self.paused         = False
+        self.iterations     = 0
+        self.score          = 0
 
+    def initialise(self):
+        gl.fill(gl.colors["background"])
+        self.virtual_screen.fill(0)
+        self.cursor_pos     = gl.Vec(7, 7)
+        self.cursor_visible = True
+        self.in_setup_phase = True
+        self.paused         = False
+        self.iterations     = 0
+        self.score          = 0
 
-def clear_temp_pixels():
-    global virtual_screen
-    for x in range(16):
-        for y in range(16):
-            if virtual_screen[x, y] == -1:
-                gl.set_pixel(x, y, gl.colors["background"])
-                virtual_screen[x, y] = 0
+    def update(self):
+        if il.inputs["escape"] or il.inputs["exit"]:
+            self.game_over()
+            return
 
+        if self.in_setup_phase and self.tick % max(1, int(self.blink_speed / self.spt)) == 0:
+            self.cursor_visible = not self.cursor_visible
 
-def screen_setlastingpixel(x: int, y: int, value: int):
-    global virtual_screen
-    if 0 <= x < 16 and 0 <= y < 16:
-        virtual_screen[x, y] = value
-        if value == 0:
-            gl.set_pixel(x, y, gl.colors["background"])
+        if self.in_setup_phase:
+            self.handle_setup_inputs()
         else:
-            gl.set_pixel(x, y, gl.colors["white"])
+            if il.inputs["enter"]:
+                self.in_setup_phase = True
+                self.paused = False
+                il.reset_inputs()
+                return
 
+            if il.inputs["space"]:
+                self.paused = not self.paused
+                il.reset_inputs()
+                return
 
-def blink_cursor():
-    global cursor_visible, running, blink_speed
-    while running:
-        cursor_visible = not cursor_visible
-        time.sleep(blink_speed)
+            if not self.paused:
+                old_screen = self.virtual_screen
+                self.compute_next_state()
+                self.iterations += 1
+                self.score = self.iterations
 
-
-def real_game_of_life_algorithm():
-    global virtual_screen, running
-    while running:
-        new_screen = np.copy(virtual_screen)
-
-        for x in range(16):
-            for y in range(16):
-                live_neighbors = 0
-
-                # Count live neighbors
-                for dx in [-1, 0, 1]:
-                    for dy in [-1, 0, 1]:
-                        if dx == 0 and dy == 0:
-                            continue
-                        nx, ny = x + dx, y + dy
-                        if 0 <= nx < 16 and 0 <= ny < 16:
-                            if virtual_screen[nx, ny] == 1:
-                                live_neighbors += 1
-
-                # Apply Game of Life rules
-                if virtual_screen[x, y] == 1 and (
-                    live_neighbors < 2 or live_neighbors > 3
-                ):
-                    new_screen[x, y] = 0
-                elif virtual_screen[x, y] == 0 and live_neighbors == 3:
-                    new_screen[x, y] = 1
-                else:
-                    new_screen[x, y] = virtual_screen[x, y]
-
-        # Update the display
-        for x, y in np.ndindex(virtual_screen.shape):
-            if virtual_screen[x, y] == 1:
-                gl.set_pixel(x, y, gl.colors["white"])
-            else:
-                gl.set_pixel(x, y, gl.colors["background"])
-
-        display.show()
-        if il.inputs["space"] or il.inputs["enter"]:
-            if running:
-                print("Game of Life paused")
-                running = False
-            else:
-                print("Game of Life resumed")
-                running = True
-
-        if il.inputs["exit"] or il.inputs["escape"]:
-            running = False
-            break
+                if np.array_equal(old_screen, self.virtual_screen):
+                    self.paused = True
+                    print(f"Stabiler Zustand erreicht – Score: {self.score}")
+                    # Kein self.stop(), kein Rücksprung – Benutzer darf ESC drücken
+                    return
 
         il.reset_inputs()
 
-        # Update the virtual screen
-        virtual_screen = new_screen
-
-        time.sleep(0.5)
-
-
-def game_of_life_selection():
-    global cursor_position
-    global clock_cycle
-    global running
-
-    print("Game of Life starting...")
-    gl.fill(gl.colors["background"])
-    display.show()
-    print("Game of Life started")
-    screen_setlastingpixel(8, 8, 1)
-
-    while running:
-
-        for x in range(16):
-            for y in range(16):
-                if virtual_screen[x, y] == 1:
+    def render(self):
+        gl.fill(gl.colors["background"])
+        # Sichtbaren 16×16-Ausschnitt zeichnen
+        for x in range(self.view_size):
+            for y in range(self.view_size):
+                gx, gy = x + self.offset, y + self.offset
+                if self.virtual_screen[gx, gy] == 1:
                     gl.set_pixel(x, y, gl.colors["white"])
-                else:
-                    gl.set_pixel(x, y, gl.colors["background"])
 
-        if il.inputs["exit"] or il.inputs["escape"]:
-            running = False
-            break
-        elif il.inputs["up"]:
-            cursor_position.y = max(0, cursor_position.y - 1)
-            clear_temp_pixels()
+        # Cursor anzeigen, aber nur in Setup-Phase
+        if self.in_setup_phase:
+            cx, cy = self.cursor_pos.x, self.cursor_pos.y
+            if self.cursor_visible:
+                gl.set_pixel(cx, cy, gl.colors["white"])
+            else:
+                gl.set_pixel(cx, cy, gl.colors["background"])
+
+        gl.show()
+
+    def handle_setup_inputs(self):
+        moved  = False
+        old_pos = self.cursor_pos
+
+        if il.inputs["up"]:
+            self.cursor_pos.y = max(0, self.cursor_pos.y - 1)
+            moved = True
         elif il.inputs["down"]:
-            cursor_position.y = min(15, cursor_position.y + 1)
-            clear_temp_pixels()
+            self.cursor_pos.y = min(self.view_size - 1, self.cursor_pos.y + 1)
+            moved = True
         elif il.inputs["left"]:
-            cursor_position.x = max(0, cursor_position.x - 1)
-            clear_temp_pixels()
+            self.cursor_pos.x = max(0, self.cursor_pos.x - 1)
+            moved = True
         elif il.inputs["right"]:
-            cursor_position.x = min(15, cursor_position.x + 1)
-            clear_temp_pixels()
-        elif il.inputs["space"]:
-            if virtual_screen[cursor_position.x, cursor_position.y] != 1:
-                screen_setlastingpixel(cursor_position.x, cursor_position.y, 1)
-            else:
-                screen_setlastingpixel(cursor_position.x, cursor_position.y, 0)
-        elif il.inputs["enter"]:
-            print("Starting Game of Life...")
-            break
+            self.cursor_pos.x = min(self.view_size - 1, self.cursor_pos.x + 1)
+            moved = True
 
-        il.reset_inputs()
+        if moved:
+            self.restore_previous_cursor_pixel(old_pos.x, old_pos.y)
+            self.cursor_visible = True
+            il.reset_inputs()
+            return
 
-        if virtual_screen[cursor_position.x, cursor_position.y] == 1:
-            if cursor_visible:
-                gl.set_pixel(cursor_position.x, cursor_position.y, gl.colors["white"])
-            else:
-                gl.set_pixel(
-                    cursor_position.x, cursor_position.y, gl.colors["background"]
-                )
+        if il.inputs["space"]:
+            self.toggle_cell(self.cursor_pos.x, self.cursor_pos.y)
+            il.reset_inputs()
+            return
+
+        if il.inputs["enter"]:
+            self.in_setup_phase = False
+            il.reset_inputs()
+            return
+
+    def toggle_cell(self, x, y):
+        gx, gy = x + self.offset, y + self.offset
+        self.virtual_screen[gx, gy] ^= 1
+
+    def restore_previous_cursor_pixel(self, x, y):
+        gx, gy = x + self.offset, y + self.offset
+        if self.virtual_screen[gx, gy] == 1:
+            gl.set_pixel(x, y, gl.colors["white"])
         else:
-            if cursor_visible:
-                gl.set_pixel(cursor_position.x, cursor_position.y, gl.colors["white"])
-                virtual_screen[cursor_position.x, cursor_position.y] = -1
-            else:
-                gl.set_pixel(
-                    cursor_position.x, cursor_position.y, gl.colors["background"]
+            gl.set_pixel(x, y, gl.colors["background"])
+
+    def compute_next_state(self):
+        new_screen = self.virtual_screen.copy()
+        # Conway’s Game of Life über gesamte 100×100-Matrix
+        for x in range(1, self.grid_size - 1):
+            for y in range(1, self.grid_size - 1):
+                live_neighbors = (
+                    np.sum(self.virtual_screen[x-1:x+2, y-1:y+2])
+                    - self.virtual_screen[x, y]
                 )
-                virtual_screen[cursor_position.x, cursor_position.y] = 0
+                if self.virtual_screen[x, y] == 1:
+                    new_screen[x, y] = 1 if 2 <= live_neighbors <= 3 else 0
+                else:
+                    new_screen[x, y] = 1 if live_neighbors == 3 else 0
 
-        clock_cycle += 1
-        display.show()
-        time.sleep(0.1)
-
-    print("Game of Life preparation finished")
-
-
-def main():
-    global cursor_position
-    global clock_cycle
-    global running
-    global virtual_screen
-
-    virtual_screen = np.zeros((16, 16), dtype=int)
-
-    il.initialise()
-    running = True
-    blink_thread = threading.Thread(target=blink_cursor, daemon=True)
-    blink_thread.start()
-    clock_cycle = 0
-    game_of_life_selection()
-    il.reset_inputs()
-    real_game_of_life_algorithm()
-    running = False
-    il.cleanup()
-    gl.fill(gl.colors["background"])
+        self.virtual_screen = new_screen
+        time.sleep(self.spt)
 
 
-remote.start_pygame_thread()
-
-print("startup")
-main()
-print("exited")
-
-remote.close_pygame_thread()
+if __name__ == "__main__":
+    remote.start_pygame_thread()
+    print("startup")
+    game = GameOfLifeGame()
+    game.initialise()
+    game.play()
+    game.stop()
+    print("exited")
+    remote.close_pygame_thread()
