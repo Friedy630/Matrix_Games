@@ -8,7 +8,9 @@ from ulib import input_library as il
 is_game_over = False
 
 def restart():
-    pass
+    for obst in obstacle_instances:
+        gl.set_shape(obstacles[obst[1]], obst[0], gl.colors["background"])
+    obstacle_instances.clear()
 
 max_jmp_height = 8
 jump_height = 0
