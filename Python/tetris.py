@@ -377,6 +377,10 @@ class TetrisGame(game.Game):
 
     def update(self):
         if not self.is_game_over:
+            il.inputs["up"] |= il.inputs["w"]
+            il.inputs["left"] |= il.inputs["a"]
+            il.inputs["down"] |= il.inputs["s"]
+            il.inputs["right"] |= il.inputs["d"]
             if self.tick % self.fall_prescale == 0:
                 il.inputs["down"] = True
             if il.inputs["left"] != il.inputs["right"]:
