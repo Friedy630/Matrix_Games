@@ -32,7 +32,7 @@ class SnakeGame(game.Game):
         self.fruit_pos = gl.Vec(6, 6)
 
         self.no_walls = no_walls
-        self.spt = 0.05
+        self.spt = 0.07
         self.walk_prescale = 6
 
     def initialise(self):

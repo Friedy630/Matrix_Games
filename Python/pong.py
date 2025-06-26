@@ -140,7 +140,7 @@ class PongGame(game.Game):
             gl.clear_column(14)
             gl.fade(0.7)
         else:
-            gl.clear()
+            gl.clear(False)
 
         self.paddle_left.draw()
         self.paddle_right.draw()
