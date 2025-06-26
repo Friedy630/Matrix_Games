@@ -8,6 +8,7 @@ import snake
 import pong
 import flappybird
 import game_of_life
+import dino;
 
 # icon chaos
 tetris_icon = np.array(
@@ -532,7 +533,7 @@ games = [
         "class": flappybird.FlappyBirdGame,
         "icon": flappybird_icon,
     },
-    {"name": "DINO", "class": pong.PongGame, "icon": dino_icon},
+    {"name": "DINO", "class": dino.DinoGame, "icon": dino_icon},
     {
         "name": "GAME OF LIFE",
         "class": game_of_life.GameOfLifeGame,

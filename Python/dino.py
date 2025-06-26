@@ -5,7 +5,7 @@ import time
 from ulib import graphics_library as gl
 from ulib import input_library as il
 
-class Dino(game.Game):
+class DinoGame(game.Game):
     def __init__(self):
         super().__init__()
         self.max_jmp_height = 5
@@ -185,7 +185,7 @@ if __name__ == "__main__":
     remote.start_pygame_thread()
 
     print("startup")
-    dino = Dino()
+    dino = DinoGame()
     dino.initialise()
     dino.play()
     print("exited")
