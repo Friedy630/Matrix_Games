@@ -1,4 +1,4 @@
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://github.com/Friedy630/tetris/blob/main/Presentation.md)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://raw.githubusercontent.com/Friedy630/tetris/refs/heads/main/Presentation.md?token=GHSAT0AAAAAADGLFSJTVQW2VLZPRGGBKQBO2C5QLDQ)
 
 # LED Box Project
 
