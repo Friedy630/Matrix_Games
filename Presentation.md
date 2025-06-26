@@ -1,4 +1,4 @@
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://github.com/Friedy630/tetris/blob/main/Presentation.md)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/Friedy630/tetris/refs/heads/main/Presentation.md?token=GHSAT0AAAAAADGLFSJTVQW2VLZPRGGBKQBO2C5QLDQ)
 
 # LED Box Project
 
@@ -6,54 +6,58 @@
 
 ---
 
-## 1. Einleitung
+## 1. Introduction
 
 -   Motivation für das Projekt
 -   Zielsetzung: Tetris auf einer LED-Box mit Python
 
-## 2. Projektüberblick
+## 2. Project Overview
 
 -   Kurze Beschreibung des Spiels Tetris
 -   Besonderheiten der Umsetzung (z.B. exotische Formen, LED-Box als Ausgabemedium)
 
-## 3. Technischer Aufbau
+## 3. Hardware Configuration
 
 -   Verwendete Hardware (LED-Box, ggf. Steuerung)
 -   Software-Architektur
     -   Hauptmodule: `tetris.py`, `graphics_library.py`, `input_library.py`
     -   Aufgaben der einzelnen Module
 
-## 4. Die Grafikbibliothek (`graphics_library.py`)
+## 4. Libraries
+
+### 4.1 `graphics_library.py`
 
 -   Aufgaben und Funktionen
 -   Beispiel: Zeichnen von Formen und Pixeln
 
-## 5. Die Eingabebibliothek (`input_library.py`)
+### 4.2. `input_library.py`
 
 -   Aufgaben und Funktionen
 -   Beispiel: Verarbeitung von Benutzereingaben
 
-## 6. Spielmechanik (`tetris.py`)
+### 4.3. `game_library.py`
 
 -   Spiellogik und Ablauf
 -   Verwaltung der Spielfiguren und Spielfeld
 -   Besonderheiten: exotische Formen, Gewichtung, Schwierigkeitsgrade
 
-## 7. Herausforderungen & Lösungen
+## 5. Games
+
+## 6. Challenges & Solutions
 
 -   Technische oder konzeptionelle Probleme
 -   Wie wurden diese gelöst?
 
-## 8. Demo
+## 7. Demonstration
 
 -   Kurze Live-Demonstration oder Video des Spiels
 
-## 9. Fazit & Ausblick
+## 8. Outlook
 
 -   Was wurde erreicht?
 -   Mögliche Erweiterungen (z.B. Highscore, Multiplayer, weitere Formen)
 
-## 10. Fragen & Diskussion
+## 9. Questions & Discussion
 
 # Ideas for the presentation
 

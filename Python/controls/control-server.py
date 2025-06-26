@@ -17,7 +17,7 @@ CONTROLS = [
     "s",
     "d",
 ]
-CONTROL_ICONS = ["↑", "↓", "←", "→", "␣", "↵", "⎋ Esc", "W", "A", "S", "D"]
+CONTROL_ICONS = ["↑", "↓", "←", "→", "␣ Space", "↵ Enter", "⎋ Esc", "W", "A", "S", "D"]
 
 
 def send_udp_message(message):
@@ -44,8 +44,10 @@ def key_pressed():
     data = request.get_json()
     key = data.get("key", "")
     if key in CONTROLS:
+        print("Key pressed: " + key)
         if key == " ":
             key = "space"
+        key = key.replace("arrow", "")
         send_udp_message(key)
         return jsonify({"status": "ok"})
     return jsonify({"status": "error"})
