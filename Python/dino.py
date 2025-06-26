@@ -164,9 +164,9 @@ def start_dino():
             current_time = time.time()
             if il.inputs["up"] or jump_directly:
                 on_jump(current_time)
-            player_clock_step(current_time)
             world_clock_step(current_time)
             spawn_clock_step(current_time)
+            player_clock_step(current_time)
         il.reset_inputs()
         display.show()
         time.sleep(0.01)
