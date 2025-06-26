@@ -3,16 +3,19 @@
 
 <head>
 	<style>
-		html, body {
+		html,
+		body {
 			height: 100%;
 			margin: 0;
 			padding: 0;
 		}
-		body{
+
+		body {
 			margin: 0;
 			background-color: rgba(64, 96, 128, 1);
 			height: 100%;
 		}
+
 		#demo {
 			font-family: monospace;
 			font-size: 60px;
@@ -33,7 +36,8 @@
 
 		#timeout-bar {
 			position: absolute;
-			left: 0; bottom: 0;
+			left: 0;
+			bottom: 0;
 			width: 100%;
 			height: 0%;
 			background: rgba(96, 128, 192, 0.5);
@@ -43,71 +47,69 @@
 		}
 	</style>
 </head>
+	<body>
+		<div id="demo-container">
+			<div id="timeout-bar"></div>
+			<div id="demo"></div>
+		</div>
+		<script>
 
-<body>
-	<div id="demo-container">
-		<div id="timeout-bar"></div>
-		<div id="demo"></div>
-	</div>
-	<script>
+			let timeoutDuration = 200; // ms
 
-		let timeoutDuration = 200; // ms
-
-		function startTimeoutBar(duration) {
-			const bar = document.getElementById("timeout-bar");
-			bar.style.transition = "none";
-			bar.style.height = "0%";
-			// Force reflow to restart animation
-			void bar.offsetHeight;
-			bar.style.transition = `height ${duration}ms linear`;
-			bar.style.height = "100%";
-			setTimeout(() => {
+			function startTimeoutBar(duration) {
+				const bar = document.getElementById("timeout-bar");
 				bar.style.transition = "none";
-			}, duration);
-		}
-
-		window.onload = function () {
-			document.getElementById("demo").textContent = "Loading...";
-			let control = "";
-			let icon = "";
-			let canPress = true;
-			
-			function fetchControl() {
-				fetch("/random-control")
-					.then(response => response.json())
-					.then(data => {
-						control = data.control;
-						icon = data.icon;
-						document.getElementById("demo").textContent = icon;
-					});
+				bar.style.height = "0%";
+				// Force reflow to restart animation
+				void bar.offsetHeight;
+				bar.style.transition = `height ${duration}ms linear`;
+				bar.style.height = "100%";
+				setTimeout(() => {
+					bar.style.transition = "none";
+				}, duration);
 			}
-			fetchControl();
 
-			window.onkeydown = function (event) {
-				if (event.key.toLowerCase() === control && canPress) {
-					console.log("Key pressed:", event.key);
-					fetch("/key-pressed", {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({ key: control })
-					}).then(response => response.json())
+			window.onload = function () {
+				document.getElementById("demo").textContent = "Loading...";
+				let control = "";
+				let icon = "";
+				let canPress = true;
+
+				function fetchControl() {
+					fetch("/random-control")
+						.then(response => response.json())
 						.then(data => {
-							document.getElementById("demo").textContent = data.status === "ok" ? "✓" : "⨉";
-							canPress = false;
-							startTimeoutBar(timeoutDuration);
-							setTimeout(() => {
-								document.getElementById("demo").textContent = icon;
-								canPress = true;
-							}, timeoutDuration);
+							control = data.control;
+							icon = data.icon;
+							document.getElementById("demo").textContent = icon;
 						});
 				}
-				else{
-					console.log("Can press:", canPress);
-				}
+				fetchControl();
+
+				window.onkeydown = function (event) {
+					if (event.key.toLowerCase() === control && canPress) {
+						console.log("Key pressed:", event.key);
+						fetch("/key-pressed", {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify({ key: control })
+						}).then(response => response.json())
+							.then(data => {
+								document.getElementById("demo").textContent = data.status === "ok" ? "✓" : "⨉";
+								canPress = false;
+								startTimeoutBar(timeoutDuration);
+								setTimeout(() => {
+									document.getElementById("demo").textContent = icon;
+									canPress = true;
+								}, timeoutDuration);
+							});
+					}
+					else {
+						console.log("Can press:", canPress);
+					}
+				};
 			};
-		};
 
-	</script>
-</body>
-
+		</script>
+	</body>
 </html>
