@@ -33,7 +33,7 @@ exotic_shapes = [
                 [1, 1, 1],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -44,7 +44,7 @@ exotic_shapes = [
                 [1, 1, 1],
             ]
         ).T,
-        5,
+        1,
         exotic_color,
     ),
     TetrisShape(
@@ -55,7 +55,7 @@ exotic_shapes = [
                 [0, 1, 1],
             ]
         ).T,
-        5,
+        6,
         exotic_color,
     ),
     TetrisShape(
@@ -65,7 +65,7 @@ exotic_shapes = [
                 [0, 0],
             ]
         ).T,
-        5,
+        6,
         exotic_color,
     ),
     TetrisShape(
@@ -75,7 +75,7 @@ exotic_shapes = [
                 [0, 1],
             ]
         ).T,
-        5,
+        6,
         exotic_color,
     ),
     TetrisShape(
@@ -86,7 +86,7 @@ exotic_shapes = [
                 [0, 1, 0],
             ]
         ).T,
-        5,
+        4,
         exotic_color,
     ),
     TetrisShape(
@@ -97,7 +97,7 @@ exotic_shapes = [
                 [0, 0, 1],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -108,7 +108,7 @@ exotic_shapes = [
                 [1, 0, 0],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -154,7 +154,7 @@ exotic_shapes = [
                 [0, 0, 0, 0, 0],
             ]
         ).T,
-        5,
+        6,
         exotic_color,
     ),
     TetrisShape(
@@ -166,7 +166,7 @@ exotic_shapes = [
                 [0, 0, 0, 0],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -178,7 +178,7 @@ exotic_shapes = [
                 [0, 0, 0, 0],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -190,7 +190,7 @@ exotic_shapes = [
                 [0, 0, 0, 0],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -202,7 +202,7 @@ exotic_shapes = [
                 [0, 0, 0, 0],
             ]
         ).T,
-        5,
+        3,
         exotic_color,
     ),
     TetrisShape(
@@ -213,7 +213,7 @@ exotic_shapes = [
                 [1, 1, 1],
             ]
         ).T,
-        5,
+        7,
         exotic_color,
     ),
     TetrisShape(
@@ -224,7 +224,7 @@ exotic_shapes = [
                 [1, 1, 1],
             ]
         ).T,
-        5,
+        4,
         exotic_color,
     ),
     TetrisShape(
@@ -235,7 +235,7 @@ exotic_shapes = [
                 [1, 1, 1],
             ]
         ).T,
-        5,
+        4,
         exotic_color,
     ),
     TetrisShape(
@@ -246,7 +246,51 @@ exotic_shapes = [
                 [1, 1, 1],
             ]
         ).T,
-        5,
+        4,
+        exotic_color,
+    ),
+    TetrisShape(
+        np.array(
+            [
+                [0, 1, 0],
+                [1, 0, 1],
+                [0, 0, 0],
+            ]
+        ).T,
+        4,
+        exotic_color,
+    ),
+    TetrisShape(
+        np.array(
+            [
+                [0, 1, 1],
+                [1, 0, 0],
+                [1, 0, 0],
+            ]
+        ).T,
+        3,
+        exotic_color,
+    ),
+    TetrisShape(
+        np.array(
+            [
+                [0, 1, 1],
+                [1, 1, 0],
+                [1, 0, 0],
+            ]
+        ).T,
+        4,
+        exotic_color,
+    ),
+    TetrisShape(
+        np.array(
+            [
+                [1, 0, 1],
+                [0, 1, 0],
+                [0, 0, 1],
+            ]
+        ).T,
+        2,
         exotic_color,
     ),
 ]
@@ -255,7 +299,6 @@ exotic_shapes = [
 exotic_weights_sum = calculate_weights_sum(exotic_shapes)
 
 
-# Tetris Tetromino-Farben laut offizieller Guideline
 shapes = [
     TetrisShape(
         np.array(
@@ -361,7 +404,7 @@ class TetrisGame(game.Game):
         self.enable_acceleration = enable_acceleration  # makes the falling speed accelerate over time
         
         self.enable_shape_weights = enable_shape_weights  # spawns each block with a given chance
-        
+
         self.shapes = shapes  # normal shapes
         self.exotic_shapes = exotic_shapes  # exotic shapes
 
