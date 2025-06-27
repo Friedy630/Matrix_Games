@@ -49,6 +49,15 @@ class SnakeGame(game.Game):
             self.snake_positions[0].x, self.snake_positions[0].y, snake_head_color
         )
 
+    def set_difficulty(self, difficulty, default_mult):
+        if difficulty == 0:
+            self.no_walls = True
+        elif difficulty == 1:
+            self.no_walls = False
+        elif difficulty == 2:
+            self.no_walls = False
+            self.spt *= 0.6
+
     def spawn_new_fruit(self):
         while True:
             x = rng.randint(0, 15)

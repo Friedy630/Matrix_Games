@@ -299,36 +299,36 @@ class TetrisGameShape:
         self.id = -1  # index in shape set
 
     def paste(self):
-        gl.set_shape(self.shape.shape_matrix, self.position, self.shape.color)
+        gl.set_shape(self.shape.shape_matrix, self.position, self.shape.color, True, False)
 
     def cut(self):
-        gl.set_shape(self.shape.shape_matrix, self.position, gl.colors["background"])
+        gl.set_shape(self.shape.shape_matrix, self.position, gl.colors["background"], True, False)
 
-    def rotate(self, isleft: bool):
+    def rotate(self, isleft: bool, wrapX: bool):
         rotated_matrix = gl.get_rotated_shape_matrix(self.shape.shape_matrix, isleft)
         self.cut()
-        if gl.check_fit(rotated_matrix, self.position):
+        if gl.check_fit(rotated_matrix, self.position, wrapX, False):
             self.shape.shape_matrix = rotated_matrix
         self.paste()
 
-    def move_down(self):
+    def move_down(self, wrapX: bool):
         moved_position = self.position + gl.Vec(0, 1)
         self.cut()
-        if not gl.check_fit(self.shape.shape_matrix, moved_position):
+        if not gl.check_fit(self.shape.shape_matrix, moved_position, wrapX, False):
             self.paste()
             return False
         self.position = moved_position
         self.paste()
         return True
 
-    def move_horizontal(self, isleft: bool):
+    def move_horizontal(self, isleft: bool, wrapX: bool):
         moved_position = self.position
         if isleft:
             moved_position += gl.Vec(-1, 0)
         else:
             moved_position += gl.Vec(1, 0)
         self.cut()
-        if gl.check_fit(self.shape.shape_matrix, moved_position):
+        if gl.check_fit(self.shape.shape_matrix, moved_position, wrapX, False):
             self.position = moved_position
         self.paste()
 
@@ -342,7 +342,7 @@ class TetrisGame(game.Game):
         exotic_shapes=exotic_shapes,
         enable_acceleration=False,
         enable_exotic_shapes=False,
-        exotic_shape_chance=0.3,
+        exotic_shape_chance=0.15,
         enable_shape_weights=False,
         weights_sum=weights_sum,
         exotic_weights_sum=exotic_weights_sum,
@@ -371,6 +371,28 @@ class TetrisGame(game.Game):
         self.weights_sum = weights_sum  # sum of all normal shape weights
         self.exotic_weights_sum = exotic_weights_sum  # sum of all exotic shape weights
 
+    
+    def set_difficulty(self, difficulty, default_mult):
+        print("set diff")
+        if difficulty == 0:
+            self.enable_acceleration = False
+            self.enable_exotic_shapes = False
+            self.enable_shape_weights = False
+            self.side_to_side_pass = True
+        elif difficulty == 1:
+            self.enable_acceleration = False
+            self.enable_exotic_shapes = True
+            self.exotic_shape_chance = 0.15
+            self.enable_shape_weights = True
+            self.side_to_side_pass = True
+        elif difficulty == 2:
+            self.enable_acceleration = True
+            self.enable_exotic_shapes = True
+            self.exotic_shape_chance = 0.25
+            self.enable_shape_weights = True
+            self.side_to_side_pass = False
+            
+
     def initialise(self):
         super().initialise()
         self.get_new_shape()
@@ -384,11 +406,11 @@ class TetrisGame(game.Game):
             if self.tick % self.fall_prescale == 0:
                 il.inputs["down"] = True
             if il.inputs["left"] != il.inputs["right"]:
-                self.current_shape.move_horizontal(il.inputs["left"])
+                self.current_shape.move_horizontal(il.inputs["left"], self.side_to_side_pass)
             if il.inputs["up"] != il.inputs["space"]:
-                self.current_shape.rotate(il.inputs["up"])
+                self.current_shape.rotate(il.inputs["up"], self.side_to_side_pass)
             if il.inputs["down"] or il.inputs["enter"]:
-                if not self.current_shape.move_down():
+                if not self.current_shape.move_down(self.side_to_side_pass):
                     if self.current_shape.position.y < 0:
                         self.game_over()
                     else:
@@ -413,7 +435,7 @@ class TetrisGame(game.Game):
                 self.set_shape(self.shapes)
         self.current_shape.paste()
         if self.enable_acceleration:
-            self.spt *= 0.98
+            self.spt = max(self.spt * 0.98, 0.025)
 
     def set_shape(self, shape_set, weights_sum=None):
         while True:

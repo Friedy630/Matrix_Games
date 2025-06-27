@@ -23,22 +23,22 @@ class DinoGame(game.Game):
 
         # clock 1: player redraw clock
         self.last_player_step_time = 0.0
-        self.player_step_interval = 0.01
+        self.player_step_interval = 0.01    # only changes the smoothness of the character movement
 
         # clock 2: jump clock, so a jump cannot start when one is already in progress
         self.last_jump_time = 0.0
-        self.jump_duration = 0.7
+        self.jump_duration = 0.7            # how long / it jumps, changing may break balancing
 
         # gets set to true, if jump is pressed right before the jump ends; "forgiving controls"
         self.jump_directly = False
 
         # clock 3: world redraw clock
         self.last_world_step_time = 0.0
-        self.world_step_interval = 0.05
+        self.world_step_interval = 0.05     # changes difficulty
 
         # clock 4: obstacle spawn clock
-        self.last_spawn_time = 0.0
-        self.spawn_interval = 1
+        self.last_spawn_time = 0.0      
+        self.spawn_interval = 1             # how many obstancles spawn, changing may break balancing
 
         self.player_shape = np.array(
         [
@@ -88,6 +88,21 @@ class DinoGame(game.Game):
 
         self.obstacle_instances : list[tuple[gl.Vec, int]] = []
 
+    def set_difficulty(self, difficulty, default_mult):
+        if difficulty == 0:
+            self.world_step_interval = 0.1
+            self.max_jmp_height = 7
+            self.jump_duration *= 1.5
+            self.obs_spawn_interval_max *= 1.8
+            self.obs_spawn_interval_min *= 1.8
+        elif difficulty == 1:
+            self.world_step_interval = 0.07
+            self.max_jmp_height = 6
+        elif difficulty == 2:
+            self.world_step_interval = 0.04
+            self.max_jmp_height = 4
+
+
     def player_clock_step(self, current_time):
         if current_time - self.last_player_step_time >= self.player_step_interval:
             self.last_player_step_time = current_time
@@ -112,7 +127,7 @@ class DinoGame(game.Game):
     def spawn_clock_step(self, current_time):
         if current_time - self.last_spawn_time >= self.spawn_interval:
             self.last_spawn_time = current_time
-            self.spawn_step()#
+            self.spawn_step()
 
 
     def player_step(self, current_time):
@@ -161,6 +176,7 @@ class DinoGame(game.Game):
         for obst in self.obstacle_instances:
             gl.set_shape(self.obstacles[obst[1]], obst[0], gl.colors["background"])
         self.obstacle_instances.clear()
+        self.last_spawn_time = time.time() + 0.4  #so the game doesnt start too quick, some delay added
         super().initialise()
         for y in range(self.base_height + 1):
             for x in range(16):

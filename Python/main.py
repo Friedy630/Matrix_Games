@@ -945,9 +945,7 @@ def main():
         selected_game, selected_speed = result
         GameClass = games[selected_game]["class"]
         game_instance = GameClass()
-        # Geschwindigkeit setzen, falls Attribut vorhanden
-        if hasattr(game_instance, "spt"):
-            game_instance.spt *= speeds[selected_speed]["value"]
+        game_instance.set_difficulty(selected_speed, speeds[selected_speed]["value"])
         game_instance.initialise()
         game_instance.play()
     il.cleanup()

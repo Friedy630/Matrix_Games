@@ -332,6 +332,11 @@ class Game:
             time.sleep(self.spt)
             self.tick += 1
 
+    def set_difficulty(self, difficulty, default_mult):     # difficulty important for overloading
+        # Geschwindigkeit setzen
+        self.spt *= default_mult
+        
+
     def update(self):
         """Update game state."""
         raise NotImplementedError("Update method must be implemented by subclasses.")

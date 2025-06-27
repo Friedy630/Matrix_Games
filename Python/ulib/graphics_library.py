@@ -48,8 +48,8 @@ def set_pixel(x: int, y: int, color: tuple):
         return
     if y >= 0 and y < 16:
         scaled_color = tuple((c * brightness) // 255 for c in color)
-        display.set_xy((x % 16, y), scaled_color)
-        pixels[x % 16, y] = color
+        display.set_xy((x, y), scaled_color)
+        pixels[x, y] = color
 
 
 def get_pixel(x: int, y: int):
@@ -58,7 +58,7 @@ def get_pixel(x: int, y: int):
     if y >= 16:
         return (255, 255, 255)
     elif y >= 0:
-        return tuple(pixels[x % 16, y])
+        return tuple(pixels[x, y])
     else:
         return colors["background"]
 
@@ -71,13 +71,17 @@ def fill(color: tuple, override=True):
     if override:
         show()
 
-
-def set_shape(shape_matrix: np.ndarray, offset: Vec, color: tuple):
+def set_shape(shape_matrix: np.ndarray, position: Vec, color: tuple, wrapX: bool = False, wrapY: bool = False):
     for x in range(shape_matrix.shape[0]):
         for y in range(shape_matrix.shape[1]):
             if shape_matrix[x, y] == 0:
                 continue
-            set_pixel(offset.x + x, offset.y + y, color)
+            posX, posY = position.x + x, position.y + y
+            if wrapX:
+                posX %= 16
+            if wrapY:
+                posY %= 16
+            set_pixel(posX, posY, color)
 
 
 def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool):
@@ -87,13 +91,15 @@ def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool):
         return np.rot90(shape_matrix, -1)
 
 
-def check_fit(shape_matrix: np.ndarray, position: Vec):
+def check_fit(shape_matrix: np.ndarray, position: Vec, wrapX: bool = False, wrapY: bool = False):
     for x in range(shape_matrix.shape[0]):
         for y in range(shape_matrix.shape[1]):
-            if (
-                shape_matrix[x, y] == 1
-                and get_pixel(position.x + x, position.y + y) != colors["background"]
-            ):
+            posX, posY = position.x + x, position.y + y
+            if wrapX:
+                posX %= 16
+            if wrapY:
+                posY %= 16
+            if (shape_matrix[x, y] == 1 and get_pixel(posX, posY) != colors["background"]):
                 return False
     return True
 
