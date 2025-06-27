@@ -293,8 +293,8 @@ weights_sum = calculate_weights_sum(shapes)
 
 
 class TetrisGameShape:
-    def __init__(self, shape_matrix: np.ndarray, weight: int, color: tuple):
-        self.shape = TetrisShape(shape_matrix, weight, color)
+    def __init__(self, shape: TetrisShape):
+        self.shape = shape
         self.position = gl.Vec(0, 0)
         self.id = -1  # index in shape set
 
@@ -350,7 +350,7 @@ class TetrisGame(game.Game):
         super().__init__()
         self.spt = spt
         self.fall_prescale = 10  # ticks per fall step
-        self.current_shape = TetrisGameShape(np.zeros((3, 3)), 0, (255, 255, 255))
+        self.current_shape = TetrisGameShape(shapes[0])
         self.side_to_side_pass = True
 
         # Exotic shapes
@@ -358,13 +358,10 @@ class TetrisGame(game.Game):
         self.exotic_shape_chance = exotic_shape_chance  # chance to spawn an exotic shape instead of a normal one
 
         # Exotic Mechanics
-        self.enable_acceleration = (
-            enable_acceleration  # makes the falling speed accelerate over time
-        )
-        self.enable_shape_weights = (
-            enable_shape_weights  # spawns each block with a given chance
-        )
-
+        self.enable_acceleration = enable_acceleration  # makes the falling speed accelerate over time
+        
+        self.enable_shape_weights = enable_shape_weights  # spawns each block with a given chance
+        
         self.shapes = shapes  # normal shapes
         self.exotic_shapes = exotic_shapes  # exotic shapes
 
