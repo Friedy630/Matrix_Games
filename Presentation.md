@@ -33,15 +33,25 @@ Never trust a computer you can't throw out a window - Steve Wozniak
 It doesn't (yet?) run Doom.
 
 Picture of Oscilloscope running Pong
+
+!?[Presentation!](https://www.youtube.com/watch?v=H7RkiOck8u4]
 -->
 
 ## 2. Presentation Objectives
 
-## 3. Outline
+## 3. Outline / Ideas
 
-## 4. Inspiration
+## 4. Inspiration / History of Games
+
+### What are the Games?
 
 ## 5. Background Information / Hardware
+
+### LEDs
+
+### Raspberry Pi
+
+### Router
 
 ## 6. Codebase
 
@@ -53,7 +63,15 @@ Picture of Oscilloscope running Pong
 
 ### `input_library.py`
 
-## 7. Development Process
+### Example Game
+
+## 7. Development
+
+### Learning Process
+
+### Coding Process
+
+### Problems
 
 ## 8. Demonstration
 
@@ -62,3 +80,7 @@ Picture of Oscilloscope running Pong
 ## 10. Reflection
 
 ## 11. Outlook
+
+<!--
+It will probably never run Doom
+-->
