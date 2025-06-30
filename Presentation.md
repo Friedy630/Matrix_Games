@@ -39,6 +39,11 @@ Picture of Oscilloscope running Pong
 
 ## 2. Presentation Objectives
 
+Show you what we programmed, how we did it, and what we learned.
+
+    [screenshot of every game we have]
+    [screenshot of the LED matrix]
+
 ## 3. Outline / Ideas
 
 ## 4. Inspiration / History of Games
@@ -49,9 +54,21 @@ Picture of Oscilloscope running Pong
 
 ### LEDs
 
+The here used LED matrix is a `16x16 grid of LEDs`, which can be controlled to display various patterns and animations. 
+Each LED can be turned on or off, and can also change color since RGB LEDs are used.
+
 ### Raspberry Pi
 
+`The Raspberry Pi is used to control the LED matrix. 
+It runs the python scripts and handles user input.`
+
+### Python
+
+Programming language used to write the game logic and control the LED matrix.
+
 ### Router
+
+The python scripts can be uploaded to the Raspberry Pi through a WiFi connection to a build-in router, inside the LED box
 
 ## 6. Codebase
 
