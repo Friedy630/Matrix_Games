@@ -2,65 +2,63 @@
 
 # LED Box Project
 
-## Gliederung der Präsentation: Tetris-Projekt in Python
+<!--
+1. Attention grabber
+2. What will audience get out of watching/listening to you? Why should they?
+3. What is the scope of your presentation (how much are you loading on to the audience)?
+4. What was your inspiration? What were your initial ideas? Was there anything you tried but abandoned?
+5. What background information, theory or technical details do your audience need to know to be able to understand your show/game?
+6. Code (Product)
+-   Big picture
+-   Important code snippets
+-   Bug examples
+-   What did you already know (and from where do you know it) and what did you have to learn to complete the project?
+7. Code (process)
+-   How did you code? Vibe? GitHub?
+8. The show/game. Demo and description
+9. Conclusion
+10. Reflection. What did we get from taking part in this challenge?
+11. Final thought/take-home message
+-->
 
----
+## Outline
 
-## 1. Introduction
+## 1. (Attention Grabber)
 
--   Motivation für das Projekt
--   Zielsetzung: Tetris auf einer LED-Box mit Python
+<!--
+Talk is cheap. Show me the code - Linus Torvalds
 
-## 2. Project Overview
+Never trust a computer you can't throw out a window - Steve Wozniak
 
--   Kurze Beschreibung des Spiels Tetris
--   Besonderheiten der Umsetzung (z.B. exotische Formen, LED-Box als Ausgabemedium)
+It doesn't (yet?) run Doom.
 
-## 3. Hardware Configuration
+Picture of Oscilloscope running Pong
+-->
 
--   Verwendete Hardware (LED-Box, ggf. Steuerung)
--   Software-Architektur
-    -   Hauptmodule: `tetris.py`, `graphics_library.py`, `input_library.py`
-    -   Aufgaben der einzelnen Module
+## 2. Presentation Objectives
 
-## 4. Libraries
+## 3. Outline
 
-### 4.1 `graphics_library.py`
+## 4. Inspiration
 
--   Aufgaben und Funktionen
--   Beispiel: Zeichnen von Formen und Pixeln
+## 5. Background Information / Hardware
 
-### 4.2. `input_library.py`
+## 6. Codebase
 
--   Aufgaben und Funktionen
--   Beispiel: Verarbeitung von Benutzereingaben
+### Overview
 
-### 4.3. `game_library.py`
+### `game_library.py`
 
--   Spiellogik und Ablauf
--   Verwaltung der Spielfiguren und Spielfeld
--   Besonderheiten: exotische Formen, Gewichtung, Schwierigkeitsgrade
+### `graphics_library.py`
 
-## 5. Games
+### `input_library.py`
 
-## 6. Challenges & Solutions
+## 7. Development Process
 
--   Technische oder konzeptionelle Probleme
--   Wie wurden diese gelöst?
+## 8. Demonstration
 
-## 7. Demonstration
+## 9. Conclusion
 
--   Kurze Live-Demonstration oder Video des Spiels
+## 10. Reflection
 
-## 8. Outlook
-
--   Was wurde erreicht?
--   Mögliche Erweiterungen (z.B. Highscore, Multiplayer, weitere Formen)
-
-## 9. Questions & Discussion
-
-# Ideas for the presentation
-
-Describe problems: "escape" vs "esc"; "enter" and "return"
-
-Describe how we code: own libraries, GitHub Copilot,...
+## 11. Outlook
