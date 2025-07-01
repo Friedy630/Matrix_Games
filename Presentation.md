@@ -1,4 +1,4 @@
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/Friedy630/tetris/refs/heads/main/Presentation.md?token=GHSAT0AAAAAADGLFSJTVQW2VLZPRGGBKQBO2C5QLDQ)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/Friedy630/Matrix_Games/refs/heads/main/Presentation.md)
 
 # LED Box Project
 
@@ -46,6 +46,16 @@ Show you what we programmed, how we did it, and what we learned.
 
 ## 3. Outline / Ideas
 
+We had many ideas:
+
+-   a Falling Sand Simulation
+-   a Presentation Screen
+-   3 body problem simulation
+-   slither.io clone
+
+| <img src="fiete.png" alt="Fiete Ferrum" width="100" height="100" style="border-radius: 8px;"> | <p><strong>"The final idea was to program <span style="color: #6c63ff;">T</span><span style="color: #f44336;">E</span><span style="color: #ffeb3b;">T</span><span style="color: #4caf50;">R</span><span style="color: #2196f3;">I</span><span style="color: #ff9800;">S</span>, but that escalated <em>quickly</em>!"</strong></p> |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
 ## 4. Inspiration / History of Games
 
 ### What are the Games?
@@ -54,7 +64,7 @@ Show you what we programmed, how we did it, and what we learned.
 
 ### LEDs
 
-The here used LED matrix is a `16x16 grid of LEDs`, which can be controlled to display various patterns and animations. 
+The here used LED matrix is a `16x16 grid of LEDs`, which can be controlled to display various patterns and animations.
 Each LED can be turned on or off, and can also change color since RGB LEDs are used.
 
 ### Raspberry Pi
