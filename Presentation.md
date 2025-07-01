@@ -56,14 +56,14 @@ We had many ideas:
 <table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px">
 	<tr>
 		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff;">
-			The final idea was to program <strong>
+			"The final idea was to program <strong>
 				<span style="color: #6c63ff;">T</span>
 				<span style="color: #f44336;">E</span>
 				<span style="color: #ffeb3b;">T</span>
 				<span style="color: #4caf50;">R</span>
 				<span style="color: #2196f3;">I</span>
 				<span style="color: #ff9800;">S</span>
-			</strong>, <br>but that escalated <em>quickly</em>!
+			</strong>, <br>but that escalated <em>quickly</em>!"
 		</td>
 		<td style="padding-right: 8px; text-align: center;">
 			<img src="fiete.png" width="80" height="80" alt="Fiete" />
@@ -99,13 +99,165 @@ The python scripts can be uploaded to the Raspberry Pi through a WiFi connection
 
 ### Overview
 
-### `game_library.py`
+Two main parts of the codebase:
+
+-   Libraries: `graphics_library.py`, `input_library.py`, `game_library.py`
+-   Game implementations: `tetris.py`, `snake.py`, `pong.py`, etc
+
+<br>
+<table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px">
+	<tr>
+		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff;">
+			"Libraries provide common functionality for graphics, <br>input handling, and game logic"
+		</td>
+		<td style="padding-right: 8px; text-align: center;">
+			<img src="fiete.png" width="80" height="80" alt="Fiete" />
+		</td>
+	</tr>
+</table>
 
 ### `graphics_library.py`
 
+-   Defines global colormap
+-   Allows us to set brightness
+-   Provides abstract functions for drawing pixels and shapes
+-   Gives less efficient but easier functions than the native `display` library
+    <br>
+
+```python
+def set_pixel(x: int, y: int, color: tuple)
+
+def get_pixel(x: int, y: int)
+
+def fill(color: tuple, override=True)
+
+def set_shape(shape_matrix: np.ndarray, position: Vec, color: tuple, wrapX: bool = False, wrapY: bool = False)
+
+def get_rotated_shape_matrix(shape_matrix: np.ndarray, isleft: bool)
+
+def check_fit(shape_matrix: np.ndarray, position: Vec, wrapX: bool = False, wrapY: bool = False)
+
+def rotate(shape, isleft: bool)
+
+def show()
+
+def clear(override=True)
+
+def clear_row(row: int, color=colors["background"])
+
+def clear_column(column: int, color=colors["background"])
+
+def draw_image(image, x_offset, y_offset)
+
+def fade(factor: float)
+```
+
+---
+
+### Shapes
+
+Shapes are numpy arrays or matrices that help us render any shapes repeatedly.
+
+```python
+np.array(
+	[
+		[1, 0, 0],
+		[1, 1, 1],
+		[0, 0, 0],
+	]
+).T
+```
+
 ### `input_library.py`
 
-### Example Game
+-   Handles user input and controls
+-   Provides a list of booleans for reading button states
+-   Allowed us to combine multiple key names into a single input
+    -   e.g. `inputs["enter"]` can be triggered by both `enter` and `return`
+
+### `game_library.py`
+
+-   Class which all games inherit from
+-   Share the same code for the game loop and input handling.
+
+```python
+class Game:
+    def __init__(self):
+        self.running = True
+        self.is_game_over = False
+        self.score = 0
+        self.spt = 0.1  # seconds per tick
+        self.tick = 0  # Game tick counter
+
+    def initialise(self):
+        """Initialize the game."""
+        gl.clear()
+        il.initialise()
+        self.running = True
+        self.is_game_over = False
+        self.score = 0
+
+    def play(self):
+        """Start the game loop."""
+        while self.running:
+            if il.inputs["exit"]:
+                self.stop()
+            if il.inputs["escape"]:
+                self.stop()
+            if il.inputs["space"] or il.inputs["enter"]:
+                if self.is_game_over:
+                    self.initialise()
+                    self.is_game_over = False
+            if not self.is_game_over:
+                self.update()
+                self.render()
+            il.reset_inputs()
+            time.sleep(self.spt)
+            self.tick += 1
+
+    def set_difficulty(self, difficulty, default_mult):
+        self.spt *= default_mult
+
+    def update(self):
+        """Update game state."""
+        raise NotImplementedError("Update method must be implemented by subclasses.")
+
+    def render(self):
+        """Render the game state."""
+        raise NotImplementedError("Render method must be implemented by subclasses.")
+
+    def game_over(self):
+        """Handle game over state."""
+        self.is_game_over = True
+        print(f"Game Over! Your score: {self.score}")
+        time.sleep(1)
+        for x in range(16):
+            for y in range(16):
+                gl.set_pixel(x, y, game_over_screen[x, y])
+        gl.show()
+
+    def stop(self):
+        """Stop the game."""
+        self.running = False
+```
+
+### The Games
+
+I will only show one example here, the Tetris game.
+
+This was as we said the first game we implemented, and by now it has had many improvements.
+
+Tetris makes heavy use of the shape functionality of the `graphics_library.py`
+It even defines its own shape class:
+
+```python
+class TetrisShape:
+    def __init__(self, shape_matrix: np.ndarray, weight: int, color: tuple = gl.colors["white"]):
+        self.shape_matrix = shape_matrix
+        self.weight = weight  # chance to spawn this shape
+        self.position = gl.Vec(0, 0)  # position on the game field
+        self.color = color  # color of the shape
+```
 
 ## 7. Development
 
