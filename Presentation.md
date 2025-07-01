@@ -73,7 +73,67 @@ We had many ideas:
 
 ## 4. Inspiration / History of Games
 
-### What are the Games?
+
+# Video Game Classics
+
+### Tetris
+
+- Developed in 1985 by **Alexey Pajitnov** on an **Elektronika 60** (not an IBM machine)  
+- Hardware:
+  - 16-bit system  
+  - 8 KB RAM
+- One of the best-selling video games of all time  
+- Considered a video game classic  
+- Licensed to **Nintendo** (Game Boy, NES), which gave it massive popularity  
+- Now a standalone company: **The Tetris Company**
+
+### Snake
+
+- Released in 1998 as one of three games on the **Nokia 6110**, developed by **Taneli Armanto**  
+- Marketing wanted to offer users more game options  
+- Gained huge popularity due to its simplicity and low hardware requirements  
+- Early "snake-like" games were two-player games where players competed against each other  
+- Early versions didn’t reference a snake but had similar mechanics  
+
+### Conway’s Game of Life
+
+- Created in 1970 by **John Horton Conway**, British mathematician  
+- A **cellular automaton** – more a simulation than a game (“zero-player game”)  
+- Completely deterministic  
+- Demonstrates how complex behavior can evolve from simple rules  
+- Called “Game of Life” because it reflects the idea that our universe is believed to be based on a few fundamental rules  
+
+### Pong
+
+- Released in 1972 by **Atari** for arcades  
+- First commercially successful video game  
+- Developed by **Allan Alcorn** as a training exercise, assigned by **Nolan Bushnell**  
+- Bushnell and **Ted Dabney** were impressed by the result and decided to produce it  
+- Simulates a simple tennis game  
+
+### Chrome Dinosaur Game
+
+- Built-in browser game in **Google Chrome**, appears when there is no internet connection  
+- Developed in 2014 by the **Chrome UX Team**: *Sebastien Gabriel, Alan Bettes, Edward Jung*  
+- Pterosaurs were added as obstacles in 2015  
+- In 2018:
+  - Easter egg for Chrome’s 10th birthday: birthday cake & hat  
+  - Feature added to save high scores  
+- Source: [chrome://dino/](chrome://dino/)  
+- Error page: [chrome://network-error/-106](chrome://network-error/-106)  
+- In 2024: **GenDino** released – AI-generated Dino games based on user prompts (later removed)  
+- In 2018, creators reported ~270 million games played per month  
+- Game can be disabled (includes hidden Easter egg)
+
+
+
+
+https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+https://en.wikipedia.org/wiki/Snake_(1998_video_game)
+https://en.wikipedia.org/wiki/Tetris
+https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+https://en.wikipedia.org/wiki/Pong
+https://en.wikipedia.org/wiki/Dinosaur_Game
 
 ## 5. Background Information / Hardware
 
