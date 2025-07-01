@@ -53,8 +53,23 @@ We had many ideas:
 -   3 body problem simulation
 -   slither.io clone
 
-| <img src="fiete.png" alt="Fiete Ferrum" width="100" height="100" style="border-radius: 8px;"> | <p><strong>"The final idea was to program <span style="color: #6c63ff;">T</span><span style="color: #f44336;">E</span><span style="color: #ffeb3b;">T</span><span style="color: #4caf50;">R</span><span style="color: #2196f3;">I</span><span style="color: #ff9800;">S</span>, but that escalated <em>quickly</em>!"</strong></p> |
-| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+<table>
+	<tr>
+		<td>
+			<img src="fiete.png" width="80" height="80" alt="Fiete" />
+		</td>
+		<td>
+			The final idea was to program <strong>
+				<span style="color: #6c63ff;">T</span>
+				<span style="color: #f44336;">E</span>
+				<span style="color: #ffeb3b;">T</span>
+				<span style="color: #4caf50;">R</span>
+				<span style="color: #2196f3;">I</span>
+				<span style="color: #ff9800;">S</span>
+			</strong>, but that escalated <em>quickly</em>!
+		</td>
+	</tr>
+</table>
 
 ## 4. Inspiration / History of Games
 
