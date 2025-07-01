@@ -55,7 +55,7 @@ We had many ideas:
 
 <table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px">
 	<tr>
-		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff;">
+		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">
 			"The final idea was to program <strong>
 				<span style="color: #6c63ff;">T</span>
 				<span style="color: #f44336;">E</span>
@@ -107,7 +107,7 @@ Two main parts of the codebase:
 <br>
 <table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px">
 	<tr>
-		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff;">
+		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">
 			"Libraries provide common functionality for graphics, <br>input handling, and game logic"
 		</td>
 		<td style="padding-right: 8px; text-align: center;">
