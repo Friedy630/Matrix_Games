@@ -68,7 +68,7 @@ class GameOfLifeGame(game.Game):
         il.reset_inputs()
 
     def render(self):
-        gl.fill(gl.colors["background"])
+        gl.clear(override=False)
         # Sichtbaren 16×16-Ausschnitt zeichnen
         for x in range(self.view_size):
             for y in range(self.view_size):
@@ -149,11 +149,11 @@ class GameOfLifeGame(game.Game):
 
 
 if __name__ == "__main__":
-    remote.start_pygame_thread()
+    #remote.start_pygame_thread()
     print("startup")
     game = GameOfLifeGame()
     game.initialise()
     game.play()
     game.stop()
     print("exited")
-    remote.close_pygame_thread()
+    #remote.close_pygame_thread()

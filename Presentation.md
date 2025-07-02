@@ -90,10 +90,16 @@ nothing yet
 
 ## 2. Presentation Objectives
 
-Show you what we programmed, how we did it, and what we learned.
+- Present the developed system in a way that makes both the implementation and outcome transparent.
 
-    [screenshot of every game we have]
-    [screenshot of the LED matrix]
+- Show what was built – not just by describing it, but by demonstrating core features and design principles.
+
+- Explain how the project evolved from a single game into a modular framework for LED-based mini-games.
+
+- Outline the technical structure and highlight key challenges and solutions during development.
+
+- Provide insight into what was learned – both technically and conceptually.
+    
 
 ## 3. Outline / Ideas
 
@@ -198,21 +204,51 @@ https://en.wikipedia.org/wiki/Dinosaur_Game
 
 ### LEDs
 
-The here used LED matrix is a `16x16 grid of LEDs`, which can be controlled to display various patterns and animations.
-Each LED can be turned on or off, and can also change color since RGB LEDs are used.
+The LED grid is built from a `16×16 matrix of RGB LEDs`.
+Even though 256 pixels is extremely limited by modern standards, the visual results are surprisingly expressive.
+
+![image](images/LED_Matrix_GameOver.jpg)
+
+@fieteInfobox(Here is a close-up view of the LED matrix showing the game over screen every game of ours uses.)
+
 
 ### Raspberry Pi
 
-`The Raspberry Pi is used to control the LED matrix. 
-It runs the python scripts and handles user input.`
+We used a Raspberry Pi to run the code on. It simplifies development thanks to its native Python support.
+
+It handles real-time display updates, input polling, and filesystem access – making it a fully standalone embedded system.
+
+![image](images/RaspberryPi.jpg)
+
+> Raspberry Pi used as the system controller.
+
 
 ### Python
 
-Programming language used to write the game logic and control the LED matrix.
+Python, one of the easiest to learn programming languages to learn, made rapid development and debugging possible. Despite being slower than C, the trade-off in development speed was worth it.
+
+The codebase is structured into three libraries:
+
+- `graphics_library.py`
+
+- `input_library.py`
+
+- `game_library.py`
+
+and several game implementations.
+
+@fieteInfobox(Two out of three people working on this project had to use Python for the first time. <br> But we managed to create a fully functional game framework in just a few weeks.)
+
 
 ### Router
 
-The python scripts can be uploaded to the Raspberry Pi through a WiFi connection to a build-in router, inside the LED box
+A small WiFi router inside the LED box creates a local network, enabling remote SSH access to the Raspberry Pi.
+
+This setup allowed us to deploy code without opening the box or attaching peripherals.  
+
+
+@fieteInfobox(That router does not possess an internet connection. <br> Sometimes people were confused why the internet suddenly stopped working.)
+
 
 ## 6. Codebase
 
@@ -452,6 +488,16 @@ def update(self):
 ## 8. Demonstration
 
 ## 9. Conclusion
+
+What started as “let’s just do Tetris” quickly escalated into a whole game system.
+
+We ended up building a framework – not just individual games.
+
+The abstraction helped us implement more games faster than expected.
+
+Performance was never the goal. Clarity, extensibility, and fun were.
+
+The result is something we can keep extending – even if it still doesn’t run Doom.
 
 ## 10. Reflection
 
