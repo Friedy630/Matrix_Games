@@ -1,7 +1,7 @@
 <!--
 Makros!?
 
-@fieteInfobox: <table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">@0</td><td style="padding-right: 8px; text-align: center;"><img src="fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
+@fieteInfobox: <br><table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">@0</td><td style="padding-right: 8px; text-align: center;"><img src="fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
 
 -->
 
@@ -161,17 +161,7 @@ Two main parts of the codebase:
 -   Libraries: `graphics_library.py`, `input_library.py`, `game_library.py`
 -   Game implementations: `tetris.py`, `snake.py`, `pong.py`, etc
 
-<br>
-<table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px">
-	<tr>
-		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">
-			"Libraries provide common functionality for graphics, <br>input handling, and game logic"
-		</td>
-		<td style="padding-right: 8px; text-align: center;">
-			<img src="fiete.png" width="80" height="80" alt="Fiete" />
-		</td>
-	</tr>
-</table>
+@fieteInfobox("Libraries provide common functionality for graphics, <br>input handling, and game logic")
 
 ### `graphics_library.py`
 
