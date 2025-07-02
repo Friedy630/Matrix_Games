@@ -1,9 +1,5 @@
 <!--
-Makros!?
-
 @fieteInfobox: <br><table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">@0</td><td style="padding-right: 8px; text-align: center;"><img src="fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
-
-@content: ""
 
 -->
 
@@ -62,11 +58,7 @@ We had many ideas:
 -   3 body problem simulation
 -   slither.io clone
 
-<!--
-content: "The final idea was to program <strong><span style="color: #6c63ff;">T</span><span style="color: #f44336;">E</span><span style="color: #ffeb3b;">T</span><span style="color: #4caf50;">R</span><span style="color: #2196f3;">I</span><span style="color: #ff9800;">S</span></strong>, <br>but that escalated <em>quickly</em>!"
--->
-
-@fieteInfobox(@content)
+@fieteInfobox("The final idea was to program <strong><span style="color: #6c63ff;">T</span><span style="color: #f44336;">E</span><span style="color: #ffeb3b;">T</span><span style="color: #4caf50;">R</span><span style="color: #2196f3;">I</span><span style="color: #ff9800;">S</span></strong>, <br>but that escalated <em>quickly</em>!")
 
 ## 4. Inspiration / History of Games
 
