@@ -1,6 +1,50 @@
 <!--
-@fieteInfobox: <br><table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">@0</td><td style="padding-right: 8px; text-align: center;"><img src="fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
+dark: false
 
+@fieteInfobox: <br><table style="background-color:rgb(115, 115, 105); border: 5px solid rgb(127, 127, 114); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">"@0"</td><td style="padding-right: 8px; padding-bottom:0"><img src="images/fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
+
+@H4: <span style="font-size: 2em"><strong>@0</strong></span>
+
+@Tetris: <strong><span style="color:rgb(85, 76, 255);">T</span><span style="color:rgb(255, 0, 0);">E</span><span style="color:rgb(255, 191, 0);">T</span><span style="color:rgb(56, 184, 52);">R</span><span style="color:rgb(20, 180, 244);">I</span><span style="color:rgb(255, 111, 0);">S</span></strong>
+
+script:   https://cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js
+
+
+@onload
+mermaid.initialize({ startOnLoad: false });
+@end
+
+@mermaid: @mermaid_(@uid,```@0```)
+
+@mermaid_
+<script run-once="true" modify="false" style="display:block; background:rgb(148, 172, 191); padding: 24px; border: 2px solid rgb(192,216,230)">
+async function draw () {
+    const graphDefinition = `@1`;
+    const { svg } = await mermaid.render('graphDiv_@0', graphDefinition);
+    send.lia("HTML: "+svg);
+    send.lia("LIA: stop")
+};
+
+draw()
+"LIA: wait"
+</script>
+@end
+
+@mermaid_eval: @mermaid_eval_(@uid)
+
+@mermaid_eval_
+<script>
+async function draw () {
+    const graphDefinition = `@input`;
+    const { svg } = await mermaid.render('graphDiv_@0', graphDefinition);
+    console.html(svg);
+    send.lia("LIA: stop")
+};
+
+draw()
+"LIA: wait"
+</script>
+@end
 -->
 
 [![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/Friedy630/Matrix_Games/refs/heads/main/Presentation.md)
@@ -55,18 +99,30 @@ Show you what we programmed, how we did it, and what we learned.
 
 We had many ideas:
 
--   a Falling Sand Simulation
--   a Presentation Screen
--   3 body problem simulation
--   slither.io clone
+-   Falling Sand Simulation
+-   Presentation Screen
+-   3 Body Problem Simulation
+-   Slither.io Clone
 
-@fieteInfobox("The final idea was to program <strong><span style="color: #6c63ff;">T</span><span style="color: #f44336;">E</span><span style="color: #ffeb3b;">T</span><span style="color: #4caf50;">R</span><span style="color: #2196f3;">I</span><span style="color: #ff9800;">S</span></strong>, <br>but that escalated <em>quickly</em>!")
+@fieteInfobox(The final idea was to program <strong><span style="color: #6c63ff;">T</span><span style="color: #f44336;">E</span><span style="color: #ffeb3b;">T</span><span style="color: #4caf50;">R</span><span style="color: #2196f3;">I</span><span style="color: #ff9800;">S</span></strong><br> but that escalated _quickly_)
+
+<br><br>
+
+{{1}}
+Tetris was done after one night.
+
+{{2}}
+Then we decided to add more games
+
+{{3}}
+and we ended up with a whole framework for games...
+but more about that later.
 
 ## 4. Inspiration / History of Games
 
 ### Tetris
 
-![image](NES-Tetris-Right-Well-Setup-1024x838.webp) format: ja lol ey
+![image](images/NES-Tetris-Right-Well-Setup-1024x838.webp) format: ja lol ey
 
 -   Developed in 1985 by **Alexey Pajitnov** on an **Elektronika 60** (not an IBM machine)
 -   Hardware:
@@ -79,7 +135,7 @@ We had many ideas:
 
 ### Snake
 
-![image](Snake-nokia-phone.jpg)
+![image](images/Snake-nokia-phone.jpg)
 
 -   Released in 1998 as one of three games on the **Nokia 6110**, developed by **Taneli Armanto**
 -   Marketing wanted to offer users more game options
@@ -89,7 +145,7 @@ We had many ideas:
 
 ### Conway’s Game of Life
 
-![image](game-of-life-loop-cropped.gif)
+![image](images/game-of-life-loop-cropped.gif)
 
 -   Created in 1970 by **John Horton Conway**, British mathematician
 -   A **cellular automaton** – more a simulation than a game (“zero-player game”)
@@ -100,8 +156,8 @@ We had many ideas:
 
 ### Pong
 
-![image](Signed_Pong_Cabinet.jpg)
-![image](250px-Pong_Game_Test2.gif)
+![image](images/Signed_Pong_Cabinet.jpg)
+![image](images/250px-Pong_Game_Test2.gif)
 
 -   Released in 1972 by **Atari** for arcades
 -   First commercially successful video game
@@ -111,7 +167,7 @@ We had many ideas:
 
 ### Chrome Dinosaur Game
 
-![image](Dino_non-birthday_version.gif)
+![image](images/Dino_non-birthday_version.gif)
 
 -   Built-in browser game in **Google Chrome**, appears when there is no internet connection
 -   Developed in 2014 by the **Chrome UX Team**: _Sebastien Gabriel, Alan Bettes, Edward Jung_
@@ -125,7 +181,11 @@ We had many ideas:
 -   In 2018, creators reported ~270 million games played per month
 -   Game can be disabled (includes hidden Easter egg)
 
-![image](disable-dinosaur-game-chrome-4.webp)
+![image](images/disable-dinosaur-game-chrome-4.webp)
+
+<details>
+??[Dino Game](https://dinorunner.com/de/)
+</details>
 
 https://en.wikipedia.org/wiki/Snake_(video_game_genre)
 https://en.wikipedia.org/wiki/Snake_(1998_video_game)
@@ -163,7 +223,7 @@ Two main parts of the codebase:
 -   Libraries: `graphics_library.py`, `input_library.py`, `game_library.py`
 -   Game implementations: `tetris.py`, `snake.py`, `pong.py`, etc
 
-@fieteInfobox("Libraries provide common functionality for graphics, <br>input handling, and game logic.")
+@fieteInfobox(Libraries provide common functionality for graphics, <br>input handling, and game logic.)
 
 ### `graphics_library.py`
 
@@ -171,7 +231,8 @@ Two main parts of the codebase:
 -   Allows us to set brightness
 -   Provides abstract functions for drawing pixels and shapes
 -   Gives less efficient but easier functions than the native `display` library
-    <br>
+
+{{0}}
 
 ```python
 def set_pixel(x: int, y: int, color: tuple)
@@ -201,9 +262,13 @@ def draw_image(image, x_offset, y_offset)
 def fade(factor: float)
 ```
 
----
+<br><br>
 
-### Shapes
+    {{1}}
+
+<section>
+
+@H4(Shapes)
 
 Shapes are numpy arrays or matrices that help us render any shapes repeatedly.
 
@@ -216,6 +281,8 @@ np.array(
 	]
 ).T
 ```
+
+</section>
 
 ### `input_library.py`
 
@@ -292,7 +359,14 @@ class Game:
 
 ### The Games
 
-I will only show one example here, the Tetris game.
+We made several games using the libraries we created. Due to the abstraction provided by the libraries, we could implement them quickly and easily.
+
+But in favor of time I will only show one example here:
+
+{{1}}
+
+<section>
+@H4(@Tetris)
 
 This was as we said the first game we implemented, and by now it has had many improvements.
 
@@ -308,23 +382,19 @@ class TetrisShape:
         self.color = color  # color of the shape
 ```
 
-<br>
-<table style="background-color:rgb(81, 81, 71); border: 2px solid rgb(98, 98, 91); margin-left: 0; padding: 8px">
-	<tr>
-		<td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">
-			"This class helps us generate the shapes with weighted randomness. <br> It is also used as the object for the current falling shape."
-		</td>
-		<td style="padding-right: 8px; text-align: center;">
-			<img src="fiete.png" width="80" height="80" alt="Fiete" />
-		</td>
-	</tr>
-</table>
+@fieteInfobox(This class helps us generate the shapes with weighted randomness. <br> It is also used as the object for the current falling shape.)
 
-#### Tetris Game Logic
+<br><br>
 
-```mermaid
+</section>
+{{2}}
+
+<section>
+@H4(Tetris Update Loop)
+<br><br>
+```mermaid @mermaid
 graph TD
-    A[Start Game] --> B{Is Game Over?}
+    A["Start Game"] --> B{Is Game Over?}
     B -- Yes --> C[Game Over Screen]
     B -- No --> D[Move Shape Down]
     D --> E{User Input}
@@ -340,6 +410,36 @@ graph TD
     N --> O[Check for Completed Rows]
     O --> P[Get New Shape]
 ```
+
+</section>
+{{3}}
+
+<section>
+<br>
+```python
+def update(self):
+        if not self.is_game_over:
+            il.inputs["up"] |= il.inputs["w"]
+            il.inputs["left"] |= il.inputs["a"]
+            il.inputs["down"] |= il.inputs["s"]
+            il.inputs["right"] |= il.inputs["d"]
+            if self.tick % self.fall_prescale == 0:
+                il.inputs["down"] = True
+            if il.inputs["left"] != il.inputs["right"]:
+                self.current_shape.move_horizontal(il.inputs["left"], self.side_to_side_pass)
+            if il.inputs["up"] != il.inputs["space"]:
+                self.current_shape.rotate(il.inputs["up"], self.side_to_side_pass)
+            if il.inputs["down"] or il.inputs["enter"]:
+                if not self.current_shape.move_down(self.side_to_side_pass):
+                    if self.current_shape.position.y < 0:
+                        self.game_over()
+                    else:
+                        self.current_shape.paste()
+                        self.check_for_full_row()
+                        self.get_new_shape()
+```
+
+</section>
 
 ## 7. Development
 
@@ -357,6 +457,12 @@ graph TD
 
 ## 11. Outlook
 
-<!--
-It will probably never run Doom
--->
+We could have done more, especially with the kind of framework we created.
+
+-   More games
+-   More features
+-   Better remote control
+-   3D graphics
+-   ...
+
+@fieteInfobox(Unfortunately it will probably never run <img src="images/doom.png" width="80" height="80" alt="Doom" />)
