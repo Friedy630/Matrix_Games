@@ -7,6 +7,8 @@
 
 # LED Box Project
 
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Friedy630/Matrix_Games)
+
 <!--
 1. Attention grabber
 2. What will audience get out of watching/listening to you? Why should they?
