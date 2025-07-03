@@ -183,12 +183,32 @@ but more about that later.
 ??[Dino Game](https://dinorunner.com/de/)
 </details>
 
+### Flappy Bird[^7][^8][^9]
+
+<div style="text-align: center">
+    <img src="images/flappy-bird-screenshot.png" width="400">
+</div>
+
+* Veröffentlicht 2013 von **Dong Nguyen** (Entwicklerstudio: .GEARS)
+* Ursprünglich für **iOS**, später auch für **Android**
+* Retro-Grafikstil, inspiriert von 8-Bit-Konsolen (z. B. Super Mario)
+* Extrem einfacher Spielmechanismus: Tippen = Flügelschlag
+* Wurde im Februar 2014 vom Entwickler selbst entfernt – Begründung: „zu süchtig machend“
+* Führte zu zahlreichen **Klonen** und **In-App-Verkäufen gebrauchter Smartphones** mit vorinstalliertem Spiel
+* Entwickelt mit der **Cocos2d-x** Game Engine
+* Späteres Spin-off: *Flappy Birds Family* für Amazon Fire TV
+
+### Quellen
+
 [^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
 [^2]:https://en.wikipedia.org/wiki/Snake_(1998_video_game)
 [^3]:https://en.wikipedia.org/wiki/Tetris
 [^4]:https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [^5]:https://en.wikipedia.org/wiki/Pong
 [^6]:https://en.wikipedia.org/wiki/Dinosaur_Game
+[^7]:https://www.distractify.com/p/why-did-flappy-bird-get-deleted
+[^8]:https://en.wikipedia.org/wiki/Flappy_Bird
+[^9]:https://en.wikipedia.org/wiki/Flappy_Birds_Family
 
 ## 5. Background Information / Hardware
 
