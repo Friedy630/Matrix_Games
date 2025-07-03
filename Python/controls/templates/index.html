@@ -26,12 +26,14 @@
 			width: 100vw;
 			position: relative;
 			z-index: 10;
+			pointer-events: none;
 		}
 
 		#demo-container {
 			position: relative;
 			width: 100vw;
 			height: 100vh;
+			pointer-events: none;
 		}
 
 		#timeout-bar {
@@ -86,28 +88,37 @@
 				}
 				fetchControl();
 
+				function pressKey() {
+					console.log("Key pressed:", event.key);
+					fetch("/key-pressed", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ key: control })
+					}).then(response => response.json())
+						.then(data => {
+							document.getElementById("demo").textContent = data.status === "ok" ? "✓" : "⨉";
+							canPress = false;
+							startTimeoutBar(timeoutDuration);
+							setTimeout(() => {
+								document.getElementById("demo").textContent = icon;
+								canPress = true;
+							}, timeoutDuration);
+						});
+				}
+
 				window.onkeydown = function (event) {
 					if (event.key.toLowerCase() === control && canPress) {
-						console.log("Key pressed:", event.key);
-						fetch("/key-pressed", {
-							method: "POST",
-							headers: { "Content-Type": "application/json" },
-							body: JSON.stringify({ key: control })
-						}).then(response => response.json())
-							.then(data => {
-								document.getElementById("demo").textContent = data.status === "ok" ? "✓" : "⨉";
-								canPress = false;
-								startTimeoutBar(timeoutDuration);
-								setTimeout(() => {
-									document.getElementById("demo").textContent = icon;
-									canPress = true;
-								}, timeoutDuration);
-							});
+						pressKey()
 					}
 					else {
 						console.log("Can press:", canPress);
 					}
 				};
+
+				document.body.onmousedown = function () {
+					console.log("Mouse click"); // 0 is left mouse button
+						pressKey();
+				}
 			};
 
 		</script>

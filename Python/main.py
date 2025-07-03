@@ -930,7 +930,7 @@ end_screen = np.array(
 def main():
     from ulib import remote
 
-    remote.start_pygame_thread()
+    # remote.start_pygame_thread()
     gl.brightness = 32
     il.initialise()
     while True:
@@ -949,7 +949,7 @@ def main():
         game_instance.initialise()
         game_instance.play()
     il.cleanup()
-    remote.close_pygame_thread()
+    # remote.close_pygame_thread()
 
 
 if __name__ == "__main__":
