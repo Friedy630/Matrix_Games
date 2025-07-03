@@ -74,6 +74,9 @@ draw()
 
 ## 1. (Attention Grabber)
 
+<div style="text-align: center">
+    <img src="images/pregnanct-test-doom.gif" width="800">
+</div>
 <!--
 Talk is cheap. Show me the code - Linus Torvalds
 
