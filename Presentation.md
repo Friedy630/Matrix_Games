@@ -59,11 +59,9 @@ draw()
     <img src="images/pregnanct-test-doom.gif" width="800">
 </div>
 
-Picture of Oscilloscope running Pong
-!?[Presentation!](https://www.youtube.com/watch?v=H7RkiOck8u4]
+The video game classic **"DOOM"** running on a pregnancy test.
 
-
-nothing yet
+How far can you push the limits of a small screen?
 
 ## 2. Presentation Objectives
 
