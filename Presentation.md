@@ -496,9 +496,76 @@ def update(self):
 
 ### Learning Process
 
+for some this was the:
+ - first time using python
+ - first time using git collaboratively
+ - first time tinkering with markdown/liascript
+
+we found out:
+ - learning python is easy
+ - using git is not hard, but unintuitive, especially the merging process
+ - markdown is very easy, _very handy!_
+
 ### Coding Process
 
+initial plan: TETRIS! --> done VERY quick
+
+we added:
+ - a new main menu to adjust the speed
+ - being able to phase through the walls (optional)
+ - more shapes (optional)
+ - giving those shapes different chances to spawn (optional)
+
+decided to add more games as it was easy to create new ones
+added: 
+ - snake
+ - game of life
+ - pong
+ - main menu v3, to switch between games *and* adjust difficulty
+ - dino
+
+during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
+--> more maintainable
+
+later made the games instances of classes, to better structure the game exits and game starts
+--> now new games can be integrated easily
+
+Leander decided to create a website to control a game together
+--> needed for pong
+--> possible due to input library
+
+some stats:
+ - roughly 1700 lines of code (including the webapp)
+ - and additional 1400 lines of matrix/array declarations
+ - plus around 160 lines for the emulator
+ - 120 git commits
+
 ### Problems
+
+1. testing the remote controls was not possible on jupyter
+	- had to create our own emulator using pygame2.
+2. making an intuitive user interface with a 16x16 resolution
+   	- difficulty slider uses colors to idicate the difficulty
+   	- using brightness changes to set a focus
+   	- not using words, it is too big (initially the word _"speed"_ was displayed)
+3. git merges
+   	- using git is not as intuitive as we thought
+   	- we had some progress lost along the way due to bad merges
+4. keyboard key names
+	- pygame and the remote script work with slightly different names
+	- lead to confusion, as the key got registered, but nothing was recieved by the box
+5. WIFI access
+   	- constantly change between communicating with the box or with the wwww
+6. update loops
+   	- a screen of black between every renderd frame
+   	- caused by the `fill()` function to call `show()` automatically
+7. coding
+   	- of course we had the typical coding problems of smth. not working
+   	- or working when is shouldn't
+   	- vs code marks errors, still working fine
+8. screen brightness
+   	- the screen is very bright
+   	- lots of testing
 
 ## 8. Demonstration
 
