@@ -53,8 +53,6 @@ draw()
 
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Friedy630/Matrix_Games)
 
-## 1. (Attention Grabber)
-
 <div style="text-align: center">
     <img src="images/pregnanct-test-doom.gif" width="800">
 </div>
@@ -65,15 +63,15 @@ How far can you push the limits of a small screen?
 
 ## 2. Presentation Objectives
 
-- Present the developed system in a way that makes both the implementation and outcome transparent.
+-   Present the developed system in a way that makes both the implementation and outcome transparent.
 
-- Show what was built – not just by describing it, but by demonstrating core features and design principles.
+-   Show what was built – not just by describing it, but by demonstrating core features and design principles.
 
-- Explain how the project evolved from a single game into a modular framework for LED-based mini-games.
+-   Explain how the project evolved from a single game into a modular framework for LED-based mini-games.
 
-- Outline the technical structure and highlight key challenges and solutions during development.
+-   Outline the technical structure and highlight key challenges and solutions during development.
 
-- Provide insight into what was learned – both technically and conceptually.
+-   Provide insight into what was learned – both technically and conceptually.
 
 <div style="text-align: center">
     <img src="images/MEME_Office_English.png" width="800">
@@ -189,26 +187,26 @@ but more about that later.
     <img src="images/flappy-bird-screenshot.png" width="400">
 </div>
 
-* Veröffentlicht 2013 von **Dong Nguyen** (Entwicklerstudio: .GEARS)
-* Ursprünglich für **iOS**, später auch für **Android**
-* Retro-Grafikstil, inspiriert von 8-Bit-Konsolen (z. B. Super Mario)
-* Extrem einfacher Spielmechanismus: Tippen = Flügelschlag
-* Wurde im Februar 2014 vom Entwickler selbst entfernt – Begründung: „zu süchtig machend“
-* Führte zu zahlreichen **Klonen** und **In-App-Verkäufen gebrauchter Smartphones** mit vorinstalliertem Spiel
-* Entwickelt mit der **Cocos2d-x** Game Engine
-* Späteres Spin-off: *Flappy Birds Family* für Amazon Fire TV
+-   Veröffentlicht 2013 von **Dong Nguyen** (Entwicklerstudio: .GEARS)
+-   Ursprünglich für **iOS**, später auch für **Android**
+-   Retro-Grafikstil, inspiriert von 8-Bit-Konsolen (z. B. Super Mario)
+-   Extrem einfacher Spielmechanismus: Tippen = Flügelschlag
+-   Wurde im Februar 2014 vom Entwickler selbst entfernt – Begründung: „zu süchtig machend“
+-   Führte zu zahlreichen **Klonen** und **In-App-Verkäufen gebrauchter Smartphones** mit vorinstalliertem Spiel
+-   Entwickelt mit der **Cocos2d-x** Game Engine
+-   Späteres Spin-off: _Flappy Birds Family_ für Amazon Fire TV
 
 ### Quellen
 
-[^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
-[^2]:https://en.wikipedia.org/wiki/Snake_(1998_video_game)
-[^3]:https://en.wikipedia.org/wiki/Tetris
-[^4]:https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-[^5]:https://en.wikipedia.org/wiki/Pong
-[^6]:https://en.wikipedia.org/wiki/Dinosaur_Game
-[^7]:https://www.distractify.com/p/why-did-flappy-bird-get-deleted
-[^8]:https://en.wikipedia.org/wiki/Flappy_Bird
-[^9]:https://en.wikipedia.org/wiki/Flappy_Birds_Family
+[^1]: https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+[^2]: https://en.wikipedia.org/wiki/Snake_(1998_video_game)
+[^3]: https://en.wikipedia.org/wiki/Tetris
+[^4]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[^5]: https://en.wikipedia.org/wiki/Pong
+[^6]: https://en.wikipedia.org/wiki/Dinosaur_Game
+[^7]: https://www.distractify.com/p/why-did-flappy-bird-get-deleted
+[^8]: https://en.wikipedia.org/wiki/Flappy_Bird
+[^9]: https://en.wikipedia.org/wiki/Flappy_Birds_Family
 
 ## 5. Background Information / Hardware
 
@@ -222,7 +220,6 @@ Even though 256 pixels is extremely limited by modern standards, the visual resu
 </div>
 @fieteInfobox(Here is a close-up view of the LED matrix showing the game over screen every game of ours uses.)
 
-
 ### Raspberry Pi
 
 We used a Raspberry Pi to run the code on. It simplifies development thanks to its native Python support.
@@ -233,33 +230,29 @@ It handles real-time display updates, input polling, and filesystem access – m
 
 > Raspberry Pi used as the system controller.
 
-
 ### Python
 
 Python, one of the easiest to learn programming languages to learn, made rapid development and debugging possible. Despite being slower than C, the trade-off in development speed was worth it.
 
 The codebase is structured into three libraries:
 
-- `graphics_library.py`
+-   `graphics_library.py`
 
-- `input_library.py`
+-   `input_library.py`
 
-- `game_library.py`
+-   `game_library.py`
 
 and several game implementations.
 
 @fieteInfobox(Two out of three people working on this project had to use Python for the first time. <br> But we managed to create a fully functional game framework in just a few weeks.)
 
-
 ### Router
 
 A small WiFi router inside the LED box creates a local network, enabling remote SSH access to the Raspberry Pi.
 
-This setup allowed us to deploy code without opening the box or attaching peripherals.  
-
+This setup allowed us to deploy code without opening the box or attaching peripherals.
 
 @fieteInfobox(That router does not possess an internet connection. <br> Sometimes people were confused why the internet suddenly stopped working.)
-
 
 ## 6. Codebase
 
@@ -527,87 +520,87 @@ The rest of the code defines the shapes that get used during the game and has th
 
 for some this was the:
 
-- first time using python
-- first time using git collaboratively
-- first time tinkering with markdown/liascript
+-   first time using python
+-   first time using git collaboratively
+-   first time tinkering with markdown/liascript
 
 we found out:
 
-- learning python is easy, games came together quickly
-- using git is not hard, but unintuitive, especially the merging process
-- refactoring is necessary
-- markdown is very easy, _very handy!_
+-   learning python is easy, games came together quickly
+-   using git is not hard, but unintuitive, especially the merging process
+-   refactoring is necessary
+-   markdown is very easy, _very handy!_
 
 ### Coding Process
 
 initial plan: TETRIS!
 
-- done VERY quick
+-   done VERY quick
 
 we added:
 
-- a new main menu to adjust the speed
-- being able to phase through the walls (optional)
-- more shapes (optional)
-- giving those shapes different chances to spawn (optional)
+-   a new main menu to adjust the speed
+-   being able to phase through the walls (optional)
+-   more shapes (optional)
+-   giving those shapes different chances to spawn (optional)
 
 decided to add more games as it was easy to create new ones
-we added: 
+we added:
 
-- snake
-- game of life
-- pong
-- main menu v3, to switch between games *and* adjust difficulty
-- dino
+-   snake
+-   game of life
+-   pong
+-   main menu v3, to switch between games _and_ adjust difficulty
+-   dino
 
 during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
 
-- more maintainable
+-   more maintainable
 
 later made the games instances of classes, to better structure the game exits and game starts
 
-- now new games can be integrated easily
+-   now new games can be integrated easily
 
 Leander decided to create a website to control a game together
 
-- needed for pong
-- possible due to input library
+-   needed for pong
+-   possible due to input library
 
 some stats:
 
-- roughly 1700 lines of code (including the webapp)
-- and additional 1400 lines of matrix/array declarations
-- plus around 160 lines for the emulator
-- 120 git commits
+-   roughly 1700 lines of code (including the webapp)
+-   and additional 1400 lines of matrix/array declarations
+-   plus around 160 lines for the emulator
+-   120 git commits
 
 @fieteInfobox(I'm a mechanic. I don't know what lines mean. I measure my projects in bolts.)
 
 ### Problems
 
 1. testing the remote controls was not possible on jupyter
-	- had to create our own emulator using pygame2.
+    - had to create our own emulator using pygame2.
 2. making an intuitive user interface with a 16x16 resolution
-   	- difficulty slider uses colors to idicate the difficulty
-   	- using brightness changes to set a focus
-   	- not using words, it is too big (initially the word _"speed"_ was displayed)
+    - difficulty slider uses colors to idicate the difficulty
+    - using brightness changes to set a focus
+    - not using words, it is too big (initially the word _"speed"_ was displayed)
 3. git merges
-   	- using git is not as intuitive as we thought
-   	- we had some progress lost along the way due to bad merges
+    - using git is not as intuitive as we thought
+    - we had some progress lost along the way due to bad merges
 4. keyboard key names
-	- pygame and the remote script work with slightly different names
-	- lead to confusion, as the key got registered, but nothing was recieved by the box
+    - pygame and the remote script work with slightly different names
+    - lead to confusion, as the key got registered, but nothing was recieved by the box
 5. WIFI access
-   	- constantly change between communicating with the box or with the wwww
+    - constantly change between communicating with the box or with the wwww
 6. update loops
-   	- a screen of black between every renderd frame
-   	- caused by the `fill()` function to call `show()` automatically
+    - a screen of black between every renderd frame
+    - caused by the `fill()` function to call `show()` automatically
 7. coding
-   	- of course we had the typical coding problems of smth. not working
-   	- or working when is shouldn't
-   	- vs code marks errors, still working fine
+    - of course we had the typical coding problems of smth. not working
+    - or working when is shouldn't
+    - vs code marks errors, still working fine
 8. screen brightness
-   	- the screen is very bright
-   	- lots of testing
+    - the screen is very bright
+    - lots of testing
 
 ## 8. Demonstration
 
@@ -618,22 +611,22 @@ some stats:
 
 ## 9. Conclusion
 
-What started it all
----
+## What started it all
+
 The project began as a simple Tetris implementation — a single game, one goal.
 
-What it became
----
+## What it became
+
 We ended up with a modular system capable of running multiple games, all based on a shared architecture.
 
-What worked well
----
-- Fast prototyping thanks to abstraction
-- Game logic and rendering separated cleanly
-- Framework allowed quick addition of new games
+## What worked well
 
-What surprised us
----
+-   Fast prototyping thanks to abstraction
+-   Game logic and rendering separated cleanly
+-   Framework allowed quick addition of new games
+
+## What surprised us
+
 We spent more time improving the engine than writing individual games — and it was worth it.
 
 @fieteInfobox(What's still missing: <br>It doesn't run Doom. But it could run a few more things — with time.
@@ -642,18 +635,20 @@ We spent more time improving the engine than writing individual games — and it
 ## 10. Reflection
 
 What we took from this project:
- - it was fun
- - experience with git
- - experience working, expecially coding in a team
- - backend and management are a big part of development
- - good example of a project growning and code being 'alive', puts lectures from computer science into perspective
- - experience with python
+
+-   it was fun
+-   experience with git
+-   experience working, expecially coding in a team
+-   backend and management are a big part of development
+-   good example of a project growning and code being 'alive', puts lectures from computer science into perspective
+-   experience with python
 
 What would we do differently next time?
- - manage git better, use it more seriously
- - write a script to automate uploading of scripts; tedious process
- - although we had to refactor a lot, this is normal and projects always grow dynamically
- - due to more experience with python, cleaner codebase
+
+-   manage git better, use it more seriously
+-   write a script to automate uploading of scripts; tedious process
+-   although we had to refactor a lot, this is normal and projects always grow dynamically
+-   due to more experience with python, cleaner codebase
 
 ## 11. Outlook
 
