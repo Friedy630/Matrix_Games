@@ -189,14 +189,15 @@ but more about that later.
     <img src="images/flappy-bird-screenshot.png" width="400">
 </div>
 
-* Veröffentlicht 2013 von **Dong Nguyen** (Entwicklerstudio: .GEARS)
-* Ursprünglich für **iOS**, später auch für **Android**
-* Retro-Grafikstil, inspiriert von 8-Bit-Konsolen (z. B. Super Mario)
-* Extrem einfacher Spielmechanismus: Tippen = Flügelschlag
-* Wurde im Februar 2014 vom Entwickler selbst entfernt – Begründung: „zu süchtig machend“
-* Führte zu zahlreichen **Klonen** und **In-App-Verkäufen gebrauchter Smartphones** mit vorinstalliertem Spiel
-* Entwickelt mit der **Cocos2d-x** Game Engine
-* Späteres Spin-off: *Flappy Birds Family* für Amazon Fire TV
+* Published in 2013 by **Dong Nguyen** (Developerstudio: .GEARS)
+* originally for **iOS**, later also for **Android**
+* Retro-Graficstyle, inspired by 8-Bit-console
+* Extremely simple gameplay mechanic: Tap = Flap
+* Removed by the developer himself in February 2014 – Reason: "too addictive"
+* Led to numerous **clones** and **in-app sales of used smartphones** with the game pre-installed
+* Developed using the **Cocos2d-x** game engine
+* Later spin-off: *Flappy Birds Family* for Amazon Fire TV
+
 
 ### Quellen
 
