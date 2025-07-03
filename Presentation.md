@@ -532,16 +532,16 @@ The rest of the code defines the shapes that get used during the game and has th
 
 for some this was the:
 
- - first time using python
- - first time using git collaboratively
- - first time tinkering with markdown/liascript
+- first time using python
+- first time using git collaboratively
+- first time tinkering with markdown/liascript
 
 we found out:
 
- - learning python is easy, games came together quickly
- - using git is not hard, but unintuitive, especially the merging process
- - refactoring is necessary
- - markdown is very easy, _very handy!_
+- learning python is easy, games came together quickly
+- using git is not hard, but unintuitive, especially the merging process
+- refactoring is necessary
+- markdown is very easy, _very handy!_
 
 ### Coding Process
 
@@ -551,39 +551,39 @@ initial plan: TETRIS!
 
 we added:
 
- - a new main menu to adjust the speed
- - being able to phase through the walls (optional)
- - more shapes (optional)
- - giving those shapes different chances to spawn (optional)
+- a new main menu to adjust the speed
+- being able to phase through the walls (optional)
+- more shapes (optional)
+- giving those shapes different chances to spawn (optional)
 
 decided to add more games as it was easy to create new ones
 we added: 
 
- - snake
- - game of life
- - pong
- - main menu v3, to switch between games *and* adjust difficulty
- - dino
+- snake
+- game of life
+- pong
+- main menu v3, to switch between games *and* adjust difficulty
+- dino
 
 during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
 
- - more maintainable
+- more maintainable
 
 later made the games instances of classes, to better structure the game exits and game starts
 
- - now new games can be integrated easily
+- now new games can be integrated easily
 
 Leander decided to create a website to control a game together
 
- - needed for pong
- - possible due to input library
+- needed for pong
+- possible due to input library
 
 some stats:
 
- - roughly 1700 lines of code (including the webapp)
- - and additional 1400 lines of matrix/array declarations
- - plus around 160 lines for the emulator
- - 120 git commits
+- roughly 1700 lines of code (including the webapp)
+- and additional 1400 lines of matrix/array declarations
+- plus around 160 lines for the emulator
+- 120 git commits
 
 @fieteInfobox(I'm a mechanic. I don't know what lines mean. I measure my projects in bolts.)
 
