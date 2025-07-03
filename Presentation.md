@@ -58,17 +58,10 @@ draw()
 <div style="text-align: center">
     <img src="images/pregnanct-test-doom.gif" width="800">
 </div>
-<!--
-Talk is cheap. Show me the code - Linus Torvalds
-
-Never trust a computer you can't throw out a window - Steve Wozniak
-
-It doesn't (yet?) run Doom.
 
 Picture of Oscilloscope running Pong
-
 !?[Presentation!](https://www.youtube.com/watch?v=H7RkiOck8u4]
--->
+
 
 nothing yet
 
