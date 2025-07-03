@@ -1,7 +1,7 @@
 <!--
 dark: false
 
-@fieteInfobox: <br><table style="background-color:rgb(215, 209, 181); border: 5px solid rgb(127, 127, 114); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">"@0"</td><td style="padding-right: 8px; padding-bottom:0"><img src="images/fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
+@fieteInfobox: <br><table style="background-color:rgb(195, 191, 173); border: 5px solid rgb(127, 127, 114); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">"@0"</td><td style="padding-right: 8px; padding-bottom:0"><img src="images/fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
 
 @H4: <span style="font-size: 2em"><strong>@0</strong></span>
 
