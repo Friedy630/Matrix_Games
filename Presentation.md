@@ -408,18 +408,45 @@ class Game:
         self.running = False
 ```
 
+{{1}}
+
+<section>
+Because we unified the games as classes it enabled us to really easily implement a main menu with a game and a difficulty selector
+
+```python main.py
+games = [
+    {"name": "TETRIS", "class": tetris.TetrisGame, "icon": tetris_icon},
+    {"name": "SNAKE", "class": snake.SnakeGame, "icon": snake_icon},
+    {"name": "PONG", "class": pong.PongGame, "icon": pong_icon},
+    {
+        "name": "FLAPPY BIRD",
+        "class": flappybird.FlappyBirdGame,
+        "icon": flappybird_icon,
+    },
+    {"name": "DINO", "class": dino.DinoGame, "icon": dino_icon},
+    {
+        "name": "GAME OF LIFE",
+        "class": game_of_life.GameOfLifeGame,
+        "icon": game_of_life_icon,
+    }
+]
+```
+
+<img src=images/main_menu.png height=320 width=320/>
+
+</section>
 ### The Games
 
 We made several games using the libraries we created. Due to the abstraction provided by the libraries, we could implement them quickly and easily.
 
-But in favor of time I will only show one example here:
+But in favor of time we will only show one example here:
 
 {{1}}
 
 <section>
 @H4(@Tetris)
 
-This was as we said the first game we implemented, and by now it has had many improvements.
+This was as we said the first game we implemented and has had the most improvements.
 
 Tetris makes heavy use of the shape functionality of the `graphics_library.py`
 It even defines its own shape class:
@@ -433,7 +460,7 @@ class TetrisShape:
         self.color = color  # color of the shape
 ```
 
-@fieteInfobox(This class helps us generate the shapes with weighted randomness. <br> It is also used as the object for the current falling shape.)
+@fieteInfobox(This class helps us generate the shapes with weighted randomness. <br> For the currently falling shapes there's another class!)
 
 <br><br>
 
@@ -490,6 +517,12 @@ def update(self):
                         self.get_new_shape()
 ```
 
+</section>
+
+{{4}}
+
+<section>
+The rest of the code defines the shapes that get used during the game and has the actual functions that get called in the update loop. <br> The whole file has __547__ lines of code (but that depends heavily on the formatter used).
 </section>
 
 ## 7. Development
@@ -573,6 +606,11 @@ some stats:
 
 ## 8. Demonstration
 
+1. Please connect your laptops to the LED-Box-Wifi
+2. Got to led-box.bbrouter:8060
+3. There will be a key assigned to you
+4. By collaborating you can all test our game together :)
+
 ## 9. Conclusion
 
 What started it all
@@ -619,6 +657,7 @@ We could have done more, especially with the kind of framework we created.
 -   More games
 -   More features
 -   Better remote control
+-   Physics engine/library
 -   3D graphics
 -   ...
 
