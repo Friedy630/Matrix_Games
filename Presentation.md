@@ -612,22 +612,22 @@ some stats:
 
 ## 9. Conclusion
 
-## What started it all
-
+What started it all
+---
 The project began as a simple Tetris implementation — a single game, one goal.
 
-## What it became
-
+What it became
+---
 We ended up with a modular system capable of running multiple games, all based on a shared architecture.
 
-## What worked well
-
+What worked well
+---
 -   Fast prototyping thanks to abstraction
 -   Game logic and rendering separated cleanly
 -   Framework allowed quick addition of new games
 
-## What surprised us
-
+What surprised us
+---
 We spent more time improving the engine than writing individual games — and it was worth it.
 
 @fieteInfobox(What's still missing: <br>It doesn't run Doom. But it could run a few more things — with time.
