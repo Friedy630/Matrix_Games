@@ -56,7 +56,7 @@ draw()
 <div style="text-align: center">
     <img src="images/pregnanct-test-doom.gif" width="800">
 </div>
-
+<br>
 The video game classic **"DOOM"** running on a pregnancy test.
 
 How far can you push the limits of a small screen?
