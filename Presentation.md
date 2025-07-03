@@ -188,7 +188,7 @@ but more about that later.
     <img src="images/flappy-bird-screenshot.png" width="400">
 </div>
 
-* Published in 2013 by **Dong Nguyen** (Developerstudio: .GEARS)
+* Published in 2013 by **Dong Nguyen** (Developer studio: .GEARS)
 * originally for **iOS**, later also for **Android**
 * Retro-Graficstyle, inspired by 8-Bit-console
 * Extremely simple gameplay mechanic: Tap = Flap
@@ -255,7 +255,8 @@ and several game implementations.
 
 A small WiFi router inside the LED box creates a local network, enabling remote SSH access to the Raspberry Pi.
 
-This setup allowed us to deploy code without opening the box or attaching peripherals.  
+This setup allowed us to deploy code without opening the box or attaching peripherals, by running a python script on ones PC that sent signals to the Router.  
+
 
 
 @fieteInfobox(That router does not possess an internet connection. <br> Sometimes people were confused why the internet suddenly stopped working.)
