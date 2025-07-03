@@ -502,8 +502,9 @@ for some this was the:
  - first time tinkering with markdown/liascript
 
 we found out:
- - learning python is easy
+ - learning python is easy, games came together quickly
  - using git is not hard, but unintuitive, especially the merging process
+ - refactoring is necessary
  - markdown is very easy, _very handy!_
 
 ### Coding Process
@@ -539,6 +540,8 @@ some stats:
  - and additional 1400 lines of matrix/array declarations
  - plus around 160 lines for the emulator
  - 120 git commits
+
+@fieteInfobox(As a mechanic myself, I don't know what _lines_ mean. I measure my projects in _bolts_!)
 
 ### Problems
 
@@ -599,7 +602,14 @@ What we took from this project:
  - experience with git
  - experience working, expecially coding in a team
  - backend and management are a big part of development
+ - good example of a project growning and code being 'alive', puts lectures from computer science into perspective
  - experience with python
+
+What would we do differently next time?
+ - manage git better, use it more seriously
+ - write a script to automate uploading of scripts; tedious process
+ - although we had to refactor a lot, this is normal and projects always grow dynamically
+ - due to more experience with python, cleaner codebase
 
 ## 11. Outlook
 
