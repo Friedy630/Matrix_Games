@@ -59,7 +59,8 @@ draw()
 <br>
 The video game classic **"DOOM"** running on a pregnancy test.
 
-How far can you push the limits of a small screen?
+@H4(How far can you push the limits of a small screen?)
+<br><br>
 
 ## 2. Presentation Objectives
 
