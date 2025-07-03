@@ -147,8 +147,8 @@ but more about that later.
 ### Pong[^5]
 
 <div style="text-align: center">
-    <img src="images/Signed_Pong_Cabinet.jpg" height="320">
-    <img src="images/250px-Pong_Game_Test2.gif" height="320">
+    <img src="images/Signed_Pong_Cabinet.jpg" height="320" style="height:320px; width:auto;" />
+    <img src="images/250px-Pong_Game_Test2.gif" height="320" style="height:320px; width:auto;" />
 </div>
 
 -   Released in 1972 by **Atari** for arcades
