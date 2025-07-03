@@ -129,9 +129,11 @@ but more about that later.
 
 ## 4. Inspiration / History of Games
 
-### Tetris
+### Tetris[^3]
 
-![image](images/NES-Tetris-Right-Well-Setup-1024x838.webp) format: ja lol ey
+<div style="text-align: center">
+    <img src="images/NES-Tetris-Right-Well-Setup-1024x838.webp" width="400">
+</div>
 
 -   Developed in 1985 by **Alexey Pajitnov** on an **Elektronika 60** (not an IBM machine)
 -   Hardware:
@@ -142,9 +144,11 @@ but more about that later.
 -   Licensed to **Nintendo** (Game Boy, NES), which gave it massive popularity
 -   Now a standalone company: **The Tetris Company**
 
-### Snake
+### Snake[^1][^2]
 
-![image](images/Snake-nokia-phone.jpg)
+<div style="text-align: center">
+    <img src="images/Snake-nokia-phone.jpg" width="400">
+</div>
 
 -   Released in 1998 as one of three games on the **Nokia 6110**, developed by **Taneli Armanto**
 -   Marketing wanted to offer users more game options
@@ -152,9 +156,11 @@ but more about that later.
 -   Early "snake-like" games were two-player games where players competed against each other
 -   Early versions didn’t reference a snake but had similar mechanics
 
-### Conway’s Game of Life
+### Conway’s Game of Life[^4]
 
-![image](images/game-of-life-loop-cropped.gif)
+<div style="text-align: center">
+    <img src="images/game-of-life-loop-cropped.gif" width="400">
+</div>
 
 -   Created in 1970 by **John Horton Conway**, British mathematician
 -   A **cellular automaton** – more a simulation than a game (“zero-player game”)
@@ -163,10 +169,12 @@ but more about that later.
 -   Some simple shapes: [wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#:~:text=its%20initial%20configuration.-,Still%20lifes,-Block)
 -   Called “Game of Life” because it reflects the idea that our universe is believed to be based on a few fundamental rules
 
-### Pong
+### Pong[^5]
 
-![image](images/Signed_Pong_Cabinet.jpg)
-![image](images/250px-Pong_Game_Test2.gif)
+<div style="text-align: center">
+    <img src="images/Signed_Pong_Cabinet.jpg" height="320">
+    <img src="images/250px-Pong_Game_Test2.gif" height="320">
+</div>
 
 -   Released in 1972 by **Atari** for arcades
 -   First commercially successful video game
@@ -174,9 +182,11 @@ but more about that later.
 -   Bushnell and **Ted Dabney** were impressed by the result and decided to produce it
 -   Simulates a simple tennis game
 
-### Chrome Dinosaur Game
+### Chrome Dinosaur Game[^6]
 
-![image](images/Dino_non-birthday_version.gif)
+<div style="text-align: center">
+    <img src="images/Dino_non-birthday_version.gif" width="400">
+</div>
 
 -   Built-in browser game in **Google Chrome**, appears when there is no internet connection
 -   Developed in 2014 by the **Chrome UX Team**: _Sebastien Gabriel, Alan Bettes, Edward Jung_
@@ -190,18 +200,20 @@ but more about that later.
 -   In 2018, creators reported ~270 million games played per month
 -   Game can be disabled (includes hidden Easter egg)
 
-![image](images/disable-dinosaur-game-chrome-4.webp)
+<div style="text-align: center">
+    <img src="images/disable-dinosaur-game-chrome-4.webp" width="400">
+</div>
 
 <details>
 ??[Dino Game](https://dinorunner.com/de/)
 </details>
 
-https://en.wikipedia.org/wiki/Snake_(video_game_genre)
-https://en.wikipedia.org/wiki/Snake_(1998_video_game)
-https://en.wikipedia.org/wiki/Tetris
-https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-https://en.wikipedia.org/wiki/Pong
-https://en.wikipedia.org/wiki/Dinosaur_Game
+[^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+[^2]:https://en.wikipedia.org/wiki/Snake_(1998_video_game)
+[^3]:https://en.wikipedia.org/wiki/Tetris
+[^4]:https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[^5]:https://en.wikipedia.org/wiki/Pong
+[^6]:https://en.wikipedia.org/wiki/Dinosaur_Game
 
 ## 5. Background Information / Hardware
 
