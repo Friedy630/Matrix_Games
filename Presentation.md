@@ -541,7 +541,7 @@ some stats:
  - plus around 160 lines for the emulator
  - 120 git commits
 
-@fieteInfobox(I'm a mechanic. I don't know what _lines_ mean. I measure my projects in _bolts_!)
+@fieteInfobox(I'm a mechanic. I don't know what lines mean. I measure my projects in bolts.)
 
 ### Problems
 
