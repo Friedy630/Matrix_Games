@@ -1,7 +1,7 @@
 <!--
 dark: false
 
-@fieteInfobox: <br><table style="background-color:rgb(115, 115, 105); border: 5px solid rgb(127, 127, 114); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">"@0"</td><td style="padding-right: 8px; padding-bottom:0"><img src="images/fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
+@fieteInfobox: <br><table style="background-color:rgb(173, 173, 146); border: 5px solid rgb(225, 207, 194); margin-left: 0; padding: 8px"><tr><td style="white-space: nowrap; padding-left:24px; text-align: left; font-size: 1.2em; color: #ffffff; vertical-align: middle;">"@0"</td><td style="padding-right: 8px; padding-bottom:0"><img src="images/fiete.png" width="80" height="80" alt="Fiete" /></td></tr></table>
 
 @H4: <span style="font-size: 2em"><strong>@0</strong></span>
 
@@ -53,27 +53,52 @@ draw()
 
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Friedy630/Matrix_Games)
 
+<!--
+1. Attention grabber
+2. What will audience get out of watching/listening to you? Why should they?
+3. What is the scope of your presentation (how much are you loading on to the audience)?
+4. What was your inspiration? What were your initial ideas? Was there anything you tried but abandoned?
+5. What background information, theory or technical details do your audience need to know to be able to understand your show/game?
+6. Code (Product)
+-   Big picture
+-   Important code snippets
+-   Bug examples
+-   What did you already know (and from where do you know it) and what did you have to learn to complete the project?
+7. Code (process)
+-   How did you code? Vibe? GitHub?
+8. The show/game. Demo and description
+9. Conclusion
+10. Reflection. What did we get from taking part in this challenge?
+11. Final thought/take-home message
+-->
+
 ## 1. (Attention Grabber)
 
-<div style="text-align: center">
-    <img src="images/pregnanct-test-doom.gif" width="800">
-</div>
+<!--
+Talk is cheap. Show me the code - Linus Torvalds
 
-The video game classic **"DOOM"** running on a pregnancy test.
+Never trust a computer you can't throw out a window - Steve Wozniak
 
-How far can you push the limits of a small screen?
+It doesn't (yet?) run Doom.
+
+Picture of Oscilloscope running Pong
+
+!?[Presentation!](https://www.youtube.com/watch?v=H7RkiOck8u4]
+-->
+
+nothing yet
 
 ## 2. Presentation Objectives
 
-- Present the developed system in a way that makes both the implementation and outcome transparent.
+-   Present the developed system in a way that makes both the implementation and outcome transparent.
 
-- Show what was built – not just by describing it, but by demonstrating core features and design principles.
+-   Show what was built – not just by describing it, but by demonstrating core features and design principles.
 
-- Explain how the project evolved from a single game into a modular framework for LED-based mini-games.
+-   Explain how the project evolved from a single game into a modular framework for LED-based mini-games.
 
-- Outline the technical structure and highlight key challenges and solutions during development.
+-   Outline the technical structure and highlight key challenges and solutions during development.
 
-- Provide insight into what was learned – both technically and conceptually.
+-   Provide insight into what was learned – both technically and conceptually.
 
 <div style="text-align: center">
     <img src="images/MEME_Office_English.png" width="800">
@@ -109,9 +134,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/NES-Tetris-Right-Well-Setup-1024x838.webp" width="400">
 </div>
-
-&nbsp;<br>
-
+<br>
 -   Developed in 1985 by **Alexey Pajitnov** on an **Elektronika 60** (not an IBM machine)
 -   Hardware:
     -   16-bit system
@@ -126,9 +149,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/Snake-nokia-phone.jpg" width="400">
 </div>
-
-&nbsp;<br>
-
+<br>
 -   Released in 1998 as one of three games on the **Nokia 6110**, developed by **Taneli Armanto**
 -   Marketing wanted to offer users more game options
 -   Gained huge popularity due to its simplicity and low hardware requirements
@@ -140,8 +161,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/game-of-life-loop-cropped.gif" width="400">
 </div>
-&nbsp;<br>
-
+<br>
 -   Created in 1970 by **John Horton Conway**, British mathematician
 -   A **cellular automaton** – more a simulation than a game (“zero-player game”)
 -   Completely deterministic
@@ -152,11 +172,10 @@ but more about that later.
 ### Pong[^5]
 
 <div style="text-align: center">
-    <img src="images/Signed_Pong_Cabinet.jpg" height="320" style="height:320px; width:auto;" />
-    <img src="images/250px-Pong_Game_Test2.gif" height="320" style="height:320px; width:auto;" />
+    <img src="images/Signed_Pong_Cabinet.jpg" height="320">
+    <img src="images/250px-Pong_Game_Test2.gif" height="320">
 </div>
-&nbsp;<br>
-
+<br>
 -   Released in 1972 by **Atari** for arcades
 -   First commercially successful video game
 -   Developed by **Allan Alcorn** as a training exercise, assigned by **Nolan Bushnell**
@@ -168,8 +187,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/Dino_non-birthday_version.gif" width="400">
 </div>
-&nbsp;<br>
-
+<br>
 -   Built-in browser game in **Google Chrome**, appears when there is no internet connection
 -   Developed in 2014 by the **Chrome UX Team**: _Sebastien Gabriel, Alan Bettes, Edward Jung_
 -   Pterosaurs were added as obstacles in 2015
@@ -182,23 +200,20 @@ but more about that later.
 -   In 2018, creators reported ~270 million games played per month
 -   Game can be disabled (includes hidden Easter egg)
 
-&nbsp;<br>
 <div style="text-align: center">
     <img src="images/disable-dinosaur-game-chrome-4.webp" width="400">
-/newline
-
+</div>
 
 <details>
-??[Dino Game](https://chromedino.com/)
+??[Dino Game](https://dinorunner.com/de/)
 </details>
 
-
-[^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
-[^2]:https://en.wikipedia.org/wiki/Snake_(1998_video_game)
-[^3]:https://en.wikipedia.org/wiki/Tetris
-[^4]:https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-[^5]:https://en.wikipedia.org/wiki/Pong
-[^6]:https://en.wikipedia.org/wiki/Dinosaur_Game
+[^1]: https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+[^2]: https://en.wikipedia.org/wiki/Snake_(1998_video_game)
+[^3]: https://en.wikipedia.org/wiki/Tetris
+[^4]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[^5]: https://en.wikipedia.org/wiki/Pong
+[^6]: https://en.wikipedia.org/wiki/Dinosaur_Game
 
 ## 5. Background Information / Hardware
 
@@ -207,14 +222,9 @@ but more about that later.
 The LED grid is built from a `16×16 matrix of RGB LEDs`.
 Even though 256 pixels is extremely limited by modern standards, the visual results are surprisingly expressive.
 
-
-<div style="text-align: center">
-    <img src="images/LED_Matrix_GameOver.jpg" width="500">
-</div>
-
+![image](images/LED_Matrix_GameOver.jpg)
 
 @fieteInfobox(Here is a close-up view of the LED matrix showing the game over screen every game of ours uses.)
-
 
 ### Raspberry Pi
 
@@ -226,44 +236,38 @@ It handles real-time display updates, input polling, and filesystem access – m
 
 > Raspberry Pi used as the system controller.
 
-
 ### Python
 
-Python, one of the easiest to learn programming languages to learn, made rapid development and debugging possible. Despite being slower than C, the trade-off in development speed was worth it.
+Python, one of the easiest to learn programming languages, made rapid development and debugging possible. Despite being slower than C, the trade-off in development speed was worth it.
 
 The codebase is structured into three libraries:
 
-- `graphics_library.py`
+-   `graphics_library.py`
 
-- `input_library.py`
+-   `input_library.py`
 
-- `game_library.py`
+-   `game_library.py`
 
 and several game implementations.
 
-@fieteInfobox(Two out of three people working on this project had to use Python for the first time. <br> But we managed to create a fully functional game framework in just a few weeks.)
-
+@fieteInfobox(Two out of three people working on this project had to use Python for the first time. <br> But they managed to create a fully functional game framework in just a few weeks.)
 
 ### Router
 
 A small WiFi router inside the LED box creates a local network, enabling remote SSH access to the Raspberry Pi.
 
-This setup allowed us to deploy code without opening the box or attaching peripherals.  
-
+This setup allowed us to deploy code without opening the box or attaching peripherals.
 
 @fieteInfobox(That router does not possess an internet connection. <br> Sometimes people were confused why the internet suddenly stopped working.)
 
-
 ## 6. Codebase
-
-### Overview
 
 Two main parts of the codebase:
 
 -   Libraries: `graphics_library.py`, `input_library.py`, `game_library.py`
 -   Game implementations: `tetris.py`, `snake.py`, `pong.py`, etc
 
-@fieteInfobox(Libraries provide common functionality for graphics, <br>input handling, and game logic.)
+@fieteInfobox(Libraries provide common functionality for graphics <br> input handling, and game logic.)
 
 ### `graphics_library.py`
 
@@ -328,8 +332,8 @@ np.array(
 
 -   Handles user input and controls
 -   Provides a list of booleans for reading button states
--   Allowed us to combine multiple key names into a single input
-    -   e.g. `inputs["enter"]` can be triggered by both `enter` and `return`
+-   Allowed us to combine multiple key names into a single input (e.g. `inputs["enter"]` can be triggered by both `enter` and `return`)
+-   Sends the inputs to the LED box via a UDP socket
 
 ### `game_library.py`
 
@@ -422,6 +426,7 @@ games = [
 ```
 
 <img src=images/main_menu.png height=320 width=320/>
+Main Menu
 
 </section>
 ### The Games
@@ -437,6 +442,11 @@ But in favor of time we will only show one example here:
 
 This was as we said the first game we implemented and has had the most improvements.
 
+</section>
+
+{{2}}
+
+<section>
 Tetris makes heavy use of the shape functionality of the `graphics_library.py`
 It even defines its own shape class:
 
@@ -454,7 +464,7 @@ class TetrisShape:
 <br><br>
 
 </section>
-{{2}}
+{{3}}
 
 <section>
 @H4(Tetris Update Loop)
@@ -479,7 +489,7 @@ graph TD
 ```
 
 </section>
-{{3}}
+{{4}}
 
 <section>
 <br>
@@ -508,7 +518,7 @@ def update(self):
 
 </section>
 
-{{4}}
+{{5}}
 
 <section>
 The rest of the code defines the shapes that get used during the game and has the actual functions that get called in the update loop. <br> The whole file has __547__ lines of code (but that depends heavily on the formatter used).
@@ -518,137 +528,137 @@ The rest of the code defines the shapes that get used during the game and has th
 
 ### Learning Process
 
-for some this was the:
+for some this was the first time:
 
-- first time using python
-- first time using git collaboratively
-- first time tinkering with markdown/liascript
+-   using python
+-   using git collaboratively
+-   tinkering with markdown/liascript
 
 we found out:
 
-- learning python is easy, games came together quickly
-- using git is not hard, but unintuitive, especially the merging process
-- refactoring is necessary
-- markdown is very easy, _very handy!_
+-   learning python is easy, so the games came together quickly
+-   using git is not hard, but unintuitive, especially the merging process
+-   refactoring is necessary
+-   markdown is very easy and _very handy!_
 
 ### Coding Process
 
 initial plan: TETRIS!
 
-- done VERY quick
+-   done VERY quick
 
 we added:
 
-- a new main menu to adjust the speed
-- being able to phase through the walls (optional)
-- more shapes (optional)
-- giving those shapes different chances to spawn (optional)
+-   a new main menu to adjust the speed
+-   being able to phase through the walls (optional)
+-   more shapes (optional)
+-   giving those shapes different chances to spawn (optional)
 
 decided to add more games as it was easy to create new ones
-we added: 
+added:
 
-- snake
-- game of life
-- pong
-- main menu v3, to switch between games *and* adjust difficulty
-later also
-- dino
-- flappy bird
+-   snake
+-   pong
+-   main menu v3, to switch between games _and_ adjust difficulty
+-   flappy bird
+-   game of life
+-   dino
 
 during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
 
-- more maintainable
+--> this made the project more maintainable
 
-later made the games instances of classes, to better structure the game exits and game starts
+later the games where made into instances of classes, to better structure the game control flow
 
-- now new games can be integrated easily
+--> now new games can be integrated easily
 
 Leander decided to create a website to control a game together
 
-- needed for pong
-- possible due to input library
+-   needed for pong
+-   possible due to input library
 
 some stats:
 
-- roughly 1700 lines of code (including the webapp)
-- and additional 1400 lines of matrix/array declarations
-- plus around 160 lines for the emulator
-- 120 git commits
+-   roughly 1700 lines of code (including the webapp)
+-   and additional 1400 lines of matrix/array declarations
+-   plus around 160 lines for the emulator
+-   120 git commits
 
 @fieteInfobox(I'm a mechanic. I don't know what lines mean. I measure my projects in bolts.)
 
 ### Problems
 
 1. testing the remote controls was not possible on jupyter
-	- had to create our own emulator using pygame2.
+    - we had to create our own emulator using pygame2.
 2. making an intuitive user interface with a 16x16 resolution
-   	- difficulty slider uses colors to idicate the difficulty
-   	- using brightness changes to set a focus
-   	- not using words, it is too big (initially the word _"speed"_ was displayed)
+    - the difficulty slider uses colors to idicate the difficulty
+    - using brightness changes to set a focus
+    - no words, they would be too big (initially the word _"speed"_ was displayed)
 3. git merges
-   	- using git is not as intuitive as we thought
-   	- we had some progress lost along the way due to bad merges
+    - using git is not as intuitive as we thought
+    - we had some progress lost along the way due to bad merges
 4. keyboard key names
-	- pygame and the remote script work with slightly different names
-	- lead to confusion, as the key got registered, but nothing was recieved by the box
+    - pygame and the remote script work with slightly different names
+    - lead to confusion, as the key got registered, but nothing was recieved by the box
 5. WIFI access
-   	- constantly change between communicating with the box or with the wwww
-6. update loops
-   	- a screen of black between every renderd frame
-   	- caused by the `fill()` function to call `show()` automatically
+    - constantly change between communicating with the box or with the wwww
+6. flickering display
+    - a black screen was rendered every other frame
+    - caused by the `fill()` function calling `show()` automatically
 7. coding
-   	- of course we had the typical coding problems of smth. not working
-   	- or working when is shouldn't
-   	- vs code marks errors, still working fine
+    - of course we had the typical coding problems of smth. not working...
+    - ...or working when is shouldn't
+    - vs code underlining errors, even when there are none
 8. screen brightness
-   	- the screen is very bright
-   	- lots of testing
+    - the screen is very bright
+    - needed lots of testing
 
 ## 8. Demonstration
 
 1. Please connect your laptops to the LED-Box-Wifi
-2. Got to led-box.bbrouter:8060
+2. Got to http://led-box.bbrouter:8060
 3. There will be a key assigned to you
 4. By collaborating you can all test our game together :)
 
 ## 9. Conclusion
 
-What started it all
----
+## What started it all
+
 The project began as a simple Tetris implementation — a single game, one goal.
 
-What it became
----
+## What it became
+
 We ended up with a modular system capable of running multiple games, all based on a shared architecture.
 
-What worked well
----
-- Fast prototyping thanks to abstraction
-- Game logic and rendering separated cleanly
-- Framework allowed quick addition of new games
+## What worked well
 
-What surprised us
----
+-   Fast prototyping thanks to abstraction
+-   Game logic and rendering separated cleanly
+-   Framework allowed quick addition of new games
+
+## What surprised us
+
 We spent more time improving the engine than writing individual games — and it was worth it.
 
-@fieteInfobox(What's still missing: <br>It doesn't run Doom. But it could run a few more things — with time.
-)
+@fieteInfobox(It could run a lot more games — with just a bit of time.)
 
 ## 10. Reflection
 
 What we took from this project:
- - it was fun
- - experience with git
- - experience working, expecially coding in a team
- - backend and management are a big part of development
- - good example of a project growning and code being 'alive', puts lectures from computer science into perspective
- - experience with python
+
+-   it was fun
+-   experience with git
+-   experience working, especially coding in a team
+-   backend and management are a big part of development
+-   good example of a project growing and code being 'alive', puts lectures from computer science into perspective
+-   experience with python
 
 What would we do differently next time?
- - manage git better, use it more seriously
- - write a script to automate uploading of scripts; tedious process
- - although we had to refactor a lot, this is normal and projects always grow dynamically
- - due to more experience with python, cleaner codebase
+
+-   manage git better, use it more seriously
+-   write a script to automate uploading of scripts (tedious process)
+-   although we had to refactor a lot, this is normal and projects always grow dynamically
+-   due to more experience with python, we could now make a cleaner codebase
 
 ## 11. Outlook
 
@@ -661,4 +671,5 @@ We could have done more, especially with the kind of framework we created.
 -   3D graphics
 -   ...
 
+{{1}}
 @fieteInfobox(Unfortunately it will probably never run <img src="images/doom.png" width="80" height="80" alt="Doom" />)
