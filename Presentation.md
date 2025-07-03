@@ -594,6 +594,13 @@ We spent more time improving the engine than writing individual games — and it
 
 ## 10. Reflection
 
+What we took from this project:
+ - it was fun
+ - experience with git
+ - experience working, expecially coding in a team
+ - backend and management are a big part of development
+ - experience with python
+
 ## 11. Outlook
 
 We could have done more, especially with the kind of framework we created.
