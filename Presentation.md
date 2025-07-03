@@ -99,7 +99,10 @@ nothing yet
 - Outline the technical structure and highlight key challenges and solutions during development.
 
 - Provide insight into what was learned – both technically and conceptually.
-    
+
+<div style="text-align: center">
+    <img src="images/MEME_Office_English.png" width="800">
+</div>
 
 ## 3. Outline / Ideas
 
@@ -218,7 +221,7 @@ We used a Raspberry Pi to run the code on. It simplifies development thanks to i
 
 It handles real-time display updates, input polling, and filesystem access – making it a fully standalone embedded system.
 
-![image](images/RaspberryPi.jpg)
+![image](images/RaspberryPi.png)
 
 > Raspberry Pi used as the system controller.
 
@@ -493,9 +496,7 @@ What started as “let’s just do Tetris” quickly escalated into a whole game
 
 We ended up building a framework – not just individual games.
 
-The abstraction helped us implement more games faster than expected.
-
-Performance was never the goal. Clarity, extensibility, and fun were.
+The framework allows us to easily add new games, share common functionality, and create a consistent user experience across all games.
 
 The result is something we can keep extending – even if it still doesn’t run Doom.
 
