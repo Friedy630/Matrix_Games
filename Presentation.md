@@ -69,7 +69,7 @@ draw()
 8. The show/game. Demo and description
 9. Conclusion
 10. Reflection. What did we get from taking part in this challenge?
-11. Final thought/take-home message
+11. Final thought/take-home message 
 -->
 
 ## 1. (Attention Grabber)
@@ -222,8 +222,9 @@ but more about that later.
 The LED grid is built from a `16×16 matrix of RGB LEDs`.
 Even though 256 pixels is extremely limited by modern standards, the visual results are surprisingly expressive.
 
-![image](images/LED_Matrix_GameOver.jpg)
-
+<div style="text-align: center">
+    <img src="images/LED_Matrix_GameOver.jpg" width="500">
+</div>
 @fieteInfobox(Here is a close-up view of the LED matrix showing the game over screen every game of ours uses.)
 
 
