@@ -110,7 +110,7 @@ but more about that later.
     <img src="images/NES-Tetris-Right-Well-Setup-1024x838.webp" width="400">
 </div>
 
-/newline
+&nbsp;<br>
 
 -   Developed in 1985 by **Alexey Pajitnov** on an **Elektronika 60** (not an IBM machine)
 -   Hardware:
@@ -127,7 +127,7 @@ but more about that later.
     <img src="images/Snake-nokia-phone.jpg" width="400">
 </div>
 
-/newline
+&nbsp;<br>
 
 -   Released in 1998 as one of three games on the **Nokia 6110**, developed by **Taneli Armanto**
 -   Marketing wanted to offer users more game options
@@ -140,7 +140,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/game-of-life-loop-cropped.gif" width="400">
 </div>
-/newline
+&nbsp;<br>
 
 -   Created in 1970 by **John Horton Conway**, British mathematician
 -   A **cellular automaton** – more a simulation than a game (“zero-player game”)
@@ -155,7 +155,7 @@ but more about that later.
     <img src="images/Signed_Pong_Cabinet.jpg" height="320" style="height:320px; width:auto;" />
     <img src="images/250px-Pong_Game_Test2.gif" height="320" style="height:320px; width:auto;" />
 </div>
-/newline
+&nbsp;<br>
 
 -   Released in 1972 by **Atari** for arcades
 -   First commercially successful video game
@@ -168,7 +168,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/Dino_non-birthday_version.gif" width="400">
 </div>
-/newline
+&nbsp;<br>
 
 -   Built-in browser game in **Google Chrome**, appears when there is no internet connection
 -   Developed in 2014 by the **Chrome UX Team**: _Sebastien Gabriel, Alan Bettes, Edward Jung_
@@ -182,7 +182,7 @@ but more about that later.
 -   In 2018, creators reported ~270 million games played per month
 -   Game can be disabled (includes hidden Easter egg)
 
-<br>
+&nbsp;<br>
 <div style="text-align: center">
     <img src="images/disable-dinosaur-game-chrome-4.webp" width="400">
 /newline
