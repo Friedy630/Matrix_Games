@@ -545,6 +545,7 @@ we found out:
 ### Coding Process
 
 initial plan: TETRIS!
+
 - done VERY quick
 
 we added:
@@ -555,7 +556,7 @@ we added:
  - giving those shapes different chances to spawn (optional)
 
 decided to add more games as it was easy to create new ones
-added: 
+we added: 
 
  - snake
  - game of life
@@ -564,16 +565,20 @@ added:
  - dino
 
 during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
+
  - more maintainable
 
 later made the games instances of classes, to better structure the game exits and game starts
+
  - now new games can be integrated easily
 
 Leander decided to create a website to control a game together
+
  - needed for pong
  - possible due to input library
 
 some stats:
+
  - roughly 1700 lines of code (including the webapp)
  - and additional 1400 lines of matrix/array declarations
  - plus around 160 lines for the emulator
