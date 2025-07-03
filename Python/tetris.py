@@ -11,7 +11,6 @@ class TetrisShape:
     ):
         self.shape_matrix = shape_matrix
         self.weight = weight  # chance to spawn this shape
-        self.position = gl.Vec(0, 0)  # position on the game field
         self.color = color  # color of the shape
 
 
@@ -342,10 +341,14 @@ class TetrisGameShape:
         self.id = -1  # index in shape set
 
     def paste(self):
-        gl.set_shape(self.shape.shape_matrix, self.position, self.shape.color, True, False)
+        gl.set_shape(
+            self.shape.shape_matrix, self.position, self.shape.color, True, False
+        )
 
     def cut(self):
-        gl.set_shape(self.shape.shape_matrix, self.position, gl.colors["background"], True, False)
+        gl.set_shape(
+            self.shape.shape_matrix, self.position, gl.colors["background"], True, False
+        )
 
     def rotate(self, isleft: bool, wrapX: bool):
         rotated_matrix = gl.get_rotated_shape_matrix(self.shape.shape_matrix, isleft)
@@ -401,9 +404,13 @@ class TetrisGame(game.Game):
         self.exotic_shape_chance = exotic_shape_chance  # chance to spawn an exotic shape instead of a normal one
 
         # Exotic Mechanics
-        self.enable_acceleration = enable_acceleration  # makes the falling speed accelerate over time
-        
-        self.enable_shape_weights = enable_shape_weights  # spawns each block with a given chance
+        self.enable_acceleration = (
+            enable_acceleration  # makes the falling speed accelerate over time
+        )
+
+        self.enable_shape_weights = (
+            enable_shape_weights  # spawns each block with a given chance
+        )
 
         self.shapes = shapes  # normal shapes
         self.exotic_shapes = exotic_shapes  # exotic shapes
@@ -411,7 +418,6 @@ class TetrisGame(game.Game):
         self.weights_sum = weights_sum  # sum of all normal shape weights
         self.exotic_weights_sum = exotic_weights_sum  # sum of all exotic shape weights
 
-    
     def set_difficulty(self, difficulty, default_mult):
         print("set diff")
         if difficulty == 0:
@@ -431,7 +437,6 @@ class TetrisGame(game.Game):
             self.exotic_shape_chance = 0.25
             self.enable_shape_weights = True
             self.side_to_side_pass = False
-            
 
     def initialise(self):
         super().initialise()
@@ -446,7 +451,9 @@ class TetrisGame(game.Game):
             if self.tick % self.fall_prescale == 0:
                 il.inputs["down"] = True
             if il.inputs["left"] != il.inputs["right"]:
-                self.current_shape.move_horizontal(il.inputs["left"], self.side_to_side_pass)
+                self.current_shape.move_horizontal(
+                    il.inputs["left"], self.side_to_side_pass
+                )
             if il.inputs["up"] != il.inputs["space"]:
                 self.current_shape.rotate(il.inputs["up"], self.side_to_side_pass)
             if il.inputs["down"] or il.inputs["enter"]:

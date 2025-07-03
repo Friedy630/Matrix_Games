@@ -8,7 +8,7 @@ import snake
 import pong
 import flappybird
 import game_of_life
-import dino;
+import dino
 
 # icon chaos
 tetris_icon = np.array(
@@ -538,7 +538,7 @@ games = [
         "name": "GAME OF LIFE",
         "class": game_of_life.GameOfLifeGame,
         "icon": game_of_life_icon,
-    }
+    },
 ]
 
 # speed multipliers for game specific spt
