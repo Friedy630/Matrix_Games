@@ -180,7 +180,7 @@ but more about that later.
 </div>
 
 <details>
-??[Dino Game](https://dinorunner.com/de/)
+??[Dino Game](chrome://dino/)
 </details>
 
 [^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
