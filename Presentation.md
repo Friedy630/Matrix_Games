@@ -530,11 +530,13 @@ The rest of the code defines the shapes that get used during the game and has th
 ### Learning Process
 
 for some this was the:
+
  - first time using python
  - first time using git collaboratively
  - first time tinkering with markdown/liascript
 
 we found out:
+
  - learning python is easy, games came together quickly
  - using git is not hard, but unintuitive, especially the merging process
  - refactoring is necessary
@@ -546,6 +548,7 @@ initial plan: TETRIS!
 - done VERY quick
 
 we added:
+
  - a new main menu to adjust the speed
  - being able to phase through the walls (optional)
  - more shapes (optional)
@@ -553,6 +556,7 @@ we added:
 
 decided to add more games as it was easy to create new ones
 added: 
+
  - snake
  - game of life
  - pong
