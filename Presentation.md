@@ -538,7 +538,9 @@ we added:
 - game of life
 - pong
 - main menu v3, to switch between games *and* adjust difficulty
+later also
 - dino
+- flappy bird
 
 during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
 
