@@ -198,7 +198,7 @@ but more about that later.
 * Later spin-off: *Flappy Birds Family* for Amazon Fire TV
 
 
-### Quellen
+### Sources
 
 [^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
 [^2]:https://en.wikipedia.org/wiki/Snake_(1998_video_game)
