@@ -108,6 +108,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/NES-Tetris-Right-Well-Setup-1024x838.webp" width="400">
 </div>
+<br>
 
 -   Developed in 1985 by **Alexey Pajitnov** on an **Elektronika 60** (not an IBM machine)
 -   Hardware:
@@ -123,6 +124,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/Snake-nokia-phone.jpg" width="400">
 </div>
+<br>
 
 -   Released in 1998 as one of three games on the **Nokia 6110**, developed by **Taneli Armanto**
 -   Marketing wanted to offer users more game options
@@ -135,6 +137,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/game-of-life-loop-cropped.gif" width="400">
 </div>
+<br>
 
 -   Created in 1970 by **John Horton Conway**, British mathematician
 -   A **cellular automaton** – more a simulation than a game (“zero-player game”)
@@ -149,6 +152,7 @@ but more about that later.
     <img src="images/Signed_Pong_Cabinet.jpg" height="320" style="height:320px; width:auto;" />
     <img src="images/250px-Pong_Game_Test2.gif" height="320" style="height:320px; width:auto;" />
 </div>
+<br>
 
 -   Released in 1972 by **Atari** for arcades
 -   First commercially successful video game
@@ -161,6 +165,7 @@ but more about that later.
 <div style="text-align: center">
     <img src="images/Dino_non-birthday_version.gif" width="400">
 </div>
+<br>
 
 -   Built-in browser game in **Google Chrome**, appears when there is no internet connection
 -   Developed in 2014 by the **Chrome UX Team**: _Sebastien Gabriel, Alan Bettes, Edward Jung_
@@ -188,27 +193,26 @@ but more about that later.
     <img src="images/flappy-bird-screenshot.png" width="400">
 </div>
 
-* Published in 2013 by **Dong Nguyen** (Developer studio: .GEARS)
-* originally for **iOS**, later also for **Android**
-* Retro-Graficstyle, inspired by 8-Bit-console
-* Extremely simple gameplay mechanic: Tap = Flap
-* Removed by the developer himself in February 2014 – Reason: "too addictive"
-* Led to numerous **clones** and **in-app sales of used smartphones** with the game pre-installed
-* Developed using the **Cocos2d-x** game engine
-* Later spin-off: *Flappy Birds Family* for Amazon Fire TV
-
+-   Published in 2013 by **Dong Nguyen** (Developer studio: .GEARS)
+-   originally for **iOS**, later also for **Android**
+-   Retro-Graficstyle, inspired by 8-Bit-console
+-   Extremely simple gameplay mechanic: Tap = Flap
+-   Removed by the developer himself in February 2014 – Reason: "too addictive"
+-   Led to numerous **clones** and **in-app sales of used smartphones** with the game pre-installed
+-   Developed using the **Cocos2d-x** game engine
+-   Later spin-off: _Flappy Birds Family_ for Amazon Fire TV
 
 ### Sources
 
-[^1]:https://en.wikipedia.org/wiki/Snake_(video_game_genre)
-[^2]:https://en.wikipedia.org/wiki/Snake_(1998_video_game)
-[^3]:https://en.wikipedia.org/wiki/Tetris
-[^4]:https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-[^5]:https://en.wikipedia.org/wiki/Pong
-[^6]:https://en.wikipedia.org/wiki/Dinosaur_Game
-[^7]:https://www.distractify.com/p/why-did-flappy-bird-get-deleted
-[^8]:https://en.wikipedia.org/wiki/Flappy_Bird
-[^9]:https://en.wikipedia.org/wiki/Flappy_Birds_Family
+[^1]: https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+[^2]: https://en.wikipedia.org/wiki/Snake_(1998_video_game)
+[^3]: https://en.wikipedia.org/wiki/Tetris
+[^4]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[^5]: https://en.wikipedia.org/wiki/Pong
+[^6]: https://en.wikipedia.org/wiki/Dinosaur_Game
+[^7]: https://www.distractify.com/p/why-did-flappy-bird-get-deleted
+[^8]: https://en.wikipedia.org/wiki/Flappy_Bird
+[^9]: https://en.wikipedia.org/wiki/Flappy_Birds_Family
 
 ## 5. Background Information / Hardware
 
@@ -222,7 +226,6 @@ Even though 256 pixels is extremely limited by modern standards, the visual resu
 </div>
 @fieteInfobox(Here is a close-up view of the LED matrix showing the game over screen every game of ours uses.)
 
-
 ### Raspberry Pi
 
 We used a Raspberry Pi to run the code on. It simplifies development thanks to its native Python support.
@@ -233,34 +236,29 @@ It handles real-time display updates, input polling, and filesystem access – m
 
 > Raspberry Pi used as the system controller.
 
-
 ### Python
 
 Python, one of the easiest to learn programming languages to learn, made rapid development and debugging possible. Despite being slower than C, the trade-off in development speed was worth it.
 
 The codebase is structured into three libraries:
 
-- `graphics_library.py`
+-   `graphics_library.py`
 
-- `input_library.py`
+-   `input_library.py`
 
-- `game_library.py`
+-   `game_library.py`
 
 and several game implementations.
 
-@fieteInfobox(Two out of three people working on this project had to use Python for the first time. <br> But we managed to create a fully functional game framework in just a few weeks.)
-
+@fieteInfobox(Two out of three people working on this project had to use Python for the first time. <br> But they managed to create a fully functional game framework in just a few weeks.)
 
 ### Router
 
 A small WiFi router inside the LED box creates a local network, enabling remote SSH access to the Raspberry Pi.
 
-This setup allowed us to deploy code without opening the box or attaching peripherals, by running a python script on ones PC that sent signals to the Router.  
-
-
+This setup allowed us to deploy code without opening the box or attaching peripherals, by running a python script on ones PC that sent signals to the Router.
 
 @fieteInfobox(That router does not possess an internet connection. <br> Sometimes people were confused why the internet suddenly stopped working.)
-
 
 ## 6. Codebase
 
@@ -271,7 +269,7 @@ Two main parts of the codebase:
 -   Libraries: `graphics_library.py`, `input_library.py`, `game_library.py`
 -   Game implementations: `tetris.py`, `snake.py`, `pong.py`, etc
 
-@fieteInfobox(Libraries provide common functionality for graphics, <br>input handling, and game logic.)
+@fieteInfobox(Libraries provide common functionality for graphics <br> input handling, and game logic.)
 
 ### `graphics_library.py`
 
@@ -336,8 +334,8 @@ np.array(
 
 -   Handles user input and controls
 -   Provides a list of booleans for reading button states
--   Allowed us to combine multiple key names into a single input
-    -   e.g. `inputs["enter"]` can be triggered by both `enter` and `return`
+-   Allowed us to combine multiple key names into a single input (e.g. `inputs["enter"]` can be triggered by both `enter` and `return`)
+-   Sends the inputs to the LED box via a UDP socket
 
 ### `game_library.py`
 
@@ -430,6 +428,7 @@ games = [
 ```
 
 <img src=images/main_menu.png height=320 width=320/>
+Main menu
 
 </section>
 ### The Games
@@ -445,6 +444,11 @@ But in favor of time we will only show one example here:
 
 This was as we said the first game we implemented and has had the most improvements.
 
+</section>
+
+{{2}}
+
+<section>
 Tetris makes heavy use of the shape functionality of the `graphics_library.py`
 It even defines its own shape class:
 
@@ -462,7 +466,7 @@ class TetrisShape:
 <br><br>
 
 </section>
-{{2}}
+{{3}}
 
 <section>
 @H4(Tetris Update Loop)
@@ -487,7 +491,7 @@ graph TD
 ```
 
 </section>
-{{3}}
+{{4}}
 
 <section>
 <br>
@@ -516,7 +520,7 @@ def update(self):
 
 </section>
 
-{{4}}
+{{5}}
 
 <section>
 The rest of the code defines the shapes that get used during the game and has the actual functions that get called in the update loop. <br> The whole file has __547__ lines of code (but that depends heavily on the formatter used).
@@ -526,18 +530,18 @@ The rest of the code defines the shapes that get used during the game and has th
 
 ### Learning Process
 
-for some this was the:
+for some this was the first time:
 
--   first time using python
--   first time using git collaboratively
--   first time tinkering with markdown/liascript
+-   using python
+-   using git collaboratively
+-   tinkering with markdown/liascript
 
 we found out:
 
--   learning python is easy, games came together quickly
+-   learning python is easy, so the games came together quickly
 -   using git is not hard, but unintuitive, especially the merging process
 -   refactoring is necessary
--   markdown is very easy, _very handy!_
+-   markdown is very easy and _very handy!_
 
 ### Coding Process
 
@@ -556,18 +560,19 @@ decided to add more games as it was easy to create new ones
 we added:
 
 -   snake
--   game of life
 -   pong
 -   main menu v3, to switch between games _and_ adjust difficulty
+-   flappy bird
+-   game of life
 -   dino
 
 during development of snake and pong, we decided to create an input and a graphics library, because we dont want too much copied code
 
--   more maintainable
+--> this made the project more maintainable
 
-later made the games instances of classes, to better structure the game exits and game starts
+later the games where made into instances of classes, to better structure the game control flow
 
--   now new games can be integrated easily
+--> now new games can be integrated easily
 
 Leander decided to create a website to control a game together
 
@@ -586,11 +591,11 @@ some stats:
 ### Problems
 
 1. testing the remote controls was not possible on jupyter
-    - had to create our own emulator using pygame2.
+    - we had to create our own emulator using pygame2.
 2. making an intuitive user interface with a 16x16 resolution
-    - difficulty slider uses colors to idicate the difficulty
+    - the difficulty slider uses colors to idicate the difficulty
     - using brightness changes to set a focus
-    - not using words, it is too big (initially the word _"speed"_ was displayed)
+    - no words, they would be too big (initially the word _"speed"_ was displayed)
 3. git merges
     - using git is not as intuitive as we thought
     - we had some progress lost along the way due to bad merges
@@ -599,50 +604,49 @@ some stats:
     - lead to confusion, as the key got registered, but nothing was recieved by the box
 5. WIFI access
     - constantly change between communicating with the box or with the wwww
-6. update loops
-    - a screen of black between every renderd frame
-    - caused by the `fill()` function to call `show()` automatically
+6. flickering display
+    - a black screen was rendered every other frame
+    - caused by the `fill()` function calling `show()` automatically
 7. coding
-    - of course we had the typical coding problems of smth. not working
-    - or working when is shouldn't
-    - vs code marks errors, still working fine
+    - of course we had the typical coding problems of smth. not working...
+    - ...or working when is shouldn't
+    - vs code underlining errors, even when there are none
 8. screen brightness
     - the screen is very bright
-    - lots of testing
+    - needed lots of testing
 
 ## 8. Demonstration
 
 1. Please connect your laptops to the LED-Box-Wifi
-2. Got to led-box.bbrouter:8060
+2. Got to http://led-box.bbrouter:8060
 3. There will be a key assigned to you
 4. By collaborating you can all test our game together :)
 
 ## 9. Conclusion
 
-What started it all
----
+## What started it all
+
 The project began as a simple Tetris implementation — a single game, one goal.
 <br>
 
-What it became
----
+## What it became
+
 We ended up with a modular system capable of running multiple games, all based on a shared architecture.
 <br>
 
-What worked well
----
+## What worked well
+
 -   Fast prototyping thanks to abstraction
 -   Game logic and rendering separated cleanly
 -   Framework allowed quick addition of new games
-<br>
+    <br>
 
-What surprised us
----
+## What surprised us
+
 We spent more time improving the engine than writing individual games — and it was worth it.
 <br>
 
-@fieteInfobox(What's still missing: <br>It doesn't run Doom. But it could run a few more things — with time.
-)
+@fieteInfobox(It could run a lot more games — with just a bit of time.)
 
 ## 10. Reflection
 
@@ -650,7 +654,7 @@ What we took from this project:
 
 -   it was fun
 -   experience with git
--   experience working, expecially coding in a team
+-   experience working, especially coding in a team
 -   backend and management are a big part of development
 -   good example of a project growning and code being 'alive', puts lectures from computer science into perspective
 -   experience with python
@@ -658,9 +662,9 @@ What we took from this project:
 What would we do differently next time?
 
 -   manage git better, use it more seriously
--   write a script to automate uploading of scripts; tedious process
+-   write a script to automate uploading of scripts (tedious process)
 -   although we had to refactor a lot, this is normal and projects always grow dynamically
--   due to more experience with python, cleaner codebase
+-   due to more experience with python, we could now make a cleaner codebase
 
 ## 11. Outlook
 
@@ -673,4 +677,5 @@ We could have done more, especially with the kind of framework we created.
 -   3D graphics
 -   ...
 
+{{1}}
 @fieteInfobox(Unfortunately it will probably never run <img src="images/doom.png" width="80" height="80" alt="Doom" />)
